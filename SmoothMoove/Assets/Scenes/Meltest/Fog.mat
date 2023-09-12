@@ -21,21 +21,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Fog
-  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 27879415a832d874cbdb12ba0e36a652, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _ALPHABLEND_ON
-  - _FADING_ON
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
-  disabledShaderPasses:
-  - GRABPASS
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -112,6 +108,7 @@ Material:
     - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _Density: 0.31
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DistortionBlend: 0.5
@@ -132,6 +129,7 @@ Material:
     - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SampleGI: 0
@@ -149,7 +147,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _CameraFadeParams: {r: 0, g: 0.0081766145, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
     - _ColorAddSubDiff: {r: -1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0.04892368, b: 0, a: 0}
