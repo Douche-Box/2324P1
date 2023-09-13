@@ -197,7 +197,14 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
-
+    [SerializeField] float _groundDrag;
+    public float GroundDrag
+    {
+        get
+        {
+            return _groundDrag;
+        }
+    }
 
     private void Awake()
     {
@@ -230,6 +237,17 @@ public class CharStateMachine : MonoBehaviour
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
+
+        if (IsGrounded)
+        {
+            Rb.drag = GroundDrag;
+        }
+        else
+        {
+            Rb.drag = 0;
+        }
+
+        SpeedControl();
     }
 
     private void FixedUpdate()
@@ -312,6 +330,17 @@ public class CharStateMachine : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
+
+        if (flatVel.magnitude > MoveForce)
+        {
+            Vector3 limitedVel = flatVel.normalized * MoveForce;
+            Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
         }
     }
     // bool OnSlope()
