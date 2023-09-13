@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class CharJumpState : CharBaseState
@@ -32,7 +33,7 @@ public class CharJumpState : CharBaseState
 
     #endregion
 
-    public override void InitializeSubState() 
+    public override void InitializeSubState()
     {
         if (!Ctx.IsMove && !Ctx.IsRun)
         {
@@ -68,7 +69,7 @@ public class CharJumpState : CharBaseState
     Vector2 JumpDirection;
     void HandleJumpDirection()
     {
-        JumpDirection = Ctx.CurrentMovementInput;
+        Ctx.Rb.AddForce(0, Ctx.JumpForce, 0, ForceMode.Impulse);
 
         // fix jump
     }
