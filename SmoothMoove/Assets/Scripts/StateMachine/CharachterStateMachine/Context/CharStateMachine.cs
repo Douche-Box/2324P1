@@ -241,13 +241,13 @@ public class CharStateMachine : MonoBehaviour
         if (IsGrounded)
         {
             Rb.drag = GroundDrag;
+            SpeedControl();
         }
         else
         {
             Rb.drag = 0;
         }
 
-        SpeedControl();
     }
 
     private void FixedUpdate()
