@@ -13,7 +13,7 @@ public class CharJumpState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
-        HandleJumpDirection();
+        HandleJump();
         Debug.Log("Jump State Enter");
     }
 
@@ -65,13 +65,13 @@ public class CharJumpState : CharBaseState
             SwitchState(Factory.Fall());
         }
     }
-
-    Vector2 JumpDirection;
-    void HandleJumpDirection()
+    // fix jump
+    void HandleJump()
     {
+        Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
+
         Ctx.Rb.AddForce(0, Ctx.JumpForce, 0, ForceMode.Impulse);
 
-        // fix jump
     }
 
     void HandleJumpTime()

@@ -186,15 +186,6 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] bool _isBlock;
-    public bool IsBlock
-    {
-        get
-        {
-            return _isBlock;
-        }
-    }
-
     #endregion
 
     [SerializeField] float _groundDrag;
@@ -220,10 +211,6 @@ public class CharStateMachine : MonoBehaviour
         playerInput.actions.FindAction("Jump").performed += OnJump;
         playerInput.actions.FindAction("Jump").canceled += OnJump;
 
-        // playerInput.actions.FindAction("Block").started += OnBlock;
-        // playerInput.actions.FindAction("Block").performed += OnBlock;
-        // playerInput.actions.FindAction("Block").canceled += OnBlock;
-
         _states = new CharStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
@@ -246,8 +233,8 @@ public class CharStateMachine : MonoBehaviour
         {
             Rb.drag = 0;
         }
-        SpeedControl();
 
+        SpeedControl();
     }
 
     private void FixedUpdate()
@@ -293,11 +280,6 @@ public class CharStateMachine : MonoBehaviour
     void OnJump(InputAction.CallbackContext context)
     {
         _isJump = context.ReadValueAsButton();
-    }
-
-    void OnBlock(InputAction.CallbackContext context)
-    {
-        _isBlock = context.ReadValueAsButton();
     }
 
     #endregion
