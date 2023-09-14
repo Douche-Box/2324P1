@@ -286,6 +286,10 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1757977275951256694, guid: cc78d5a5c892cf04f94c9f030040b7d3, type: 3}
+      propertyPath: sphereRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757977275951256694, guid: cc78d5a5c892cf04f94c9f030040b7d3, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}

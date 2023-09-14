@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -284,13 +285,14 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    RaycastHit hit;
     // CLEAN UP
     private bool CheckGrounded()
     {
         Vector3 characterPosition = transform.position;
 
         Vector3 sphereCenter = characterPosition + Vector3.down * sphereOffset;
-        bool isOnGround = Physics.SphereCast(sphereCenter, sphereRadius, Vector3.down, out RaycastHit hit, sphereOffset + 0.1f, groundLayer);
+        bool isOnGround = Physics.SphereCast(sphereCenter, sphereRadius, Vector3.down, out hit, sphereOffset + 0.1f, groundLayer);
 
         if (isOnGround)
         {
@@ -313,6 +315,11 @@ public class CharStateMachine : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(hit.point, sphereRadius);
     }
 
     void SpeedControl()
