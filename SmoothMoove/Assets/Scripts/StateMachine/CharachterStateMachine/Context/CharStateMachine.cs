@@ -317,10 +317,10 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(hit.point, sphereRadius);
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.DrawSphere(hit.point, sphereRadius);
+    // }
 
     void SpeedControl()
     {
