@@ -28,7 +28,7 @@ public class ThirdPersonCam : MonoBehaviour
         Vector3 viewDir = _player.position - new Vector3(transform.position.x, _player.position.y, transform.position.z);
         _orientation.forward = viewDir.normalized;
 
-        Vector3 inputDir = _orientation.forward * _stateMachine.CurrentMovement.z + _orientation.right * _stateMachine.CurrentMovement.y;
+        Vector3 inputDir = _orientation.forward * _stateMachine.CurrentMovementInput.y + _orientation.right * _stateMachine.CurrentMovementInput.x;
 
         if (inputDir != Vector3.zero)
         {

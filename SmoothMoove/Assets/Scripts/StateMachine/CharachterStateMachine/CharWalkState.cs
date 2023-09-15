@@ -25,7 +25,7 @@ public class CharWalkState : CharBaseState
     {
         Debug.Log(Ctx.Orientation.forward);
         Debug.Log(Ctx.Orientation.right);
-        Ctx.CurrentMovement = Ctx.Orientation.forward * Ctx.CurrentMovement.x + Ctx.Orientation.right * Ctx.CurrentMovement.y;
+        Ctx.CurrentMovement = Ctx.Orientation.forward * Ctx.CurrentMovementInput.y + Ctx.Orientation.right * Ctx.CurrentMovementInput.x;
         // new Vector3(Ctx.CurrentMovementInput.x, 0f, Ctx.CurrentMovementInput.y).normalized;
 
 
