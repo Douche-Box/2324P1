@@ -23,11 +23,8 @@ public class CharWalkState : CharBaseState
 
     public override void FixedUpdateState()
     {
-        Debug.Log(Ctx.Orientation.forward);
-        Debug.Log(Ctx.Orientation.right);
+        Ctx.MoveForce = 7.49f;
         Ctx.CurrentMovement = Ctx.Orientation.forward * Ctx.CurrentMovementInput.y + Ctx.Orientation.right * Ctx.CurrentMovementInput.x;
-        // new Vector3(Ctx.CurrentMovementInput.x, 0f, Ctx.CurrentMovementInput.y).normalized;
-
 
         Ctx.Rb.AddForce(Ctx.CurrentMovement * Ctx.MoveForce * 10, ForceMode.Force);
     }

@@ -20,7 +20,13 @@ public class CharRunState : CharBaseState
         CheckSwitchStates();
     }
 
-    public override void FixedUpdateState() { }
+    public override void FixedUpdateState()
+    {
+        Ctx.MoveForce = 9;
+        Ctx.CurrentMovement = Ctx.Orientation.forward * Ctx.CurrentMovementInput.y + Ctx.Orientation.right * Ctx.CurrentMovementInput.x;
+
+        Ctx.Rb.AddForce(Ctx.CurrentMovement * Ctx.MoveForce * 10, ForceMode.Force);
+    }
 
     #endregion
 

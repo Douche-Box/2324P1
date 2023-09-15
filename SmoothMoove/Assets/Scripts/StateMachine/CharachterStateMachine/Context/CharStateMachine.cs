@@ -10,6 +10,24 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] private PlayerInput playerInput = null;
     public PlayerInput PlayerInput => playerInput;
 
+    [SerializeField] private Transform _orientation;
+    public Transform Orientation
+    {
+        get
+        {
+            return _orientation;
+        }
+    }
+
+    [SerializeField] Rigidbody _rb;
+    public Rigidbody Rb
+    {
+        get
+        {
+            return _rb;
+        }
+    }
+
     CharStateFactory _states;
     CharBaseState _currentState;
     public CharBaseState CurrentState
@@ -21,6 +39,58 @@ public class CharStateMachine : MonoBehaviour
         set
         {
             _currentState = value;
+        }
+    }
+
+    [Header("Movement")]
+    #region Movement
+
+    [SerializeField] Vector2 _currentMovementInput;
+    public Vector2 CurrentMovementInput
+    {
+        get
+        {
+            return _currentMovementInput;
+        }
+    }
+
+    [SerializeField] Vector3 _currentMovement;
+    public Vector3 CurrentMovement
+    {
+        get
+        {
+            return _currentMovement;
+        }
+        set
+        {
+            _currentMovement = value;
+        }
+    }
+
+    [SerializeField] float _moveForce;
+    public float MoveForce
+    {
+        get
+        {
+            return _moveForce;
+        }
+        set
+        {
+            _moveForce = value;
+        }
+    }
+
+    #endregion
+
+    [Header("Jumping")]
+    #region Jumping
+
+    [SerializeField] float _jumpForce;
+    public float JumpForce
+    {
+        get
+        {
+            return _jumpForce;
         }
     }
 
@@ -46,25 +116,10 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    int _zero = 0;
+    #endregion
 
-    [SerializeField] Rigidbody _rb;
-    public Rigidbody Rb
-    {
-        get
-        {
-            return _rb;
-        }
-    }
-
-    [SerializeField] float _moveForce;
-    public float MoveForce
-    {
-        get
-        {
-            return _moveForce;
-        }
-    }
+    [Header("Groundcheck")]
+    #region GroundCheck
 
     [SerializeField] bool _isGrounded;
     public bool IsGrounded
@@ -79,70 +134,42 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] Vector2 _currentMovementInput;
-    public Vector2 CurrentMovementInput
-    {
-        get
-        {
-            return _currentMovementInput;
-        }
-    }
-
-    [SerializeField] Vector3 _currentMovement;
-    public Vector3 CurrentMovement
-    {
-        get
-        {
-            return _currentMovement;
-        }
-        set
-        {
-            _currentMovement = value;
-        }
-    }
-
-    [SerializeField] float _speed;
-    public float Speed
-    {
-        get
-        {
-            return _speed;
-        }
-        set
-        {
-            _speed = value;
-        }
-    }
-
-    [SerializeField] float _capSpeed;
-    public float CapSpeed
-    {
-        get
-        {
-            return _capSpeed;
-        }
-        set
-        {
-            _capSpeed = value;
-        }
-    }
-
-    [SerializeField] float _jumpForce;
-    public float JumpForce
-    {
-        get
-        {
-            return _jumpForce;
-        }
-    }
-
-    [Header("Groundcheck")]
-    #region GroundCheck
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] float _groundDrag;
+    public float GroundDrag
+    {
+        get
+        {
+            return _groundDrag;
+        }
+    }
+
     [SerializeField] float sphereRadius;
     [SerializeField] float sphereOffset;
+
     #endregion
 
+    [Header("SlopeCheck")]
+    #region SlopeCheck
+
+    [SerializeField] bool _isSloped;
+    public bool IsSloped
+    {
+        get
+        {
+            return _isSloped;
+        }
+        set
+        {
+            _isSloped = value;
+        }
+    }
+
+    [SerializeField] float _maxSlopeAngle;
+
+    [SerializeField] float _playerHeight;
+
+    #endregion
 
     [Header("Inputs")]
     #region Inputs
@@ -176,24 +203,6 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
-    [SerializeField] float _groundDrag;
-    public float GroundDrag
-    {
-        get
-        {
-            return _groundDrag;
-        }
-    }
-
-    [SerializeField] private Transform _orientation;
-    public Transform Orientation
-    {
-        get
-        {
-            return _orientation;
-        }
-    }
-
     private void Awake()
     {
         playerInput.actions.FindAction("Move").started += OnMovement;
@@ -211,7 +220,6 @@ public class CharStateMachine : MonoBehaviour
         _states = new CharStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
-        IsGrounded = true;
     }
 
     #region MonoBehaviours
@@ -221,7 +229,9 @@ public class CharStateMachine : MonoBehaviour
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
+        IsSloped = CheckSloped();
 
+        // DO THIS IN GROUNDED STATE NOT IN STATE MACHINE
         if (IsGrounded)
         {
             Rb.drag = GroundDrag;
@@ -231,6 +241,7 @@ public class CharStateMachine : MonoBehaviour
             Rb.drag = 0;
         }
 
+        // MAKE THIS MORE GENERAL FOR MORE CONTROLL OF EACH SITUATION || DO THIS IN EVERY STATE INSTEAD OF DOING IT HERE
         SpeedControl();
     }
 
@@ -266,7 +277,7 @@ public class CharStateMachine : MonoBehaviour
     void OnMovement(InputAction.CallbackContext context)
     {
         _currentMovementInput = context.ReadValue<Vector2>();
-        _isMove = _currentMovementInput.x != _zero || _currentMovementInput.y != _zero;
+        _isMove = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;
     }
 
     void OnRun(InputAction.CallbackContext context)
@@ -281,14 +292,13 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
-    RaycastHit hit;
-    // CLEAN UP
+    // NEEDS CODE CHECKUP && cleanup
     private bool CheckGrounded()
     {
         Vector3 characterPosition = transform.position;
 
         Vector3 sphereCenter = characterPosition + Vector3.down * sphereOffset;
-        bool isOnGround = Physics.SphereCast(sphereCenter, sphereRadius, Vector3.down, out hit, sphereOffset + 0.1f, groundLayer);
+        bool isOnGround = Physics.SphereCast(sphereCenter, sphereRadius, Vector3.down, out RaycastHit hit, sphereOffset + 0.1f, groundLayer);
 
         if (isOnGround)
         {
@@ -313,11 +323,19 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.DrawSphere(hit.point, sphereRadius);
-    // }
+    // NEEDS CODE CHECKUP || NEEDS ITS OWN STATE
+    bool CheckSloped()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit slopeHit, _playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < _maxSlopeAngle && angle != 0;
+        }
 
+        return false;
+    }
+
+    // NEEDS TO BE MORE GENERAL FOR MORE CONTROL || USE THIS IN EVERY STATE
     void SpeedControl()
     {
         Vector3 flatVel = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
@@ -328,14 +346,4 @@ public class CharStateMachine : MonoBehaviour
             Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
         }
     }
-    // bool OnSlope()
-    // {
-    //     if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
-    //     {
-    //         float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-    //         return angle < maxSlopeAngle && angle != 0;
-    //     }
-
-    //     return false;
-    // }
 }
