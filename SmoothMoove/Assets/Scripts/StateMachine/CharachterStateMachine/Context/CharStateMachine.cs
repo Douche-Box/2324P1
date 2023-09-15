@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using TMPro;
 public class CharStateMachine : MonoBehaviour
 {
+    [SerializeField] TMP_Text _speedText;
     //CLEAN UP CODE
     [SerializeField] private PlayerInput playerInput = null;
     public PlayerInput PlayerInput => playerInput;
@@ -226,6 +227,7 @@ public class CharStateMachine : MonoBehaviour
 
     private void Update()
     {
+        _speedText.text = "speed:" + Rb.velocity.magnitude;
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();

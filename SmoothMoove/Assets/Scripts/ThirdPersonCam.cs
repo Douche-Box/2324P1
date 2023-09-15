@@ -30,9 +30,11 @@ public class ThirdPersonCam : MonoBehaviour
 
         Vector3 inputDir = _orientation.forward * _stateMachine.CurrentMovementInput.y + _orientation.right * _stateMachine.CurrentMovementInput.x;
 
+        inputDir.y = 0;
         if (inputDir != Vector3.zero)
         {
-            _playerObj.forward = Vector3.Slerp(_playerObj.forward, inputDir.normalized, Time.deltaTime * _rotationSpeed);
+            Quaternion lookRotation = Quaternion.LookRotation(inputDir, Vector3.up);
+            _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
         }
 
 
