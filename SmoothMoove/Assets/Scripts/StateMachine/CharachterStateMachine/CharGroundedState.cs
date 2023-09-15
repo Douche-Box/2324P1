@@ -46,7 +46,7 @@ public class CharGroundedState : CharBaseState
     public override void CheckSwitchStates()
     {
         // Require Jump Press
-        if (!Ctx.IsGrounded && !Ctx.IsJump && Ctx.IsJumpTime == 0)
+        if (!Ctx.IsGrounded && !Ctx.IsJump)
         {
             Debug.Log("Grounded > Fall");
             SwitchState(Factory.Fall());
