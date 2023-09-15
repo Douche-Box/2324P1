@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CharWalkState : CharBaseState
@@ -22,13 +23,13 @@ public class CharWalkState : CharBaseState
 
     public override void FixedUpdateState()
     {
-        Ctx.CurrentMovement = new Vector3(Ctx.CurrentMovementInput.x, 0f, Ctx.CurrentMovementInput.y).normalized;
+        Debug.Log(Ctx.Orientation.forward);
+        Debug.Log(Ctx.Orientation.right);
+        Ctx.CurrentMovement = Ctx.Orientation.forward * Ctx.CurrentMovement.x + Ctx.Orientation.right * Ctx.CurrentMovement.y;
+        // new Vector3(Ctx.CurrentMovementInput.x, 0f, Ctx.CurrentMovementInput.y).normalized;
+
+
         Ctx.Rb.AddForce(Ctx.CurrentMovement * Ctx.MoveForce * 10, ForceMode.Force);
-
-        float tragetAngle = Mathf.Atan2(Ctx.CurrentMovement.x, Ctx.CurrentMovement.z) * Mathf.Rad2Deg;
-
-        Ctx.Rotation.rotation = Quaternion.Euler(0f, tragetAngle, 0f);
-
     }
 
     #endregion

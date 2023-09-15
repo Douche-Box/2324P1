@@ -57,19 +57,6 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] Transform _rotation;
-    public Transform Rotation
-    {
-        get
-        {
-            return _rotation;
-        }
-        set
-        {
-            _rotation = value;
-        }
-    }
-
     [SerializeField] float _moveForce;
     public float MoveForce
     {
@@ -195,6 +182,15 @@ public class CharStateMachine : MonoBehaviour
         get
         {
             return _groundDrag;
+        }
+    }
+
+    [SerializeField] private Transform _orientation;
+    public Transform Orientation
+    {
+        get
+        {
+            return _orientation;
         }
     }
 
