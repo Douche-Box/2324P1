@@ -11,7 +11,7 @@ public class CharFallState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
-        Debug.Log("Fall State Enter");
+        // Debug.Log("Fall State Enter");
     }
 
     public override void ExitState() { }
@@ -47,7 +47,7 @@ public class CharFallState : CharBaseState
     {
         if (Ctx.IsGrounded)
         {
-            Debug.Log("Fall > Grounded");
+            // Debug.Log("Fall > Grounded");
             SwitchState(Factory.Grounded());
         }
     }

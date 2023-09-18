@@ -8,7 +8,7 @@ public class CharRunState : CharBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Run State Enter");
+        // Debug.Log("Run State Enter");
     }
 
     public override void ExitState() { }
@@ -36,12 +36,12 @@ public class CharRunState : CharBaseState
     {
         if (!Ctx.IsMove)
         {
-            Debug.Log("Run > Idle");
+            // Debug.Log("Run > Idle");
             SwitchState(Factory.Idle());
         }
         else if (Ctx.IsMove && !Ctx.IsRun)
         {
-            Debug.Log("Run > Walk");
+            // Debug.Log("Run > Walk");
             SwitchState(Factory.Walk());
         }
     }

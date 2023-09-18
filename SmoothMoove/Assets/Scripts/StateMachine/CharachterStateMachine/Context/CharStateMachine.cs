@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using TMPro;
 public class CharStateMachine : MonoBehaviour
 {
-    [SerializeField] TMP_Text _speedText;
     //CLEAN UP CODE
     [SerializeField] private PlayerInput playerInput = null;
     public PlayerInput PlayerInput => playerInput;
@@ -166,6 +165,8 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    RaycastHit _slopeHit;
+
     [SerializeField] float _maxSlopeAngle;
 
     [SerializeField] float _playerHeight;
@@ -227,7 +228,7 @@ public class CharStateMachine : MonoBehaviour
 
     private void Update()
     {
-        _speedText.text = "speed:" + Rb.velocity.magnitude;
+        Debug.Log(CurrentState);
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
@@ -328,13 +329,18 @@ public class CharStateMachine : MonoBehaviour
     // NEEDS CODE CHECKUP || NEEDS ITS OWN STATE
     bool CheckSloped()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit slopeHit, _playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.3f))
         {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
             return angle < _maxSlopeAngle && angle != 0;
         }
 
         return false;
+    }
+
+    public Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(CurrentMovement, _slopeHit.normal).normalized;
     }
 
     // NEEDS TO BE MORE GENERAL FOR MORE CONTROL || USE THIS IN EVERY STATE

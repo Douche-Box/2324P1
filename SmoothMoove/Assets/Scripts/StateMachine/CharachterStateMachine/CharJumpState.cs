@@ -14,7 +14,7 @@ public class CharJumpState : CharBaseState
     {
         InitializeSubState();
         HandleJump();
-        Debug.Log("Jump State Enter");
+        // Debug.Log("Jump State Enter");
     }
 
     public override void ExitState() { }
@@ -37,12 +37,12 @@ public class CharJumpState : CharBaseState
     {
         if (!Ctx.IsMove && !Ctx.IsRun)
         {
-            Debug.Log("jump idle");
+            // Debug.Log("jump idle");
             SetSubState(Factory.Idle());
         }
         else if (Ctx.IsMove && !Ctx.IsRun)
         {
-            Debug.Log("jump Walk");
+            // Debug.Log("jump Walk");
             SetSubState(Factory.Walk());
         }
         else
@@ -56,12 +56,12 @@ public class CharJumpState : CharBaseState
         if (Ctx.IsGrounded && Ctx.IsJumpTime == 0)
         {
             //This one is a lil' funky still
-            Debug.Log("Jump > Grounded");
+            // Debug.Log("Jump > Grounded");
             SwitchState(Factory.Grounded());
         }
         else if (!Ctx.IsGrounded && Ctx.IsJumpTime == 0)
         {
-            Debug.Log("Jump > Fall");
+            // Debug.Log("Jump > Fall");
             SwitchState(Factory.Fall());
         }
     }

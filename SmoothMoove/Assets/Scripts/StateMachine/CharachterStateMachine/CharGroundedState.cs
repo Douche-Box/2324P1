@@ -11,7 +11,7 @@ public class CharGroundedState : CharBaseState
     {
         InitializeSubState();
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
-        Debug.Log("Grounded State Enter");
+        // Debug.Log("Grounded State Enter");
     }
 
     public override void ExitState() { }
@@ -48,13 +48,18 @@ public class CharGroundedState : CharBaseState
         // Require Jump Press
         if (!Ctx.IsGrounded && !Ctx.IsJump)
         {
-            Debug.Log("Grounded > Fall");
+            // Debug.Log("Grounded > Fall");
             SwitchState(Factory.Fall());
         }
         if (Ctx.IsJump)
         {
-            Debug.Log("Grounded > Jump");
+            // Debug.Log("Grounded > Jump");
             SwitchState(Factory.Jump());
+        }
+        if (Ctx.IsSloped && Ctx.IsGrounded)
+        {
+            Debug.Log("Grounded > Sloped");
+            SwitchState(Factory.Sloped());
         }
     }
 }

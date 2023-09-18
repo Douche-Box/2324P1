@@ -8,6 +8,7 @@ enum CharStates
     Idle,
     Walk,
     Run,
+    Sloped,
 }
 
 public class CharStateFactory
@@ -24,6 +25,7 @@ public class CharStateFactory
         _states[CharStates.Idle] = new CharIdleState(_context, this);
         _states[CharStates.Walk] = new CharWalkState(_context, this);
         _states[CharStates.Run] = new CharRunState(_context, this);
+        _states[CharStates.Sloped] = new CharSlopeState(_context, this);
     }
 
     public CharBaseState Grounded()
@@ -54,5 +56,10 @@ public class CharStateFactory
     public CharBaseState Run()
     {
         return _states[CharStates.Run];
+    }
+
+    public CharBaseState Sloped()
+    {
+        return _states[CharStates.Sloped];
     }
 }
