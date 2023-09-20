@@ -46,7 +46,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""Slide"",
                     ""type"": ""Button"",
                     ""id"": ""aa6b38f9-1968-4dd3-b89c-005c40733e96"",
                     ""expectedControlType"": ""Button"",
@@ -193,7 +193,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Run"",
+                    ""action"": ""Slide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -204,7 +204,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Run"",
+                    ""action"": ""Slide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -372,7 +372,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
-        m_Game_Run = m_Game.FindAction("Run", throwIfNotFound: true);
+        m_Game_Slide = m_Game.FindAction("Slide", throwIfNotFound: true);
         m_Game_Camera = m_Game.FindAction("Camera", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
@@ -440,7 +440,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
     private readonly InputAction m_Game_Jump;
     private readonly InputAction m_Game_Move;
-    private readonly InputAction m_Game_Run;
+    private readonly InputAction m_Game_Slide;
     private readonly InputAction m_Game_Camera;
     public struct GameActions
     {
@@ -448,7 +448,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         public GameActions(@NewControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Game_Jump;
         public InputAction @Move => m_Wrapper.m_Game_Move;
-        public InputAction @Run => m_Wrapper.m_Game_Run;
+        public InputAction @Slide => m_Wrapper.m_Game_Slide;
         public InputAction @Camera => m_Wrapper.m_Game_Camera;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
@@ -465,9 +465,9 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Run.started += instance.OnRun;
-            @Run.performed += instance.OnRun;
-            @Run.canceled += instance.OnRun;
+            @Slide.started += instance.OnSlide;
+            @Slide.performed += instance.OnSlide;
+            @Slide.canceled += instance.OnSlide;
             @Camera.started += instance.OnCamera;
             @Camera.performed += instance.OnCamera;
             @Camera.canceled += instance.OnCamera;
@@ -481,9 +481,9 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Run.started -= instance.OnRun;
-            @Run.performed -= instance.OnRun;
-            @Run.canceled -= instance.OnRun;
+            @Slide.started -= instance.OnSlide;
+            @Slide.performed -= instance.OnSlide;
+            @Slide.canceled -= instance.OnSlide;
             @Camera.started -= instance.OnCamera;
             @Camera.performed -= instance.OnCamera;
             @Camera.canceled -= instance.OnCamera;
@@ -572,7 +572,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
+        void OnSlide(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
     }
     public interface IMenuActions

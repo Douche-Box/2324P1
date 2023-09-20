@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Run",
+                    "name": "Slide",
                     "type": "Button",
                     "id": "aa6b38f9-1968-4dd3-b89c-005c40733e96",
                     "expectedControlType": "Button",
@@ -171,7 +171,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Run",
+                    "action": "Slide",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -182,7 +182,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Run",
+                    "action": "Slide",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

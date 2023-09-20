@@ -24,7 +24,7 @@ public class CharStateFactory
         _states[CharStates.Jump] = new CharJumpState(_context, this);
         _states[CharStates.Idle] = new CharIdleState(_context, this);
         _states[CharStates.Walk] = new CharWalkState(_context, this);
-        _states[CharStates.Run] = new CharRunState(_context, this);
+        _states[CharStates.Run] = new CharSlideState(_context, this);
         _states[CharStates.Sloped] = new CharSlopeState(_context, this);
     }
 

@@ -185,12 +185,12 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] bool _isRun;
+    [SerializeField] bool _isSliding;
     public bool IsRun
     {
         get
         {
-            return _isRun;
+            return _isSliding;
         }
     }
 
@@ -211,9 +211,9 @@ public class CharStateMachine : MonoBehaviour
         playerInput.actions.FindAction("Move").performed += OnMovement;
         playerInput.actions.FindAction("Move").canceled += OnMovement;
 
-        playerInput.actions.FindAction("Run").started += OnRun;
-        playerInput.actions.FindAction("Run").performed += OnRun;
-        playerInput.actions.FindAction("Run").canceled += OnRun;
+        playerInput.actions.FindAction("Slide").started += OnSlide;
+        playerInput.actions.FindAction("Slide").performed += OnSlide;
+        playerInput.actions.FindAction("Slide").canceled += OnSlide;
 
         playerInput.actions.FindAction("Jump").started += OnJump;
         playerInput.actions.FindAction("Jump").performed += OnJump;
@@ -283,9 +283,9 @@ public class CharStateMachine : MonoBehaviour
         _isMove = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;
     }
 
-    void OnRun(InputAction.CallbackContext context)
+    void OnSlide(InputAction.CallbackContext context)
     {
-        _isRun = context.ReadValueAsButton();
+        _isSliding = context.ReadValueAsButton();
     }
 
     void OnJump(InputAction.CallbackContext context)
