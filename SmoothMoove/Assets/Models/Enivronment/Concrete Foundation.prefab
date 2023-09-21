@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 32f4e92cbdf7b5643b8a4ce7e59c0476, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1dd91dc3dc1498488fee3d774f65dc9, type: 2}
     - target: {fileID: 919132149155446097, guid: 32f4e92cbdf7b5643b8a4ce7e59c0476, type: 3}
       propertyPath: m_Name
       value: Concrete Foundation
