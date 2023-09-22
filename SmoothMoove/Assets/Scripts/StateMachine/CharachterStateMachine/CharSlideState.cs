@@ -77,8 +77,8 @@ public class CharSlideState : CharBaseState
         else
         {
             Ctx.Rb.AddForce(Ctx.CurrentMovement * Ctx.MoveForce * 10f, ForceMode.Force);
-            Ctx.SlideTime -= Time.deltaTime;
         }
+        Ctx.SlideTime -= Time.deltaTime;
 
     }
 }

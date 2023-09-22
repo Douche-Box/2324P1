@@ -90,6 +90,45 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] float _moveSpeed;
+    public float MoveSpeed
+    {
+        get
+        {
+            return _moveSpeed;
+        }
+        set
+        {
+            _moveSpeed = value;
+        }
+    }
+
+    [SerializeField] float _desiredMoveSpeed;
+    public float DesiredMoveSpeed
+    {
+        get
+        {
+            return _desiredMoveSpeed;
+        }
+        set
+        {
+            _desiredMoveSpeed = value;
+        }
+    }
+
+    [SerializeField] float _lastDesiredMoveSpeed;
+    public float LastDesiredMoveSpeed
+    {
+        get
+        {
+            return _lastDesiredMoveSpeed;
+        }
+        set
+        {
+            _lastDesiredMoveSpeed = value;
+        }
+    }
+
     #endregion
 
     [Header("Jumping")]
@@ -143,8 +182,6 @@ public class CharStateMachine : MonoBehaviour
     [Header("Sliding")]
     #region Sliding
 
-
-
     [SerializeField] bool _isSliding;
     public bool IsSliding
     {
@@ -197,9 +234,19 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] float _slideSpeed;
+    public float SlideSpeed
+    {
+        get
+        {
+            return _slideSpeed;
+        }
+    }
+
     #endregion
 
-    // CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP
+    [Header("THIS SHIT SUCKS ASS :)")]
+    #region WOW
     [SerializeField] float _yScale;
     public float YScale
     {
@@ -210,7 +257,7 @@ public class CharStateMachine : MonoBehaviour
     }
     public float playerScale;
     public float minScale;
-    // CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP
+    #endregion
 
     [Header("Groundcheck")]
     #region GroundCheck
@@ -341,6 +388,18 @@ public class CharStateMachine : MonoBehaviour
 
         // MAKE THIS MORE GENERAL FOR MORE CONTROLL OF EACH SITUATION || DO THIS IN EVERY STATE INSTEAD OF DOING IT HERE
         SpeedControl();
+
+        if (Mathf.Abs(DesiredMoveSpeed - LastDesiredMoveSpeed) > 4f && MoveSpeed != 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SmoovMoov());
+        }
+        else
+        {
+            MoveSpeed = DesiredMoveSpeed;
+        }
+
+        LastDesiredMoveSpeed = DesiredMoveSpeed;
     }
 
     private void FixedUpdate()
@@ -465,5 +524,21 @@ public class CharStateMachine : MonoBehaviour
                 Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
             }
         }
+    }
+
+    IEnumerator SmoovMoov()
+    {
+        float time = 0;
+        float difference = Mathf.Abs(DesiredMoveSpeed - MoveSpeed);
+        float startValue = MoveSpeed;
+
+        while (time < difference)
+        {
+            MoveSpeed = Mathf.Lerp(startValue, DesiredMoveSpeed, time / difference);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        MoveSpeed = DesiredMoveSpeed;
     }
 }

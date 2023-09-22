@@ -362,7 +362,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336687206}
-  m_Material: {fileID: 13400000, guid: cc54e61441cfe194abda3932c0bebc12, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -547,7 +547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451694012}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14468446, y: -0.000000034050668, z: -0.0000000049789923, w: 0.9894779}
+  m_LocalRotation: {x: -0.14468446, y: 0.000000034050665, z: 0.0000000049789914, w: 0.9894779}
   m_LocalPosition: {x: 0, y: 0.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1207,6 +1207,9 @@ MonoBehaviour:
   _currentMovementInput: {x: 0, y: 0}
   _currentMovement: {x: 0, y: 0, z: 0}
   _moveForce: 7.49
+  _moveSpeed: 0
+  _desiredMoveSpeed: 0
+  _lastDesiredMoveSpeed: 0
   _jumpForce: 8
   _maxJumpTime: 0.3
   _isJumpTime: 0.3
@@ -1215,6 +1218,7 @@ MonoBehaviour:
   _maxSlideTime: 0.8
   _slideTime: 0
   _slideForce: 200
+  _slideSpeed: 0
   _yScale: 0
   playerScale: 0
   minScale: 0.5
@@ -1864,7 +1868,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985080199}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14468446, y: -0.000000017025336, z: -0.000000002489497, w: 0.9894779}
+  m_LocalRotation: {x: -0.14468446, y: 0.000000017025329, z: 0.0000000024894957, w: 0.9894779}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
