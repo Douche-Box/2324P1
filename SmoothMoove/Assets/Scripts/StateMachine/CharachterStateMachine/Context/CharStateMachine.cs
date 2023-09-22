@@ -90,42 +90,29 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] float _moveSpeed;
-    public float MoveSpeed
+    [SerializeField] float _desiredMoveForce;
+    public float DesiredMoveForce
     {
         get
         {
-            return _moveSpeed;
+            return _desiredMoveForce;
         }
         set
         {
-            _moveSpeed = value;
+            _desiredMoveForce = value;
         }
     }
 
-    [SerializeField] float _desiredMoveSpeed;
-    public float DesiredMoveSpeed
+    [SerializeField] float _lastDesiredMoveForce;
+    public float LastDesiredMoveForce
     {
         get
         {
-            return _desiredMoveSpeed;
+            return _lastDesiredMoveForce;
         }
         set
         {
-            _desiredMoveSpeed = value;
-        }
-    }
-
-    [SerializeField] float _lastDesiredMoveSpeed;
-    public float LastDesiredMoveSpeed
-    {
-        get
-        {
-            return _lastDesiredMoveSpeed;
-        }
-        set
-        {
-            _lastDesiredMoveSpeed = value;
+            _lastDesiredMoveForce = value;
         }
     }
 
@@ -231,15 +218,6 @@ public class CharStateMachine : MonoBehaviour
         set
         {
             _slideForce = value;
-        }
-    }
-
-    [SerializeField] float _slideSpeed;
-    public float SlideSpeed
-    {
-        get
-        {
-            return _slideSpeed;
         }
     }
 
@@ -389,17 +367,17 @@ public class CharStateMachine : MonoBehaviour
         // MAKE THIS MORE GENERAL FOR MORE CONTROLL OF EACH SITUATION || DO THIS IN EVERY STATE INSTEAD OF DOING IT HERE
         SpeedControl();
 
-        if (Mathf.Abs(DesiredMoveSpeed - LastDesiredMoveSpeed) > 4f && MoveSpeed != 0)
+        if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 4f && MoveForce != 0)
         {
             StopAllCoroutines();
             StartCoroutine(SmoovMoov());
         }
         else
         {
-            MoveSpeed = DesiredMoveSpeed;
+            MoveForce = DesiredMoveForce;
         }
 
-        LastDesiredMoveSpeed = DesiredMoveSpeed;
+        LastDesiredMoveForce = DesiredMoveForce;
     }
 
     private void FixedUpdate()
@@ -529,16 +507,16 @@ public class CharStateMachine : MonoBehaviour
     IEnumerator SmoovMoov()
     {
         float time = 0;
-        float difference = Mathf.Abs(DesiredMoveSpeed - MoveSpeed);
-        float startValue = MoveSpeed;
+        float difference = Mathf.Abs(DesiredMoveForce - MoveForce);
+        float startValue = MoveForce;
 
         while (time < difference)
         {
-            MoveSpeed = Mathf.Lerp(startValue, DesiredMoveSpeed, time / difference);
+            MoveForce = Mathf.Lerp(startValue, DesiredMoveForce, time / difference);
             time += Time.deltaTime;
             yield return null;
         }
 
-        MoveSpeed = DesiredMoveSpeed;
+        MoveForce = DesiredMoveForce;
     }
 }
