@@ -14,7 +14,6 @@ public class CharSlopeState : CharBaseState
     {
         InitializeSubState();
         Ctx.Rb.useGravity = false;
-        Debug.Log("Slope State Enter");
     }
 
     public override void ExitState()
@@ -49,17 +48,14 @@ public class CharSlopeState : CharBaseState
     {
         if (!Ctx.IsMove && !Ctx.IsSlide)
         {
-            // Debug.Log("Sloped & Idle");
             SetSubState(Factory.Idle());
         }
         else if (Ctx.IsMove && !Ctx.IsSlide)
         {
-            // Debug.Log("Sloped & Walk");
             SetSubState(Factory.Walk());
         }
         else if (Ctx.IsMove && Ctx.IsSlide)
         {
-            // Debug.Log("Sloped & Run");
             SetSubState(Factory.Slide());
         }
     }
@@ -68,17 +64,14 @@ public class CharSlopeState : CharBaseState
     {
         if (Ctx.IsGrounded && !Ctx.IsSloped)
         {
-            // Debug.Log("Sloped > Grounded");
             SwitchState(Factory.Grounded());
         }
         if (!Ctx.IsGrounded && !Ctx.IsJump)
         {
-            // Debug.Log("Sloped > Fall");
             SwitchState(Factory.Fall());
         }
         if (Ctx.IsJump)
         {
-            // Debug.Log("Sloped > Jump");
             SwitchState(Factory.Jump());
         }
     }

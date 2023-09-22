@@ -4,11 +4,21 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Drawing;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
     [SerializeField] private PlayerInput playerInput = null;
     public PlayerInput PlayerInput => playerInput;
+
+    [SerializeField] Transform _playerObj;
+    public Transform PlayerObj
+    {
+        get
+        {
+            return _playerObj;
+        }
+    }
 
     [SerializeField] private Transform _orientation;
     public Transform Orientation
@@ -130,6 +140,78 @@ public class CharStateMachine : MonoBehaviour
     }
     #endregion
 
+    [Header("Sliding")]
+    #region Sliding
+
+
+
+    [SerializeField] bool _isSliding;
+    public bool IsSliding
+    {
+        get
+        {
+            return _isSliding;
+        }
+        set
+        {
+            _isSliding = value;
+        }
+    }
+
+    [SerializeField] float _maxSlideTime;
+    public float MaxSlideTime
+    {
+        get
+        {
+            return _maxSlideTime;
+        }
+        set
+        {
+            _maxSlideTime = value;
+        }
+    }
+
+    [SerializeField] float _slideTime;
+    public float SlideTime
+    {
+        get
+        {
+            return _slideTime;
+        }
+        set
+        {
+            _slideTime = value;
+        }
+    }
+
+    [SerializeField] float _slideForce;
+    public float SlideForce
+    {
+        get
+        {
+            return _slideForce;
+        }
+        set
+        {
+            _slideForce = value;
+        }
+    }
+
+    #endregion
+
+    // CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP
+    [SerializeField] float _yScale;
+    public float YScale
+    {
+        get
+        {
+            return _yScale;
+        }
+    }
+    public float playerScale;
+    public float minScale;
+    // CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP CLEANUP
+
     [Header("Groundcheck")]
     #region GroundCheck
 
@@ -197,12 +279,12 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] bool _isSliding;
+    [SerializeField] bool _isSlide;
     public bool IsSlide
     {
         get
         {
-            return _isSliding;
+            return _isSlide;
         }
     }
 
@@ -242,10 +324,6 @@ public class CharStateMachine : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.P))
-        {
-            Debug.Log(CurrentState);
-        }
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
@@ -307,7 +385,7 @@ public class CharStateMachine : MonoBehaviour
 
     void OnSlide(InputAction.CallbackContext context)
     {
-        _isSliding = context.ReadValueAsButton();
+        _isSlide = context.ReadValueAsButton();
     }
 
     void OnJump(InputAction.CallbackContext context)
@@ -333,7 +411,6 @@ public class CharStateMachine : MonoBehaviour
 
             if (Physics.Raycast(rayStart, rayDirection, out RaycastHit rayHit, rayDistance, groundLayer))
             {
-                Debug.DrawRay(rayStart, rayDirection, Color.green);
                 if (CheckSloped())
                 {
                     return false;
@@ -342,7 +419,6 @@ public class CharStateMachine : MonoBehaviour
             }
             else
             {
-                Debug.DrawRay(rayStart, rayDirection, Color.red);
                 return false;
             }
         }
@@ -364,9 +440,9 @@ public class CharStateMachine : MonoBehaviour
         return false;
     }
 
-    public Vector3 GetSlopeMoveDirection()
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(CurrentMovement, _slopeHit.normal).normalized;
+        return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
     }
 
     // NEEDS TO BE MORE GENERAL FOR MORE CONTROL || USE THIS IN EVERY STATE

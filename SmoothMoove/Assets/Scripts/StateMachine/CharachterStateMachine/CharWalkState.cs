@@ -34,7 +34,7 @@ public class CharWalkState : CharBaseState
 
         if (Ctx.IsSloped)
         {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection() * Ctx.MoveForce * 20f, ForceMode.Force);
+            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement) * Ctx.MoveForce * 20f, ForceMode.Force);
         }
         else
         {
