@@ -116,6 +116,18 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] bool _isExitingSlope;
+    public bool IsExitingSlope
+    {
+        get
+        {
+            return _isExitingSlope;
+        }
+        set
+        {
+            _isExitingSlope = value;
+        }
+    }
     #endregion
 
     [Header("Groundcheck")]
@@ -186,7 +198,7 @@ public class CharStateMachine : MonoBehaviour
     }
 
     [SerializeField] bool _isSliding;
-    public bool IsRun
+    public bool IsSlide
     {
         get
         {
@@ -207,6 +219,7 @@ public class CharStateMachine : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         playerInput.actions.FindAction("Move").started += OnMovement;
         playerInput.actions.FindAction("Move").performed += OnMovement;
         playerInput.actions.FindAction("Move").canceled += OnMovement;
@@ -222,13 +235,17 @@ public class CharStateMachine : MonoBehaviour
         _states = new CharStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
+        IsGrounded = true;
     }
 
     #region MonoBehaviours
 
     private void Update()
     {
-        Debug.Log(CurrentState);
+        if (Input.GetKey(KeyCode.P))
+        {
+            Debug.Log(CurrentState);
+        }
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
@@ -251,6 +268,11 @@ public class CharStateMachine : MonoBehaviour
     private void FixedUpdate()
     {
         _currentState.FixedUpdateStates();
+    }
+
+    private void Lateupdate()
+    {
+        _currentState.LateUpdateStates();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -312,6 +334,10 @@ public class CharStateMachine : MonoBehaviour
             if (Physics.Raycast(rayStart, rayDirection, out RaycastHit rayHit, rayDistance, groundLayer))
             {
                 Debug.DrawRay(rayStart, rayDirection, Color.green);
+                if (CheckSloped())
+                {
+                    return false;
+                }
                 return true;
             }
             else
@@ -346,12 +372,22 @@ public class CharStateMachine : MonoBehaviour
     // NEEDS TO BE MORE GENERAL FOR MORE CONTROL || USE THIS IN EVERY STATE
     void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
-
-        if (flatVel.magnitude > MoveForce)
+        if (IsSloped && !IsExitingSlope)
         {
-            Vector3 limitedVel = flatVel.normalized * MoveForce;
-            Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
+            if (Rb.velocity.magnitude > MoveForce)
+            {
+                Rb.velocity = Rb.velocity.normalized * MoveForce;
+            }
+        }
+        else
+        {
+            Vector3 flatVel = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
+
+            if (flatVel.magnitude > MoveForce)
+            {
+                Vector3 limitedVel = flatVel.normalized * MoveForce;
+                Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
+            }
         }
     }
 }

@@ -18,25 +18,29 @@ public class CharIdleState : CharBaseState
 
     public override void UpdateState()
     {
+
+    }
+
+    public override void FixedUpdateState()
+    {
         CheckSwitchStates();
     }
 
-    public override void FixedUpdateState() { }
-
+    public override void LateUpdateState()
+    {
+    }
     #endregion
 
     public override void InitializeSubState() { }
 
     public override void CheckSwitchStates()
     {
-        if (Ctx.IsMove && Ctx.IsRun)
+        if (Ctx.IsMove && Ctx.IsSlide)
         {
-            // Debug.Log("Idle > Run");
-            SwitchState(Factory.Run());
+            SwitchState(Factory.Slide());
         }
         else if (Ctx.IsMove)
         {
-            // Debug.Log("Idle > Walk");
             SwitchState(Factory.Walk());
         }
     }

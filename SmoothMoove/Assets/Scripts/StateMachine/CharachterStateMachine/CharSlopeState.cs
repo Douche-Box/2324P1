@@ -36,27 +36,31 @@ public class CharSlopeState : CharBaseState
 
     public override void FixedUpdateState()
     {
+        CheckSwitchStates();
+    }
 
+    public override void LateUpdateState()
+    {
     }
 
     #endregion
 
     public override void InitializeSubState()
     {
-        if (!Ctx.IsMove && !Ctx.IsRun)
+        if (!Ctx.IsMove && !Ctx.IsSlide)
         {
-            Debug.Log("Sloped & Idle");
+            // Debug.Log("Sloped & Idle");
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsRun)
+        else if (Ctx.IsMove && !Ctx.IsSlide)
         {
-            Debug.Log("Sloped & Walk");
+            // Debug.Log("Sloped & Walk");
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsRun)
+        else if (Ctx.IsMove && Ctx.IsSlide)
         {
-            Debug.Log("Sloped & Run");
-            SetSubState(Factory.Run());
+            // Debug.Log("Sloped & Run");
+            SetSubState(Factory.Slide());
         }
     }
 
@@ -64,17 +68,17 @@ public class CharSlopeState : CharBaseState
     {
         if (Ctx.IsGrounded && !Ctx.IsSloped)
         {
-            Debug.Log("Sloped > Grounded");
+            // Debug.Log("Sloped > Grounded");
             SwitchState(Factory.Grounded());
         }
         if (!Ctx.IsGrounded && !Ctx.IsJump)
         {
-            Debug.Log("Sloped > Fall");
+            // Debug.Log("Sloped > Fall");
             SwitchState(Factory.Fall());
         }
         if (Ctx.IsJump)
         {
-            Debug.Log("Sloped > Jump");
+            // Debug.Log("Sloped > Jump");
             SwitchState(Factory.Jump());
         }
     }

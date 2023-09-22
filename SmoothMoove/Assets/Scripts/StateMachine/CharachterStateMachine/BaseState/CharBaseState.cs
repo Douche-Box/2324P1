@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class CharBaseState
@@ -38,7 +39,6 @@ public abstract class CharBaseState
         _factory = charachterStateFactory;
     }
 
-
     public abstract void EnterState();
 
     public abstract void ExitState();
@@ -46,6 +46,8 @@ public abstract class CharBaseState
     public abstract void UpdateState();
 
     public abstract void FixedUpdateState();
+
+    public abstract void LateUpdateState();
 
     public abstract void CheckSwitchStates();
 
@@ -69,6 +71,14 @@ public abstract class CharBaseState
         }
     }
 
+    public void LateUpdateStates()
+    {
+        LateUpdateState();
+        if (_currentSubState != null)
+        {
+            _currentSubState.LateUpdateState();
+        }
+    }
     protected void SwitchState(CharBaseState newState)
     {
         ExitState();

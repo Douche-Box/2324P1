@@ -13,6 +13,7 @@ public class CharJumpState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
+        Ctx.IsExitingSlope = true;
         HandleJump();
         // Debug.Log("Jump State Enter");
     }
@@ -23,45 +24,51 @@ public class CharJumpState : CharBaseState
 
     public override void UpdateState()
     {
-        CheckSwitchStates();
+
     }
 
     public override void FixedUpdateState()
     {
         HandleJumpTime();
+        CheckSwitchStates();
+    }
+
+    public override void LateUpdateState()
+    {
     }
 
     #endregion
 
     public override void InitializeSubState()
     {
-        if (!Ctx.IsMove && !Ctx.IsRun)
+        if (!Ctx.IsMove && !Ctx.IsSlide)
         {
             // Debug.Log("jump idle");
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsRun)
+        else if (Ctx.IsMove && !Ctx.IsSlide)
         {
             // Debug.Log("jump Walk");
             SetSubState(Factory.Walk());
         }
         else
         {
-            SetSubState(Factory.Run());
+            SetSubState(Factory.Slide());
         }
     }
 
     public override void CheckSwitchStates()
     {
-        if (Ctx.IsGrounded && Ctx.IsJumpTime == 0)
+        if (Ctx.IsGrounded)
         {
-            //This one is a lil' funky still
-            // Debug.Log("Jump > Grounded");
             SwitchState(Factory.Grounded());
         }
-        else if (!Ctx.IsGrounded && Ctx.IsJumpTime == 0)
+        if (Ctx.IsSloped)
         {
-            // Debug.Log("Jump > Fall");
+            SwitchState(Factory.Sloped());
+        }
+        if (!Ctx.IsGrounded && !Ctx.IsSloped)
+        {
             SwitchState(Factory.Fall());
         }
     }

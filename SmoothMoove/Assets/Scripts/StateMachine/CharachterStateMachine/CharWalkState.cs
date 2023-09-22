@@ -21,6 +21,11 @@ public class CharWalkState : CharBaseState
         CheckSwitchStates();
     }
 
+    public override void LateUpdateState()
+    {
+
+    }
+
     public override void FixedUpdateState()
     {
         Ctx.MoveForce = 7.49f;
@@ -45,13 +50,11 @@ public class CharWalkState : CharBaseState
     {
         if (!Ctx.IsMove)
         {
-            // Debug.Log("Walk > Idle");
             SwitchState(Factory.Idle());
         }
-        else if (Ctx.IsMove && Ctx.IsRun)
+        else if (Ctx.IsMove && Ctx.IsSlide)
         {
-            // Debug.Log("Walk > Run");
-            SwitchState(Factory.Run());
+            SwitchState(Factory.Slide());
         }
     }
 }

@@ -20,26 +20,34 @@ public class CharGroundedState : CharBaseState
 
     public override void UpdateState()
     {
+
+    }
+
+    public override void FixedUpdateState()
+    {
         CheckSwitchStates();
     }
 
-    public override void FixedUpdateState() { }
+    public override void LateUpdateState()
+    {
+
+    }
 
     #endregion
 
     public override void InitializeSubState()
     {
-        if (!Ctx.IsMove && !Ctx.IsRun)
+        if (!Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsRun)
+        else if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsRun)
+        else if (Ctx.IsMove && Ctx.IsSlide)
         {
-            SetSubState(Factory.Run());
+            SetSubState(Factory.Slide());
         }
     }
 
@@ -56,9 +64,9 @@ public class CharGroundedState : CharBaseState
             // Debug.Log("Grounded > Jump");
             SwitchState(Factory.Jump());
         }
-        if (Ctx.IsSloped && Ctx.IsGrounded)
+        if (Ctx.IsSloped)
         {
-            Debug.Log("Grounded > Sloped");
+            // Debug.Log("Grounded > Sloped");
             SwitchState(Factory.Sloped());
         }
     }
