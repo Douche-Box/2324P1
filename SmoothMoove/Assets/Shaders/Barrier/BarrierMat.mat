@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3101975169181085189
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bulletshader
-  m_Shader: {fileID: -6465566751694194690, guid: 85a302c2bbc435c4fb4844af14cc83cc, type: 3}
+  m_Name: BarrierMat
+  m_Shader: {fileID: -6465566751694194690, guid: 9e13942710d637a4393904f6991cc746, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -36,8 +23,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Texture:
-        m_Texture: {fileID: 2800000, guid: 8130844ed6738de41a6d5369456c233d, type: 3}
+    - _SampleTexture2D_8fbff9c084054971beeeab7aac060493_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 1d1f0bff516af2e42af8d5e82ec4b949, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -54,12 +41,28 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Barriermiddle: 4.12
+    - _Dotnoisescale: 0
+    - _NoiseScale: 10
+    - _ProjectionOffset: 0.96
+    - _ProjectionSize: 0.8
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scroll_speed: 1
     m_Colors:
-    - _Base_color: {r: 1, g: 1, b: 1, a: 0}
-    - _Fresnel_color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
-    - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Tiling: {r: 0, g: 13.27, b: 0, a: 0}
+    - _Noisespeed: {r: 0, g: 0.2, b: 0, a: 0}
+    - _ProjectionColor: {r: 0, g: 1.0620689, b: 2, a: 0}
+    - _ProjectionTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
+--- !u!114 &3235975833535571602
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
