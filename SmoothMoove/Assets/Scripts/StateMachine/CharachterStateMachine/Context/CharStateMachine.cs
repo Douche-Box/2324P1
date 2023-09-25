@@ -5,9 +5,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
+
+    [Header("Refrences")]
+    #region Refrences
+
     [SerializeField] private PlayerInput playerInput = null;
     public PlayerInput PlayerInput => playerInput;
 
@@ -52,6 +57,8 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    #endregion
+
     [Header("Movement")]
     #region Movement
 
@@ -87,32 +94,6 @@ public class CharStateMachine : MonoBehaviour
         set
         {
             _moveForce = value;
-        }
-    }
-
-    [SerializeField] float _desiredMoveForce;
-    public float DesiredMoveForce
-    {
-        get
-        {
-            return _desiredMoveForce;
-        }
-        set
-        {
-            _desiredMoveForce = value;
-        }
-    }
-
-    [SerializeField] float _lastDesiredMoveForce;
-    public float LastDesiredMoveForce
-    {
-        get
-        {
-            return _lastDesiredMoveForce;
-        }
-        set
-        {
-            _lastDesiredMoveForce = value;
         }
     }
 
@@ -152,18 +133,6 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] bool _isExitingSlope;
-    public bool IsExitingSlope
-    {
-        get
-        {
-            return _isExitingSlope;
-        }
-        set
-        {
-            _isExitingSlope = value;
-        }
-    }
     #endregion
 
     [Header("Sliding")]
@@ -182,32 +151,6 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] float _maxSlideTime;
-    public float MaxSlideTime
-    {
-        get
-        {
-            return _maxSlideTime;
-        }
-        set
-        {
-            _maxSlideTime = value;
-        }
-    }
-
-    [SerializeField] float _slideTime;
-    public float SlideTime
-    {
-        get
-        {
-            return _slideTime;
-        }
-        set
-        {
-            _slideTime = value;
-        }
-    }
-
     [SerializeField] float _slideForce;
     public float SlideForce
     {
@@ -221,20 +164,6 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    #endregion
-
-    [Header("THIS SHIT SUCKS ASS :)")]
-    #region WOW
-    [SerializeField] float _yScale;
-    public float YScale
-    {
-        get
-        {
-            return _yScale;
-        }
-    }
-    public float playerScale;
-    public float minScale;
     #endregion
 
     [Header("Groundcheck")]
@@ -281,6 +210,18 @@ public class CharStateMachine : MonoBehaviour
         set
         {
             _isSloped = value;
+        }
+    }
+    [SerializeField] bool _isExitingSlope;
+    public bool IsExitingSlope
+    {
+        get
+        {
+            return _isExitingSlope;
+        }
+        set
+        {
+            _isExitingSlope = value;
         }
     }
 
@@ -347,37 +288,29 @@ public class CharStateMachine : MonoBehaviour
 
     #region MonoBehaviours
 
+    [SerializeField] TMP_Text text;
+
     private void Update()
     {
+        text.text = Rb.velocity.magnitude.ToString();
+        CurrentMovement = Orientation.forward * CurrentMovementInput.y + Orientation.right * CurrentMovementInput.x;
+
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
         IsSloped = CheckSloped();
 
+        SpeedControl();
+
         // DO THIS IN GROUNDED STATE NOT IN STATE MACHINE
-        if (IsGrounded)
+        if (IsGrounded || IsSloped)
         {
             Rb.drag = GroundDrag;
         }
-        else
+        else if (!IsSloped && !IsGrounded)
         {
             Rb.drag = 0;
         }
-
-        // MAKE THIS MORE GENERAL FOR MORE CONTROLL OF EACH SITUATION || DO THIS IN EVERY STATE INSTEAD OF DOING IT HERE
-        SpeedControl();
-
-        if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 4f && MoveForce != 0)
-        {
-            StopAllCoroutines();
-            StartCoroutine(SmoovMoov());
-        }
-        else
-        {
-            MoveForce = DesiredMoveForce;
-        }
-
-        LastDesiredMoveForce = DesiredMoveForce;
     }
 
     private void FixedUpdate()
@@ -465,7 +398,7 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    // NEEDS CODE CHECKUP || NEEDS ITS OWN STATE
+    // NEEDS CODE CHECKUP
     bool CheckSloped()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.3f))
@@ -477,25 +410,21 @@ public class CharStateMachine : MonoBehaviour
         return false;
     }
 
-    public Vector3 GetSlopeMoveDirection(Vector3 direction)
+    private void SpeedControl()
     {
-        return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
-    }
-
-    // NEEDS TO BE MORE GENERAL FOR MORE CONTROL || USE THIS IN EVERY STATE
-    void SpeedControl()
-    {
+        // limiting speed on slope
         if (IsSloped && !IsExitingSlope)
         {
             if (Rb.velocity.magnitude > MoveForce)
-            {
                 Rb.velocity = Rb.velocity.normalized * MoveForce;
-            }
         }
+
+        // limiting speed on ground or in air
         else
         {
             Vector3 flatVel = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
 
+            // limit velocity if needed
             if (flatVel.magnitude > MoveForce)
             {
                 Vector3 limitedVel = flatVel.normalized * MoveForce;
@@ -504,19 +433,24 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    IEnumerator SmoovMoov()
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        float time = 0;
-        float difference = Mathf.Abs(DesiredMoveForce - MoveForce);
-        float startValue = MoveForce;
-
-        while (time < difference)
-        {
-            MoveForce = Mathf.Lerp(startValue, DesiredMoveForce, time / difference);
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        MoveForce = DesiredMoveForce;
+        return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
     }
+
+    // IEnumerator SmoovMoov()
+    //{
+    // float time = 0;
+    //float difference = Mathf.Abs(DesiredMoveForce - MoveForce);
+    // float startValue = MoveForce;
+
+    // while (time < difference)
+    // {
+    //     MoveForce = Mathf.Lerp(startValue, DesiredMoveForce, time / difference);
+    //     time += Time.deltaTime;
+    //     yield return null;
+    // }
+
+    //MoveForce = DesiredMoveForce;
+    //}
 }

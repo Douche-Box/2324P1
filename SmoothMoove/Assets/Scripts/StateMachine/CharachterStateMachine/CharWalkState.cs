@@ -9,7 +9,7 @@ public class CharWalkState : CharBaseState
 
     public override void EnterState()
     {
-        // Debug.Log("Walk State Enter");
+
     }
 
     public override void ExitState() { }
@@ -28,17 +28,17 @@ public class CharWalkState : CharBaseState
 
     public override void FixedUpdateState()
     {
-        Ctx.MoveForce = 7.49f;
-
-        Ctx.CurrentMovement = Ctx.Orientation.forward * Ctx.CurrentMovementInput.y + Ctx.Orientation.right * Ctx.CurrentMovementInput.x;
-
-        if (Ctx.IsSloped)
+        if (!Ctx.IsSloped)
+        {
+            Ctx.Rb.AddForce(Ctx.CurrentMovement * Ctx.MoveForce * 10f, ForceMode.Force);
+        }
+        else if (Ctx.IsSloped && Ctx.Rb.velocity.y > 0)
         {
             Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement) * Ctx.MoveForce * 20f, ForceMode.Force);
         }
         else
         {
-            Ctx.Rb.AddForce(Ctx.CurrentMovement * Ctx.MoveForce * 10f, ForceMode.Force);
+            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement) * Ctx.MoveForce * 10f, ForceMode.Force);
         }
     }
 
