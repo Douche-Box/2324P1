@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BarrierMat
+  m_Name: Barrierarms
   m_Shader: {fileID: -6465566751694194690, guid: 9e13942710d637a4393904f6991cc746, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,11 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _SampleTexture2D_8fbff9c084054971beeeab7aac060493_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 3d7c0d92cd72df04cab5264f95bb1c45, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Texture:
-        m_Texture: {fileID: 2800000, guid: 4afdce767a8ac9d4ea819b92f12cdc1c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1d1f0bff516af2e42af8d5e82ec4b949, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -45,16 +41,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Barriermiddle: 0
+    - _Barriermiddle: 4.12
     - _Dotnoisescale: 0
-    - _NoiseScale: 1.78
-    - _ProjectionOffset: 2.94
+    - _NoiseScale: 10
+    - _ProjectionOffset: 0.96
     - _ProjectionSize: 0.8
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _Noisespeed: {r: 0, g: 0.2, b: 0, a: 0}
-    - _ProjectionColor: {r: 0, g: 2.2278154, b: 2.5787566, a: 0}
+    - _ProjectionColor: {r: 0, g: 1.0620689, b: 2, a: 0}
     - _ProjectionTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3235975833535571602
