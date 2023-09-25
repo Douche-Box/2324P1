@@ -97,6 +97,19 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] float _desiredMoveForce;
+    public float DesiredMoveForce
+    {
+        get
+        {
+            return _desiredMoveForce;
+        }
+        set
+        {
+            _desiredMoveForce = value;
+        }
+    }
+
     #endregion
 
     [Header("Jumping")]
@@ -292,7 +305,7 @@ public class CharStateMachine : MonoBehaviour
 
     private void Update()
     {
-        text.text = Rb.velocity.magnitude.ToString();
+        // text.text = Rb.velocity.magnitude.ToString();
         CurrentMovement = Orientation.forward * CurrentMovementInput.y + Orientation.right * CurrentMovementInput.x;
 
         _currentState.UpdateStates();
@@ -438,19 +451,19 @@ public class CharStateMachine : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
     }
 
-    // IEnumerator SmoovMoov()
-    //{
-    // float time = 0;
-    //float difference = Mathf.Abs(DesiredMoveForce - MoveForce);
-    // float startValue = MoveForce;
+    IEnumerator SmoovMoov()
+    {
+        float time = 0;
+        float difference = Mathf.Abs(DesiredMoveForce - MoveForce);
+        float startValue = MoveForce;
 
-    // while (time < difference)
-    // {
-    //     MoveForce = Mathf.Lerp(startValue, DesiredMoveForce, time / difference);
-    //     time += Time.deltaTime;
-    //     yield return null;
-    // }
+        while (time < difference)
+        {
+            MoveForce = Mathf.Lerp(startValue, DesiredMoveForce, time / difference);
+            time += Time.deltaTime;
+            yield return null;
+        }
 
-    //MoveForce = DesiredMoveForce;
-    //}
+        MoveForce = DesiredMoveForce;
+    }
 }
