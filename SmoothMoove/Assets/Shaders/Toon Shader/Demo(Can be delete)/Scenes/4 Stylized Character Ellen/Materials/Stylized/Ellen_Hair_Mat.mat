@@ -2,15 +2,22 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ellen_Hair_Mat
   m_Shader: {fileID: 4800000, guid: e88aeddd2ef1f934d805981244872e27, type: 3}
-  m_ShaderKeywords: _HALFTONESHAPE_DOT _METALLICSPECGLOSSMAP _NORMALMAP _OUTLINE
-    _RIMLIGHTING_ON
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _HALFTONESHAPE_DOT
+  - _OUTLINE
+  - _RIMLIGHTING_ON
+  m_InvalidKeywords:
+  - _METALLICSPECGLOSSMAP
+  - _STEPVIARAMPTEXTURE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -18,6 +25,7 @@ Material:
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -30,11 +38,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: c177e19d492a89a48aeebff29d88bee7, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 9e4ed631ba448204d9884d141f3a6710, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -57,6 +65,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FaceShadowMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _HairSpecNoiseMap:
         m_Texture: {fileID: 2800000, guid: 29d5f9cfb7bc7524a8ab38a4ad0d17e3, type: 3}
         m_Scale: {x: 2, y: 2}
@@ -74,7 +86,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c177e19d492a89a48aeebff29d88bee7, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -125,6 +137,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaClip: 0
     - _AnisoOffset: 0.04
@@ -141,9 +154,15 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DiffuseStep: 0
+    - _DitherTexelSize: 1
+    - _DitherThreshold: 1
     - _DstBlend: 0
     - _EnabledHairSpec: 0
     - _EnvironmentReflections: 1
+    - _FaceShadowMapEnabled: 0
+    - _FaceShadowMapPow: 0.2
+    - _FaceShadowSmoothness: 0
+    - _FlattenGI: 0
     - _Gloss: 0.75
     - _Gloss2: 0.5
     - _GlossMapScale: 0.75
@@ -159,7 +178,10 @@ Material:
     - _HalfToneIncludeReceivedShadow: 0
     - _HalfToneShape: 0
     - _HalfToneUvMode: 0
+    - _HalftoneFadeDistance: 10
+    - _HalftoneFadeToColor: 0
     - _HalftoneNoiseClip: 0.8
+    - _HalftoneTilling: 8
     - _HatchingDensity: 1
     - _HatchingDiffuseOffset: 0
     - _HatchingDrawStrength: 1
@@ -217,12 +239,15 @@ Material:
     - _Color: {r: 0.5529412, g: 0.13333334, b: 0.13333334, a: 1}
     - _Color2: {r: 1, g: 0.45588237, b: 0.45588237, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
+    - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _HighlightColor: {r: 0.8018868, g: 0.094562106, b: 0.21537162, a: 1}
     - _HighlightColor2: {r: 0.9150943, g: 0.15970986, b: 0.29221818, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.5}
