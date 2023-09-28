@@ -29,7 +29,7 @@ public class CharWalkState : CharBaseState
 
     public override void FixedUpdateState()
     {
-        if (!Ctx.IsSloped)
+        if (!Ctx.IsSloped && Ctx.IsGrounded)
         {
             Ctx.Rb.AddForce(Ctx.CurrentMovement.normalized * Ctx.MoveForce * 10f, ForceMode.Force);
         }
@@ -37,9 +37,9 @@ public class CharWalkState : CharBaseState
         {
             Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 20f, ForceMode.Force);
         }
-        else
+        else if (!Ctx.IsGrounded)
         {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 10f, ForceMode.Force);
+            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 10f * Ctx.AirMultiplier, ForceMode.Force);
         }
     }
 

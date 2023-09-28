@@ -335,6 +335,15 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] float _airMultiplier;
+    public float AirMultiplier
+    {
+        get
+        {
+            return _airMultiplier;
+        }
+    }
+
     #endregion
 
 
