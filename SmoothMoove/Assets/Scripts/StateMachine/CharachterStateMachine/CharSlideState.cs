@@ -38,7 +38,6 @@ public class CharSlideState : CharBaseState
     {
         if (!Ctx.IsMove)
         {
-            Debug.Log("slide > idle");
             SwitchState(Factory.Idle());
         }
         if (Ctx.IsMove && !Ctx.IsSlide)
@@ -57,6 +56,7 @@ public class CharSlideState : CharBaseState
         {
             Ctx.DesiredMoveForce = Ctx.SlideSpeed;
         }
+
         if (!Ctx.IsSloped || Ctx.Rb.velocity.y > -0.1f)
         {
             Ctx.Rb.AddForce(Ctx.CurrentMovement.normalized * Ctx.SlideForce, ForceMode.Force);

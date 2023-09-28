@@ -43,15 +43,13 @@ public class CharJumpState : CharBaseState
     {
         if (!Ctx.IsMove && !Ctx.IsSlide)
         {
-            // Debug.Log("jump idle");
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsSlide)
+        if (Ctx.IsMove && !Ctx.IsSlide)
         {
-            // Debug.Log("jump Walk");
             SetSubState(Factory.Walk());
         }
-        else
+        if (Ctx.IsSlide && Ctx.IsMove)
         {
             SetSubState(Factory.Slide());
         }
