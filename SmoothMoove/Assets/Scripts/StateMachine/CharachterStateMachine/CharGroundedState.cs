@@ -37,15 +37,15 @@ public class CharGroundedState : CharBaseState
 
     public override void InitializeSubState()
     {
-        if (!Ctx.IsMove && !Ctx.IsSlide)
+        if (!Ctx.IsMove)
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsSlide)
+        if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide)
+        if (Ctx.IsMove && Ctx.IsSlide)
         {
             SetSubState(Factory.Slide());
         }
@@ -54,7 +54,7 @@ public class CharGroundedState : CharBaseState
     public override void CheckSwitchStates()
     {
         // Require Jump Press
-        if (!Ctx.IsGrounded && !Ctx.IsJump)
+        if (!Ctx.IsGrounded && !Ctx.IsSloped)
         {
             // Debug.Log("Grounded > Fall");
             SwitchState(Factory.Fall());

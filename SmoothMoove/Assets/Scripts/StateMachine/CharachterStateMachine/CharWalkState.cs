@@ -9,7 +9,8 @@ public class CharWalkState : CharBaseState
 
     public override void EnterState()
     {
-
+        Debug.Log("enter walk");
+        Ctx.DesiredMoveForce = Ctx.MoveSpeed;
     }
 
     public override void ExitState() { }
@@ -30,15 +31,15 @@ public class CharWalkState : CharBaseState
     {
         if (!Ctx.IsSloped)
         {
-            Ctx.Rb.AddForce(Ctx.CurrentMovement * Ctx.MoveForce * 10f, ForceMode.Force);
+            Ctx.Rb.AddForce(Ctx.CurrentMovement.normalized * Ctx.MoveForce * 10f, ForceMode.Force);
         }
         else if (Ctx.IsSloped && Ctx.Rb.velocity.y > 0)
         {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement) * Ctx.MoveForce * 20f, ForceMode.Force);
+            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 20f, ForceMode.Force);
         }
         else
         {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement) * Ctx.MoveForce * 10f, ForceMode.Force);
+            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 10f, ForceMode.Force);
         }
     }
 
@@ -52,7 +53,7 @@ public class CharWalkState : CharBaseState
         {
             SwitchState(Factory.Idle());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide)
+        if (Ctx.IsSlide && Ctx.IsMove)
         {
             SwitchState(Factory.Slide());
         }

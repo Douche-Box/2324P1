@@ -9,7 +9,8 @@ public class CharSlideState : CharBaseState
 
     public override void EnterState()
     {
-
+        Debug.Log("enter slide");
+        Ctx.DesiredMoveForce = Ctx.SlideSpeed;
     }
 
     public override void ExitState()
@@ -37,6 +38,7 @@ public class CharSlideState : CharBaseState
     {
         if (!Ctx.IsMove)
         {
+            Debug.Log("slide > idle");
             SwitchState(Factory.Idle());
         }
         if (Ctx.IsMove && !Ctx.IsSlide)
@@ -47,8 +49,21 @@ public class CharSlideState : CharBaseState
 
     private void SlidingMovement()
     {
-        // REDO REDO REDO REDO REDO
-        Ctx.Rb.AddForce(Ctx.CurrentMovement * Ctx.MoveForce * 10f, ForceMode.Force);
-        // REDO REDO REDO REDO REDO
+        if (Ctx.IsSloped && Ctx.Rb.velocity.y < 0.1f)
+        {
+            Ctx.DesiredMoveForce = Ctx.SlopeSlideSpeed;
+        }
+        else
+        {
+            Ctx.DesiredMoveForce = Ctx.SlideSpeed;
+        }
+        if (!Ctx.IsSloped || Ctx.Rb.velocity.y > -0.1f)
+        {
+            Ctx.Rb.AddForce(Ctx.CurrentMovement.normalized * Ctx.SlideForce, ForceMode.Force);
+        }
+        else
+        {
+            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.SlideForce, ForceMode.Force);
+        }
     }
 }

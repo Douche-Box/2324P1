@@ -26,11 +26,10 @@ public class CharSlopeState : CharBaseState
     public override void UpdateState()
     {
         CheckSwitchStates();
-        if (Ctx.Rb.velocity.y > 0)
+        if (Ctx.Rb.velocity.y > 0 || Ctx.Rb.velocity.y > 0)
         {
             Ctx.Rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
-
     }
 
     public override void FixedUpdateState()
@@ -46,15 +45,15 @@ public class CharSlopeState : CharBaseState
 
     public override void InitializeSubState()
     {
-        if (!Ctx.IsMove && !Ctx.IsSlide)
+        if (!Ctx.IsMove)
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsSlide)
+        if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide)
+        if (Ctx.IsSlide && Ctx.IsMove)
         {
             SetSubState(Factory.Slide());
         }

@@ -110,6 +110,19 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] float _lastDesiredMoveForce;
+    public float LastDesiredMoveForce
+    {
+        get
+        {
+            return _lastDesiredMoveForce;
+        }
+        set
+        {
+            _lastDesiredMoveForce = value;
+        }
+    }
+
     #endregion
 
     [Header("Jumping")]
@@ -151,6 +164,15 @@ public class CharStateMachine : MonoBehaviour
     [Header("Sliding")]
     #region Sliding
 
+    [SerializeField] float _slideForce;
+    public float SlideForce
+    {
+        get
+        {
+            return _slideForce;
+        }
+    }
+
     [SerializeField] bool _isSliding;
     public bool IsSliding
     {
@@ -161,19 +183,6 @@ public class CharStateMachine : MonoBehaviour
         set
         {
             _isSliding = value;
-        }
-    }
-
-    [SerializeField] float _slideForce;
-    public float SlideForce
-    {
-        get
-        {
-            return _slideForce;
-        }
-        set
-        {
-            _slideForce = value;
         }
     }
 
@@ -278,6 +287,57 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    [Header("Speeds")]
+    #region Speeds
+
+    [SerializeField] float _speedIncreaseMultiplier;
+    public float SpeedIncreaseMultiplier
+    {
+        get
+        {
+            return _speedIncreaseMultiplier;
+        }
+    }
+
+    [SerializeField] float _slopeSpeedIncreaseMultiplier;
+    public float SlopeSpeedIncreaseMultiplier
+    {
+        get
+        {
+            return _slopeSpeedIncreaseMultiplier;
+        }
+    }
+
+    [SerializeField] float _moveSpeed;
+    public float MoveSpeed
+    {
+        get
+        {
+            return _moveSpeed;
+        }
+    }
+
+    [SerializeField] float _slideSpeed;
+    public float SlideSpeed
+    {
+        get
+        {
+            return _slideSpeed;
+        }
+    }
+
+    [SerializeField] float _slopeSlideSpeed;
+    public float SlopeSlideSpeed
+    {
+        get
+        {
+            return _slopeSlideSpeed;
+        }
+    }
+
+    #endregion
+
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -324,6 +384,18 @@ public class CharStateMachine : MonoBehaviour
         {
             Rb.drag = 0;
         }
+
+        if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 4f && MoveForce != 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SmoovMoov());
+        }
+        else
+        {
+            MoveForce = DesiredMoveForce;
+        }
+
+        LastDesiredMoveForce = DesiredMoveForce;
     }
 
     private void FixedUpdate()
@@ -423,6 +495,11 @@ public class CharStateMachine : MonoBehaviour
         return false;
     }
 
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
+    {
+        return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
+    }
+
     private void SpeedControl()
     {
         // limiting speed on slope
@@ -446,11 +523,6 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    public Vector3 GetSlopeMoveDirection(Vector3 direction)
-    {
-        return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
-    }
-
     IEnumerator SmoovMoov()
     {
         float time = 0;
@@ -460,7 +532,19 @@ public class CharStateMachine : MonoBehaviour
         while (time < difference)
         {
             MoveForce = Mathf.Lerp(startValue, DesiredMoveForce, time / difference);
-            time += Time.deltaTime;
+
+            if (CheckSloped())
+            {
+                float slopeAngle = Vector3.Angle(Vector3.up, _slopeHit.normal);
+                float slopeAngleIncrease = 1 + (slopeAngle / 90f);
+
+                time += Time.deltaTime * SpeedIncreaseMultiplier * SlopeSpeedIncreaseMultiplier * slopeAngleIncrease;
+            }
+            else
+            {
+                time += Time.deltaTime * SpeedIncreaseMultiplier;
+            }
+
             yield return null;
         }
 
