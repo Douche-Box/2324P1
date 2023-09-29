@@ -201,6 +201,53 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    [Header("WallRunning")]
+    #region WallRunning
+
+    [SerializeField] bool _wallRight;
+    public bool WallRight
+    {
+        get
+        {
+            return _wallRight;
+        }
+        set
+        {
+            _wallRight = value;
+        }
+    }
+
+    [SerializeField] RaycastHit rightWallhit;
+
+    [SerializeField] bool _wallLeft;
+    public bool WallLeft
+    {
+        get
+        {
+            return _wallLeft;
+        }
+        set
+        {
+            _wallLeft = value;
+        }
+    }
+
+    [SerializeField] RaycastHit leftWallhit;
+
+    [SerializeField] LayerMask _wallLayer;
+
+    [SerializeField] float _wallCheckDistance;
+    public float WallCheckDistance
+    {
+        get
+        {
+            return _wallCheckDistance;
+        }
+    }
+
+
+    #endregion
+
     [Header("Groundcheck")]
     #region GroundCheck
 
@@ -217,7 +264,8 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask _groundLayer;
+
     [SerializeField] float _groundDrag;
     public float GroundDrag
     {
@@ -348,6 +396,15 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] float _wallRunSpeed;
+    public float WallRunSpeed
+    {
+        get
+        {
+            return _wallRunSpeed;
+        }
+    }
+
     [SerializeField] float _moveMultiplier;
     public float MoveMultiplier
     {
@@ -360,6 +417,7 @@ public class CharStateMachine : MonoBehaviour
             _moveMultiplier = value;
         }
     }
+
 
     #endregion
 
@@ -400,6 +458,7 @@ public class CharStateMachine : MonoBehaviour
 
         IsGrounded = CheckGrounded();
         IsSloped = CheckSloped();
+        CheckForWall();
 
         SpeedControl();
 
@@ -483,7 +542,7 @@ public class CharStateMachine : MonoBehaviour
         Vector3 characterPosition = transform.position;
 
         Vector3 sphereCenter = characterPosition + Vector3.down * sphereOffset;
-        bool isOnGround = Physics.SphereCast(sphereCenter, sphereRadius, Vector3.down, out RaycastHit hit, sphereOffset + 0.1f, groundLayer);
+        bool isOnGround = Physics.SphereCast(sphereCenter, sphereRadius, Vector3.down, out RaycastHit hit, sphereOffset + 0.1f, _groundLayer);
 
         if (isOnGround)
         {
@@ -491,7 +550,7 @@ public class CharStateMachine : MonoBehaviour
             Vector3 rayDirection = hit.point - rayStart;
             float rayDistance = Vector3.Distance(hit.point, rayStart) + 0.001f;
 
-            if (Physics.Raycast(rayStart, rayDirection, out RaycastHit rayHit, rayDistance, groundLayer))
+            if (Physics.Raycast(rayStart, rayDirection, out RaycastHit rayHit, rayDistance, _groundLayer))
             {
                 if (CheckSloped())
                 {
@@ -577,4 +636,12 @@ public class CharStateMachine : MonoBehaviour
 
         MoveForce = DesiredMoveForce;
     }
+
+    private void CheckForWall()
+    {
+        WallRight = Physics.Raycast(transform.position, Orientation.right, out rightWallhit, WallCheckDistance, _wallLayer);
+        WallLeft = Physics.Raycast(transform.position, -Orientation.right, out leftWallhit, WallCheckDistance, _wallLayer);
+
+    }
+
 }

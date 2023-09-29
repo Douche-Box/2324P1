@@ -9,6 +9,7 @@ enum CharStates
     Walk,
     Slide,
     Sloped,
+    Walled,
 }
 
 public class CharStateFactory
@@ -26,6 +27,7 @@ public class CharStateFactory
         _states[CharStates.Walk] = new CharWalkState(_context, this);
         _states[CharStates.Slide] = new CharSlideState(_context, this);
         _states[CharStates.Sloped] = new CharSlopeState(_context, this);
+        _states[CharStates.Walled] = new CharWallrunState(_context, this);
     }
 
     public CharBaseState Grounded()
@@ -61,5 +63,10 @@ public class CharStateFactory
     public CharBaseState Sloped()
     {
         return _states[CharStates.Sloped];
+    }
+
+    public CharBaseState Walled()
+    {
+        return _states[CharStates.Walled];
     }
 }
