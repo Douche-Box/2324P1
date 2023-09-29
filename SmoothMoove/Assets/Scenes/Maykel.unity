@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78103857}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11559233, y: 0.00000001709104, z: -0.0000000019889252, w: 0.99329674}
+  m_LocalRotation: {x: 0.11559233, y: -0.000000017091047, z: 0.0000000019889261, w: 0.99329674}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1091,7 +1091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125800437}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11559233, y: 0.000000034182086, z: -0.0000000039778514, w: 0.9932968}
+  m_LocalRotation: {x: 0.11559233, y: -0.00000003418209, z: 0.000000003977852, w: 0.9932968}
   m_LocalPosition: {x: 9.940348, y: 4.9579005, z: -7.2743645}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1325,7 +1325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288964460}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09252102, y: -0.000000017659858, z: 0.0000000016409465, w: 0.99571073}
+  m_LocalRotation: {x: 0.09252102, y: 0.000000017659856, z: -0.0000000016409463, w: 0.99571073}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1758,6 +1758,7 @@ MonoBehaviour:
   _rb: {fileID: 1882708942}
   _currentMovementInput: {x: 0, y: 0}
   _currentMovement: {x: 0, y: 0, z: 0}
+  _movement: {x: 0, y: 0, z: 0}
   _moveForce: 7.49
   _desiredMoveForce: 7
   _lastDesiredMoveForce: 0
@@ -1766,8 +1767,14 @@ MonoBehaviour:
   _isJumpTime: 0
   _slideForce: 200
   _isSliding: 0
+  _wallRight: 0
+  _wallLeft: 0
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _wallCheckDistance: 0
   _isGrounded: 0
-  groundLayer:
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 8
   _groundDrag: 4
@@ -1785,7 +1792,8 @@ MonoBehaviour:
   _moveSpeed: 7
   _slideSpeed: 10
   _slopeSlideSpeed: 30
-  _airMultiplier: 0.4
+  _wallRunSpeed: 0
+  _moveMultiplier: 0
   text: {fileID: 0}
 --- !u!4 &1882708945
 Transform:

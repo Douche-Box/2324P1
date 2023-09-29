@@ -9,7 +9,6 @@ public class CharWalkState : CharBaseState
 
     public override void EnterState()
     {
-        Debug.Log("enter walk");
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
     }
 

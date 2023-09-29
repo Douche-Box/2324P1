@@ -216,8 +216,14 @@ public class CharStateMachine : MonoBehaviour
             _wallRight = value;
         }
     }
-
-    [SerializeField] RaycastHit rightWallhit;
+    [SerializeField] RaycastHit _rightWallHit;
+    public RaycastHit RightWallHit
+    {
+        get
+        {
+            return _rightWallHit;
+        }
+    }
 
     [SerializeField] bool _wallLeft;
     public bool WallLeft
@@ -231,8 +237,14 @@ public class CharStateMachine : MonoBehaviour
             _wallLeft = value;
         }
     }
-
-    [SerializeField] RaycastHit leftWallhit;
+    [SerializeField] RaycastHit _leftWallHit;
+    public RaycastHit LeftWallHit
+    {
+        get
+        {
+            return _leftWallHit;
+        }
+    }
 
     [SerializeField] LayerMask _wallLayer;
 
@@ -458,7 +470,7 @@ public class CharStateMachine : MonoBehaviour
 
         IsGrounded = CheckGrounded();
         IsSloped = CheckSloped();
-        CheckForWall();
+        // CheckForWall();
 
         SpeedControl();
 
@@ -639,8 +651,8 @@ public class CharStateMachine : MonoBehaviour
 
     private void CheckForWall()
     {
-        WallRight = Physics.Raycast(transform.position, Orientation.right, out rightWallhit, WallCheckDistance, _wallLayer);
-        WallLeft = Physics.Raycast(transform.position, -Orientation.right, out leftWallhit, WallCheckDistance, _wallLayer);
+        WallRight = Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer);
+        WallLeft = Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer);
 
     }
 
