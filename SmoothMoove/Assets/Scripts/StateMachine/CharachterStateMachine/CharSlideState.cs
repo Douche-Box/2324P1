@@ -9,7 +9,6 @@ public class CharSlideState : CharBaseState
 
     public override void EnterState()
     {
-        Debug.Log("enter slide");
         Ctx.DesiredMoveForce = Ctx.SlideSpeed;
     }
 
