@@ -20,11 +20,13 @@ public class CharSlideState : CharBaseState
 
     #region MonoBehaveiours
 
-    public override void UpdateState() { }
+    public override void UpdateState()
+    {
+        CheckSwitchStates();
+    }
 
     public override void FixedUpdateState()
     {
-        CheckSwitchStates();
         SlidingMovement();
     }
 

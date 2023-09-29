@@ -25,7 +25,6 @@ public class CharSlopeState : CharBaseState
 
     public override void UpdateState()
     {
-        CheckSwitchStates();
         if (Ctx.Rb.velocity.y > 0 || Ctx.Rb.velocity.y > 0)
         {
             Ctx.Rb.AddForce(Vector3.down * 80f, ForceMode.Force);
@@ -37,9 +36,7 @@ public class CharSlopeState : CharBaseState
         CheckSwitchStates();
     }
 
-    public override void LateUpdateState()
-    {
-    }
+    public override void LateUpdateState() { }
 
     #endregion
 
@@ -65,7 +62,7 @@ public class CharSlopeState : CharBaseState
         {
             SwitchState(Factory.Grounded());
         }
-        if (!Ctx.IsGrounded && !Ctx.IsJump)
+        if (!Ctx.IsGrounded && !Ctx.IsSloped)
         {
             SwitchState(Factory.Fall());
         }

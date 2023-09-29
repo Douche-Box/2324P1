@@ -8,8 +8,7 @@ public class CharIdleState : CharBaseState
 
     public override void EnterState()
     {
-        Debug.Log("enter idle");
-        // Debug.Log("Idle State Enter");
+
     }
 
     public override void ExitState() { }
@@ -19,17 +18,13 @@ public class CharIdleState : CharBaseState
 
     public override void UpdateState()
     {
-
-    }
-
-    public override void FixedUpdateState()
-    {
         CheckSwitchStates();
     }
 
-    public override void LateUpdateState()
-    {
-    }
+    public override void FixedUpdateState() { }
+
+    public override void LateUpdateState() { }
+
     #endregion
 
     public override void InitializeSubState() { }
@@ -38,12 +33,10 @@ public class CharIdleState : CharBaseState
     {
         if (Ctx.IsMove && !Ctx.IsSlide)
         {
-            Debug.Log("Idle > Walk");
             SwitchState(Factory.Walk());
         }
         if (Ctx.IsMove && Ctx.IsSlide)
         {
-            Debug.Log("Idle > Slide");
             SwitchState(Factory.Slide());
         }
     }

@@ -15,27 +15,21 @@ public class CharJumpState : CharBaseState
         InitializeSubState();
         Ctx.IsExitingSlope = true;
         HandleJump();
-        // Debug.Log("Jump State Enter");
     }
 
     public override void ExitState() { }
 
     #region MonoBehaveiours
 
-    public override void UpdateState()
-    {
-
-    }
+    public override void UpdateState() { }
 
     public override void FixedUpdateState()
     {
-        HandleJumpTime();
         CheckSwitchStates();
+        HandleJumpTime();
     }
 
-    public override void LateUpdateState()
-    {
-    }
+    public override void LateUpdateState() { }
 
     #endregion
 
@@ -70,7 +64,7 @@ public class CharJumpState : CharBaseState
             SwitchState(Factory.Fall());
         }
     }
-    // fix jump
+
     void HandleJump()
     {
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);

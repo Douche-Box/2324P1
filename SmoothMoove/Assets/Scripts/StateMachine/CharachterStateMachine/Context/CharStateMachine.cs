@@ -374,7 +374,9 @@ public class CharStateMachine : MonoBehaviour
 
     private void Update()
     {
-        // text.text = Rb.velocity.magnitude.ToString();
+        if (Input.GetKey(KeyCode.P))
+            Debug.Log(CurrentState);
+
         CurrentMovement = Orientation.forward * CurrentMovementInput.y + Orientation.right * CurrentMovementInput.x;
 
         _currentState.UpdateStates();
@@ -459,7 +461,6 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
-    // NEEDS CODE CHECKUP && cleanup
     private bool CheckGrounded()
     {
         Vector3 characterPosition = transform.position;
@@ -492,7 +493,6 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    // NEEDS CODE CHECKUP
     bool CheckSloped()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.3f))
@@ -506,6 +506,7 @@ public class CharStateMachine : MonoBehaviour
 
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
+        Debug.DrawRay(this.transform.position, Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized);
         return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
     }
 

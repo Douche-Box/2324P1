@@ -6,32 +6,23 @@ public class CharFallState : CharBaseState
         IsRootState = true;
     }
 
-    //make a wait time for when you can move after falling for a bit
-
     public override void EnterState()
     {
         InitializeSubState();
-        // Debug.Log("Fall State Enter");
     }
 
     public override void ExitState() { }
 
     #region MonoBehaveiours
 
-    public override void UpdateState()
-    {
-
-    }
+    public override void UpdateState() { }
 
     public override void FixedUpdateState()
     {
         CheckSwitchStates();
     }
 
-    public override void LateUpdateState()
-    {
-
-    }
+    public override void LateUpdateState() { }
     #endregion
 
     public override void InitializeSubState()

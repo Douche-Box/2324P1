@@ -11,27 +11,20 @@ public class CharGroundedState : CharBaseState
     {
         InitializeSubState();
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
-        // Debug.Log("Grounded State Enter");
     }
 
     public override void ExitState() { }
 
     #region MonoBehaveiours
 
-    public override void UpdateState()
-    {
-
-    }
+    public override void UpdateState() { }
 
     public override void FixedUpdateState()
     {
         CheckSwitchStates();
     }
 
-    public override void LateUpdateState()
-    {
-
-    }
+    public override void LateUpdateState() { }
 
     #endregion
 
@@ -53,20 +46,16 @@ public class CharGroundedState : CharBaseState
 
     public override void CheckSwitchStates()
     {
-        // Require Jump Press
         if (!Ctx.IsGrounded && !Ctx.IsSloped)
         {
-            // Debug.Log("Grounded > Fall");
             SwitchState(Factory.Fall());
         }
         if (Ctx.IsJump)
         {
-            // Debug.Log("Grounded > Jump");
             SwitchState(Factory.Jump());
         }
         if (Ctx.IsSloped)
         {
-            // Debug.Log("Grounded > Sloped");
             SwitchState(Factory.Sloped());
         }
     }

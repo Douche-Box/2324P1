@@ -22,25 +22,11 @@ public class CharWalkState : CharBaseState
         CheckSwitchStates();
     }
 
-    public override void LateUpdateState()
-    {
-
-    }
+    public override void LateUpdateState() { }
 
     public override void FixedUpdateState()
     {
-        if (!Ctx.IsSloped && Ctx.IsGrounded)
-        {
-            Ctx.Rb.AddForce(Ctx.CurrentMovement.normalized * Ctx.MoveForce * 10f, ForceMode.Force);
-        }
-        else if (Ctx.IsSloped && Ctx.Rb.velocity.y > 0)
-        {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 20f, ForceMode.Force);
-        }
-        else if (!Ctx.IsGrounded)
-        {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 10f * Ctx.AirMultiplier, ForceMode.Force);
-        }
+        WalkMovement();
     }
 
     #endregion
@@ -58,4 +44,21 @@ public class CharWalkState : CharBaseState
             SwitchState(Factory.Slide());
         }
     }
+
+    private void WalkMovement()
+    {
+        if (!Ctx.IsSloped && Ctx.IsGrounded)
+        {
+            Ctx.Rb.AddForce(Ctx.CurrentMovement.normalized * Ctx.MoveForce * 10f, ForceMode.Force);
+        }
+        else if (Ctx.IsSloped && Ctx.Rb.velocity.y > 0)
+        {
+            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 20f, ForceMode.Force);
+        }
+        else if (!Ctx.IsGrounded)
+        {
+            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 10f * Ctx.AirMultiplier, ForceMode.Force);
+        }
+    }
+
 }
