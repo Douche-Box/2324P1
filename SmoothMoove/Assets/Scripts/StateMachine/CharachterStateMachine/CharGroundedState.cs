@@ -10,6 +10,7 @@ public class CharGroundedState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
+        Ctx.MoveMultiplier = 1f;
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
     }
 
@@ -17,7 +18,10 @@ public class CharGroundedState : CharBaseState
 
     #region MonoBehaveiours
 
-    public override void UpdateState() { }
+    public override void UpdateState()
+    {
+        Ctx.Movement = Ctx.CurrentMovement.normalized;
+    }
 
     public override void FixedUpdateState()
     {

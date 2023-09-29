@@ -9,13 +9,17 @@ public class CharFallState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
+        // Ctx.MoveMultiplier = 0.4f;
     }
 
     public override void ExitState() { }
 
     #region MonoBehaveiours
 
-    public override void UpdateState() { }
+    public override void UpdateState()
+    {
+        Ctx.Movement = Ctx.CurrentMovement.normalized;
+    }
 
     public override void FixedUpdateState()
     {

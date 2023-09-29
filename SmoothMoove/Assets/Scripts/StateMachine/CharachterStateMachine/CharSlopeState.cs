@@ -25,6 +25,15 @@ public class CharSlopeState : CharBaseState
 
     public override void UpdateState()
     {
+        Ctx.Movement = Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement).normalized;
+
+        if (Ctx.Rb.velocity.y > 0)
+        {
+            Ctx.MoveMultiplier = 2f;
+        }
+
+
+
         if (Ctx.Rb.velocity.y > 0 || Ctx.Rb.velocity.y > 0)
         {
             Ctx.Rb.AddForce(Vector3.down * 80f, ForceMode.Force);

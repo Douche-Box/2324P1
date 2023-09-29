@@ -84,6 +84,19 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] Vector3 _movement;
+    public Vector3 Movement
+    {
+        get
+        {
+            return _movement;
+        }
+        set
+        {
+            _movement = value;
+        }
+    }
+
     [SerializeField] float _moveForce;
     public float MoveForce
     {
@@ -335,12 +348,16 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] float _airMultiplier;
-    public float AirMultiplier
+    [SerializeField] float _moveMultiplier;
+    public float MoveMultiplier
     {
         get
         {
-            return _airMultiplier;
+            return _moveMultiplier;
+        }
+        set
+        {
+            _moveMultiplier = value;
         }
     }
 

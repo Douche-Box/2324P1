@@ -35,7 +35,7 @@ public class CharJumpState : CharBaseState
 
     public override void InitializeSubState()
     {
-        if (!Ctx.IsMove && !Ctx.IsSlide)
+        if (!Ctx.IsMove)
         {
             SetSubState(Factory.Idle());
         }

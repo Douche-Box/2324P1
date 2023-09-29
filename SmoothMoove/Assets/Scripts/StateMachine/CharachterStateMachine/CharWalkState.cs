@@ -47,18 +47,7 @@ public class CharWalkState : CharBaseState
 
     private void WalkMovement()
     {
-        if (!Ctx.IsSloped && Ctx.IsGrounded)
-        {
-            Ctx.Rb.AddForce(Ctx.CurrentMovement.normalized * Ctx.MoveForce * 10f, ForceMode.Force);
-        }
-        else if (Ctx.IsSloped && Ctx.Rb.velocity.y > 0)
-        {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 20f, ForceMode.Force);
-        }
-        else if (!Ctx.IsGrounded)
-        {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.MoveForce * 10f * Ctx.AirMultiplier, ForceMode.Force);
-        }
+        Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier, ForceMode.Force);
     }
 
 }
