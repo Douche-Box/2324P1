@@ -55,5 +55,9 @@ public class CharFallState : CharBaseState
         {
             SwitchState(Factory.Sloped());
         }
+        if (Ctx.IsWalled && Ctx.IsMove)
+        {
+            SwitchState(Factory.Walled());
+        }
     }
 }

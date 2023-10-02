@@ -4,7 +4,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using System.Drawing;
 using System.Runtime.CompilerServices;
 public class CharStateMachine : MonoBehaviour
 {
@@ -203,6 +202,19 @@ public class CharStateMachine : MonoBehaviour
 
     [Header("WallRunning")]
     #region WallRunning
+
+    [SerializeField] bool _isWalled;
+    public bool IsWalled
+    {
+        get
+        {
+            return _isWalled;
+        }
+        set
+        {
+            _isWalled = value;
+        }
+    }
 
     [SerializeField] bool _wallRight;
     public bool WallRight
@@ -470,7 +482,11 @@ public class CharStateMachine : MonoBehaviour
 
         IsGrounded = CheckGrounded();
         IsSloped = CheckSloped();
-        // CheckForWall();
+        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
+        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
+        IsWalled = CheckWalled();
+        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
+        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
 
         SpeedControl();
 
@@ -592,6 +608,33 @@ public class CharStateMachine : MonoBehaviour
         return false;
     }
 
+    private bool CheckWalled()
+    {
+
+        if (Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer))
+        {
+            WallRight = true;
+            Debug.DrawRay(this.transform.position, Orientation.right, Color.red);
+
+            return WallRight;
+        }
+        if (Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer))
+        {
+            WallLeft = true;
+            Debug.DrawRay(this.transform.position, -Orientation.right, Color.red);
+
+            return WallLeft;
+        }
+
+        Debug.DrawRay(this.transform.position, Orientation.right, Color.green);
+        Debug.DrawRay(this.transform.position, -Orientation.right, Color.green);
+
+        WallRight = false;
+        WallLeft = false;
+
+        return false;
+    }
+
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         Debug.DrawRay(this.transform.position, Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized);
@@ -648,12 +691,4 @@ public class CharStateMachine : MonoBehaviour
 
         MoveForce = DesiredMoveForce;
     }
-
-    private void CheckForWall()
-    {
-        WallRight = Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer);
-        WallLeft = Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer);
-
-    }
-
 }

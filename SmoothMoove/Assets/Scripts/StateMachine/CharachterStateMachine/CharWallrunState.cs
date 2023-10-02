@@ -11,16 +11,21 @@ public class CharWallrunState : CharBaseState
 
     public override void EnterState()
     {
+        Ctx.Rb.useGravity = false;
         Ctx.DesiredMoveForce = Ctx.WallRunSpeed;
     }
 
-    public override void ExitState() { }
+    public override void ExitState()
+    {
+        Debug.Log("exit wall run");
+        Ctx.Rb.useGravity = true;
+    }
 
     #region MonoBehaveiours
 
     public override void UpdateState()
     {
-        Ctx.Movement = Ctx.CurrentMovement.normalized;
+
     }
 
     public override void LateUpdateState() { }
@@ -48,25 +53,35 @@ public class CharWallrunState : CharBaseState
     public override void CheckSwitchStates()
     {
         // do wallrun check if chek is checked and stuff and shit
-        if (!Ctx.IsGrounded && !Ctx.IsSloped)
+        if (!Ctx.IsGrounded && !Ctx.IsWalled || !Ctx.IsMove && !Ctx.IsGrounded)
         {
             SwitchState(Factory.Fall());
-        }
-        if (Ctx.IsJump)
-        {
-            SwitchState(Factory.Jump());
-        }
-        if (Ctx.IsSloped)
-        {
-            SwitchState(Factory.Sloped());
         }
     }
 
     private void WallRunMovement()
     {
-        Ctx.Rb.useGravity = false;
+        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
+        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
         Vector3 wallNormal = Ctx.WallRight ? Ctx.RightWallHit.normal : Ctx.LeftWallHit.normal;
+
+        Vector3 wallForward = Vector3.Cross(wallNormal, Ctx.transform.up);
+
+
+        if ((Ctx.Orientation.forward - wallForward).magnitude > (Ctx.Orientation.forward - -wallForward).magnitude)
+            wallForward = -wallForward;
+
+        Debug.Log(wallForward.ToString());
+        // us wallrunforce
+        Debug.DrawRay(Ctx.transform.position, wallForward, Color.green);
+
+        Ctx.Movement = wallForward;
+
+        Ctx.MoveMultiplier = 2f;
+        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
+        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
+
     }
 }
