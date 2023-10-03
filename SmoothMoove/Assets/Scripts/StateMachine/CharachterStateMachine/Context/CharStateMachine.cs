@@ -272,6 +272,26 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    [Header("Grappling")]
+    #region Grappling
+
+    [SerializeField] bool _isGrappled;
+    public bool IsGrappled
+    {
+        get
+        {
+            return _isGrappled;
+        }
+        set
+        {
+            _isGrappled = value;
+        }
+    }
+
+
+
+    #endregion
+
     [Header("Groundcheck")]
     #region GroundCheck
 
@@ -393,12 +413,30 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] float _grappleSpeedIncreaseMultiplier;
+    public float GrappleSpeedIncreaseMultiplier
+    {
+        get
+        {
+            return _grappleSpeedIncreaseMultiplier;
+        }
+    }
+
     [SerializeField] float _moveSpeed;
     public float MoveSpeed
     {
         get
         {
             return _moveSpeed;
+        }
+    }
+
+    [SerializeField] float _airSpeed;
+    public float AirSpeed
+    {
+        get
+        {
+            return _airSpeed;
         }
     }
 
@@ -426,6 +464,15 @@ public class CharStateMachine : MonoBehaviour
         get
         {
             return _wallRunSpeed;
+        }
+    }
+
+    [SerializeField] float _grappleSpeed;
+    public float GrappleSpeed
+    {
+        get
+        {
+            return _grappleSpeed;
         }
     }
 

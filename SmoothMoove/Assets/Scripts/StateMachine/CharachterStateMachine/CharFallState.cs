@@ -9,7 +9,7 @@ public class CharFallState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
-        // Ctx.MoveMultiplier = 0.4f;
+        Ctx.MoveMultiplier = Ctx.AirSpeed;
     }
 
     public override void ExitState() { }
