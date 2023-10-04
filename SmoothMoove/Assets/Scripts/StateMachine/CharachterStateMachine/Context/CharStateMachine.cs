@@ -269,6 +269,32 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] Vector3 _wallNormal;
+    public Vector3 WallNormal
+    {
+        get
+        {
+            return _wallNormal;
+        }
+        set
+        {
+            _wallNormal = value;
+        }
+    }
+
+    [SerializeField] Vector3 _wallForward;
+    public Vector3 WallForward
+    {
+        get
+        {
+            return _wallForward;
+        }
+        set
+        {
+            _wallForward = value;
+        }
+    }
+
 
     #endregion
 
@@ -529,9 +555,10 @@ public class CharStateMachine : MonoBehaviour
 
         IsGrounded = CheckGrounded();
         IsSloped = CheckSloped();
+        CheckForWall();
         // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
         // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
-        IsWalled = CheckWalled();
+
         // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
         // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
 
@@ -655,31 +682,26 @@ public class CharStateMachine : MonoBehaviour
         return false;
     }
 
-    private bool CheckWalled()
+    private void CheckForWall()
     {
+        WallRight = Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer);
+        WallLeft = Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer);
 
-        if (Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer))
+        if (WallRight || WallLeft)
         {
-            WallRight = true;
-            Debug.DrawRay(this.transform.position, Orientation.right, Color.red);
-
-            return WallRight;
+            IsWalled = true;
         }
-        if (Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer))
+        else if (!WallRight && !WallLeft)
         {
-            WallLeft = true;
-            Debug.DrawRay(this.transform.position, -Orientation.right, Color.red);
-
-            return WallLeft;
+            IsWalled = false;
         }
+    }
 
-        Debug.DrawRay(this.transform.position, Orientation.right, Color.green);
-        Debug.DrawRay(this.transform.position, -Orientation.right, Color.green);
+    public void CheckWallDirection()
+    {
+        WallNormal = WallRight ? RightWallHit.normal : LeftWallHit.normal;
 
-        WallRight = false;
-        WallLeft = false;
-
-        return false;
+        WallForward = Vector3.Cross(WallNormal, transform.up);
     }
 
     public Vector3 GetSlopeMoveDirection(Vector3 direction)

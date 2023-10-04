@@ -11,6 +11,8 @@ public class CharWallrunState : CharBaseState
 
     public override void EnterState()
     {
+        Debug.Log("Enter wall");
+        InitializeSubState();
         Ctx.Rb.useGravity = false;
         Ctx.DesiredMoveForce = Ctx.WallRunSpeed;
     }
@@ -40,20 +42,16 @@ public class CharWallrunState : CharBaseState
 
     public override void InitializeSubState()
     {
-        if (!Ctx.IsMove)
+        if (Ctx.IsMove)
         {
-            SetSubState(Factory.Idle());
-        }
-        if (Ctx.IsMove && !Ctx.IsSlide)
-        {
+            Debug.Log("walk wall");
             SetSubState(Factory.Walk());
         }
     }
 
     public override void CheckSwitchStates()
     {
-        // do wallrun check if chek is checked and stuff and shit
-        if (!Ctx.IsGrounded && !Ctx.IsWalled || !Ctx.IsMove && !Ctx.IsGrounded)
+        if (!Ctx.IsMove || !Ctx.IsWalled)
         {
             SwitchState(Factory.Fall());
         }
@@ -61,27 +59,33 @@ public class CharWallrunState : CharBaseState
 
     private void WallRunMovement()
     {
-        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
-        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
         Vector3 wallNormal = Ctx.WallRight ? Ctx.RightWallHit.normal : Ctx.LeftWallHit.normal;
 
         Vector3 wallForward = Vector3.Cross(wallNormal, Ctx.transform.up);
 
-
         if ((Ctx.Orientation.forward - wallForward).magnitude > (Ctx.Orientation.forward - -wallForward).magnitude)
             wallForward = -wallForward;
 
-        Debug.Log(wallForward.ToString());
-        // us wallrunforce
         Debug.DrawRay(Ctx.transform.position, wallForward, Color.green);
 
+
+        // forward force
+
         Ctx.Movement = wallForward;
-
         Ctx.MoveMultiplier = 2f;
-        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
-        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
 
+        // Ctx.Rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+
+        // upwards/downwards force
+        // if (upwardsRunning)
+        //     rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
+        // if (downwardsRunning)
+        //     rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
+
+        // push to wall force
+        if (!(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0))
+            Ctx.Rb.AddForce(-wallNormal * 100, ForceMode.Force);
     }
 }
