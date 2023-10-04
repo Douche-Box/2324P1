@@ -65,7 +65,7 @@ public class CharWallrunState : CharBaseState
 
         Vector3 wallForward = Vector3.Cross(wallNormal, Ctx.transform.up);
 
-        if ((Ctx.Orientation.forward - wallForward).magnitude > (Ctx.Orientation.forward - -wallForward).magnitude)
+        if ((Ctx.PlayerObj.forward - wallForward).magnitude > (Ctx.PlayerObj.forward - -wallForward).magnitude)
             wallForward = -wallForward;
 
         Debug.DrawRay(Ctx.transform.position, wallForward, Color.green);
