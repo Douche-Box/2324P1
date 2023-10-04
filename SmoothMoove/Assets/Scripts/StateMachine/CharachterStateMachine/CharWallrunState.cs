@@ -55,25 +55,27 @@ public class CharWallrunState : CharBaseState
         {
             SwitchState(Factory.Fall());
         }
+        if (Ctx.IsJump && Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0 || Ctx.IsJump && Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
+        {
+            SwitchState(Factory.Jump());
+        }
     }
-
+    // || Ctx.IsJump && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
     private void WallRunMovement()
     {
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
-        Vector3 wallNormal = Ctx.WallRight ? Ctx.RightWallHit.normal : Ctx.LeftWallHit.normal;
 
-        Vector3 wallForward = Vector3.Cross(wallNormal, Ctx.transform.up);
 
-        if ((Ctx.PlayerObj.forward - wallForward).magnitude > (Ctx.PlayerObj.forward - -wallForward).magnitude)
-            wallForward = -wallForward;
+        if ((Ctx.PlayerObj.forward - Ctx.WallForward).magnitude > (Ctx.PlayerObj.forward - -Ctx.WallForward).magnitude)
+            Ctx.WallForward = -Ctx.WallForward;
 
-        Debug.DrawRay(Ctx.transform.position, wallForward, Color.green);
+        Debug.DrawRay(Ctx.transform.position, Ctx.WallForward, Color.green);
 
 
         // forward force
 
-        Ctx.Movement = wallForward;
+        Ctx.Movement = Ctx.WallForward;
         Ctx.MoveMultiplier = 2f;
 
         // Ctx.Rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
@@ -86,6 +88,6 @@ public class CharWallrunState : CharBaseState
 
         // push to wall force
         if (!(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0))
-            Ctx.Rb.AddForce(-wallNormal * 100, ForceMode.Force);
+            Ctx.Rb.AddForce(-Ctx.WallNormal * 100, ForceMode.Force);
     }
 }

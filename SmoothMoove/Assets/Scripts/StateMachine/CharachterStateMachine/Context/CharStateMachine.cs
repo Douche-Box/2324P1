@@ -556,11 +556,7 @@ public class CharStateMachine : MonoBehaviour
         IsGrounded = CheckGrounded();
         IsSloped = CheckSloped();
         CheckForWall();
-        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
-        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
-
-        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
-        // MAKE WALL RUN CHECK FOR IF YOU ARE LOOKING IN THE DIRECTION OF THE WALL
+        CheckWallDirection();
 
         SpeedControl();
 
