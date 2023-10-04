@@ -463,8 +463,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994885637975691551}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.00034529547, z: -0, w: 0.99999994}
+  m_LocalPosition: {x: -0.0008325577, y: 0, z: 0.0015361309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -478,7 +478,7 @@ Transform:
   - {fileID: 7308502054513240708}
   - {fileID: 1141775626798100885}
   m_Father: {fileID: 1316524306109221258}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.04, z: 0}
 --- !u!1 &1274741207821827048
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,8 +507,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274741207821827048}
   serializedVersion: 2
-  m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -2.164566, y: -8, z: -1.386383}
+  m_LocalRotation: {x: -0.99057335, y: -0, z: -0.1369834, w: 0}
+  m_LocalPosition: {x: -2.164566, y: -8, z: -1.3863833}
   m_LocalScale: {x: 2.3007355, y: 2.3007355, z: 2.3007355}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -519,7 +519,7 @@ Transform:
   - {fileID: 4703605650237472542}
   - {fileID: 3317130559509922060}
   m_Father: {fileID: 6508451338130926171}
-  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: -15.747009, z: 0}
 --- !u!33 &2488460152027950096
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -961,13 +961,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2833777970411183975}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.000535263, y: -0.0012612831, z: 0.00086331525, w: 0.99999875}
   m_LocalPosition: {x: -1.1781454, y: -8.127472, z: -1.6695085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1316524306109221258}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.061, y: -0.145, z: 0.099}
 --- !u!82 &8787355090326601897
 AudioSource:
   m_ObjectHideFlags: 0
