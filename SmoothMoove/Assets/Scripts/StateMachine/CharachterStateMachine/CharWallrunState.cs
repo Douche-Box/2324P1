@@ -13,6 +13,7 @@ public class CharWallrunState : CharBaseState
     {
         Debug.Log("Enter wall");
         InitializeSubState();
+        Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
         Ctx.DesiredMoveForce = Ctx.WallRunSpeed;
     }
@@ -20,6 +21,7 @@ public class CharWallrunState : CharBaseState
     public override void ExitState()
     {
         Debug.Log("exit wall run");
+        Ctx.IsWallRunning = false;
         Ctx.Rb.useGravity = true;
     }
 
@@ -59,6 +61,10 @@ public class CharWallrunState : CharBaseState
         {
             SwitchState(Factory.Jump());
         }
+        if (Ctx.IsGrounded)
+        {
+            SwitchState(Factory.Grounded());
+        }
     }
     // || Ctx.IsJump && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
     private void WallRunMovement()
@@ -87,7 +93,7 @@ public class CharWallrunState : CharBaseState
         //     rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
 
         // push to wall force
-        if (!(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0))
-            Ctx.Rb.AddForce(-Ctx.WallNormal * 100, ForceMode.Force);
+        // if (!(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0))
+        Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 100, ForceMode.Force);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,7 +32,14 @@ public class ThirdPersonCam : MonoBehaviour
         Vector3 inputDir = _orientation.forward * _stateMachine.CurrentMovementInput.y + _orientation.right * _stateMachine.CurrentMovementInput.x;
 
         inputDir.y = 0;
-        if (inputDir != Vector3.zero)
+
+        if (_stateMachine.IsWallRunning)
+        {
+            _orientation.forward = _stateMachine.WallForward;
+            Quaternion wallLookRotation = Quaternion.LookRotation(_stateMachine.WallForward, Vector3.up);
+            _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, wallLookRotation, Time.deltaTime * _rotationSpeed);
+        }
+        if (inputDir != Vector3.zero && !_stateMachine.IsWallRunning)
         {
             Quaternion lookRotation = Quaternion.LookRotation(inputDir, Vector3.up);
             _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);

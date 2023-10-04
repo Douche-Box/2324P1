@@ -203,6 +203,19 @@ public class CharStateMachine : MonoBehaviour
     [Header("WallRunning")]
     #region WallRunning
 
+    [SerializeField] bool _isWallRunning;
+    public bool IsWallRunning
+    {
+        get
+        {
+            return _isWallRunning;
+        }
+        set
+        {
+            _isWallRunning = value;
+        }
+    }
+
     [SerializeField] bool _isWalled;
     public bool IsWalled
     {
@@ -294,6 +307,29 @@ public class CharStateMachine : MonoBehaviour
             _wallForward = value;
         }
     }
+
+    [SerializeField] float _maxWallClingTime;
+    public float MaxWallClingTime
+    {
+        get
+        {
+            return _maxWallClingTime;
+        }
+    }
+
+    [SerializeField] float _wallClingTime;
+    public float WallClingTime
+    {
+        get
+        {
+            return _wallClingTime;
+        }
+        set
+        {
+            _wallClingTime = value;
+        }
+    }
+
 
 
     #endregion
@@ -756,4 +792,26 @@ public class CharStateMachine : MonoBehaviour
 
         MoveForce = DesiredMoveForce;
     }
+
+    private void OnDrawGizmos()
+    {
+        if (WallRight)
+        {
+            Debug.DrawRay(transform.position, Orientation.right, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, Orientation.right, Color.red);
+        }
+
+        if (WallLeft)
+        {
+            Debug.DrawRay(transform.position, -Orientation.right, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, -Orientation.right, Color.red);
+        }
+    }
+
 }
