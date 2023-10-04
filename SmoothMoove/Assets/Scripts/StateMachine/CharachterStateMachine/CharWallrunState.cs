@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharWallrunState : CharBaseState
@@ -16,6 +17,19 @@ public class CharWallrunState : CharBaseState
         Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
         Ctx.DesiredMoveForce = Ctx.WallRunSpeed;
+
+        if (Ctx.CurrentWall != null)
+        {
+            if (Ctx.CurrentWall != Ctx.PreviousWall)
+            {
+                Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
+                Ctx.CanStartWallTimer = false;
+            }
+            else
+            {
+                Ctx.CanStartWallTimer = true;
+            }
+        }
     }
 
     public override void ExitState()
@@ -23,6 +37,7 @@ public class CharWallrunState : CharBaseState
         Debug.Log("exit wall run");
         Ctx.IsWallRunning = false;
         Ctx.Rb.useGravity = true;
+        Ctx.CanStartWallTimer = true;
     }
 
     #region MonoBehaveiours
@@ -46,7 +61,6 @@ public class CharWallrunState : CharBaseState
     {
         if (Ctx.IsMove)
         {
-            Debug.Log("walk wall");
             SetSubState(Factory.Walk());
         }
     }
@@ -66,7 +80,6 @@ public class CharWallrunState : CharBaseState
             SwitchState(Factory.Grounded());
         }
     }
-    // || Ctx.IsJump && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
     private void WallRunMovement()
     {
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
@@ -77,9 +90,6 @@ public class CharWallrunState : CharBaseState
             Ctx.WallForward = -Ctx.WallForward;
 
         Debug.DrawRay(Ctx.transform.position, Ctx.WallForward, Color.green);
-
-
-        // forward force
 
         Ctx.Movement = Ctx.WallForward;
         Ctx.MoveMultiplier = 2f;
@@ -92,8 +102,8 @@ public class CharWallrunState : CharBaseState
         // if (downwardsRunning)
         //     rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
 
-        // push to wall force
-        // if (!(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0))
+
+        // ?? Maybe use this ?? if (!(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0))
         Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 100, ForceMode.Force);
     }
 }

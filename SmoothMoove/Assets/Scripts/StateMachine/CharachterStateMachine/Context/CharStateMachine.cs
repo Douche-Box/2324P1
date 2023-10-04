@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
+    #region Variables
 
     [Header("Refrences")]
     #region Refrences
@@ -308,6 +309,19 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] bool _canStartWallTimer;
+    public bool CanStartWallTimer
+    {
+        get
+        {
+            return _canStartWallTimer;
+        }
+        set
+        {
+            _canStartWallTimer = value;
+        }
+    }
+
     [SerializeField] float _maxWallClingTime;
     public float MaxWallClingTime
     {
@@ -330,7 +344,31 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] Transform _currentWall;
+    public Transform CurrentWall
+    {
+        get
+        {
+            return _currentWall;
+        }
+        set
+        {
+            _currentWall = value;
+        }
+    }
 
+    [SerializeField] Transform _previousWall;
+    public Transform PreviousWall
+    {
+        get
+        {
+            return _previousWall;
+        }
+        set
+        {
+            _previousWall = value;
+        }
+    }
 
     #endregion
 
@@ -554,6 +592,7 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    #endregion
 
     private void Awake()
     {
@@ -583,7 +622,7 @@ public class CharStateMachine : MonoBehaviour
     private void Update()
     {
         if (Input.GetKey(KeyCode.P))
-            Debug.Log(CurrentState);
+            Debug.Log(_currentState.ToString());
 
         CurrentMovement = Orientation.forward * CurrentMovementInput.y + Orientation.right * CurrentMovementInput.x;
 
@@ -593,6 +632,19 @@ public class CharStateMachine : MonoBehaviour
         IsSloped = CheckSloped();
         CheckForWall();
         CheckWallDirection();
+
+        if (CanStartWallTimer)
+        {
+            WallClingTime -= Time.deltaTime;
+        }
+        else if (WallClingTime <= MaxWallClingTime)
+        {
+            WallClingTime += Time.deltaTime;
+        }
+        if (WallClingTime > MaxWallClingTime)
+        {
+            WallClingTime = MaxWallClingTime;
+        }
 
         SpeedControl();
 
@@ -813,5 +865,4 @@ public class CharStateMachine : MonoBehaviour
             Debug.DrawRay(transform.position, -Orientation.right, Color.red);
         }
     }
-
 }
