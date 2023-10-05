@@ -67,10 +67,11 @@ public class CharJumpState : CharBaseState
 
     void HandleJump()
     {
+        // MAKE IT MORE IN DIRECTION OF MOVEMENT // MAKE IT MORE IN DIRECTION OF MOVEMENT
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
         Ctx.Rb.AddForce(0, Ctx.JumpForce, 0, ForceMode.Impulse);
-
+        // MAKE IT MORE IN DIRECTION OF MOVEMENT // MAKE IT MORE IN DIRECTION OF MOVEMENT
     }
 
     void HandleJumpTime()

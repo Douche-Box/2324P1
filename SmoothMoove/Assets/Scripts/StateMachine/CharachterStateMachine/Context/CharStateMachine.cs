@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using System.Runtime.CompilerServices;
+using Cinemachine;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
@@ -490,6 +489,24 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] bool _isAim;
+    public bool IsAim
+    {
+        get
+        {
+            return _isAim;
+        }
+    }
+
+    [SerializeField] bool _isShoot;
+    public bool IsShoot
+    {
+        get
+        {
+            return _isShoot;
+        }
+    }
+
     #endregion
 
     [Header("Speeds")]
@@ -594,6 +611,10 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    [SerializeField] TMP_Text text;
+
+    CinemachineFreeLook freelookCam;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -609,6 +630,14 @@ public class CharStateMachine : MonoBehaviour
         playerInput.actions.FindAction("Jump").performed += OnJump;
         playerInput.actions.FindAction("Jump").canceled += OnJump;
 
+        playerInput.actions.FindAction("Aim").started += OnAim;
+        playerInput.actions.FindAction("Aim").performed += OnAim;
+        playerInput.actions.FindAction("Aim").canceled += OnAim;
+
+        playerInput.actions.FindAction("Shoot").started += OnShoot;
+        playerInput.actions.FindAction("Shoot").performed += OnShoot;
+        playerInput.actions.FindAction("Shoot").canceled += OnShoot;
+
         _states = new CharStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
@@ -619,7 +648,7 @@ public class CharStateMachine : MonoBehaviour
 
     #region MonoBehaviours
 
-    [SerializeField] TMP_Text text;
+
 
     private void Update()
     {
@@ -713,6 +742,18 @@ public class CharStateMachine : MonoBehaviour
     void OnJump(InputAction.CallbackContext context)
     {
         _isJump = context.ReadValueAsButton();
+    }
+
+    void OnAim(InputAction.CallbackContext context)
+    {
+        _isAim = context.ReadValueAsButton();
+        Debug.Log("AIM");
+    }
+
+    void OnShoot(InputAction.CallbackContext context)
+    {
+        _isShoot = context.ReadValueAsButton();
+        Debug.Log("SHOOT");
     }
 
     #endregion
