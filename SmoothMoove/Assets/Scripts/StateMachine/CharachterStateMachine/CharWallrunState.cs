@@ -23,19 +23,22 @@ public class CharWallrunState : CharBaseState
 
         if (Ctx.CurrentWall != null)
         {
+            Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
             if (Ctx.CurrentWall != Ctx.PreviousWall)
             {
-                Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
+                Debug.Log("THIS");
                 Ctx.WallClingTime = Ctx.MaxWallClingTime;
                 Ctx.CanStartWallTimer = true;
             }
             else
             {
+                Debug.Log("THAT");
                 Ctx.CanStartWallTimer = true;
             }
         }
         else
         {
+            Debug.Log("DEEZ");
             Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
             Ctx.CanStartWallTimer = true;
         }
@@ -46,7 +49,7 @@ public class CharWallrunState : CharBaseState
         Debug.Log("exit wall run");
         Ctx.IsWallRunning = false;
         Ctx.Rb.useGravity = true;
-        Ctx.CanStartWallTimer = false;
+        Ctx.PreviousWall = Ctx.CurrentWall;
     }
 
     #region MonoBehaveiours
