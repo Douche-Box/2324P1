@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78103857}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11559233, y: 0.00000001709104, z: -0.0000000019889252, w: 0.99329674}
+  m_LocalRotation: {x: 0.11559233, y: -0.000000017091047, z: 0.0000000019889261, w: 0.99329674}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6933,7 +6933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125800437}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11559233, y: 0.000000034182086, z: -0.0000000039778514, w: 0.9932968}
+  m_LocalRotation: {x: 0.11559233, y: -0.00000003418209, z: 0.000000003977852, w: 0.9932968}
   m_LocalPosition: {x: -5.037857, y: 4.721097, z: -1.2852693}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18970,8 +18970,11 @@ MonoBehaviour:
   _wallCheckDistance: 1
   _wallNormal: {x: 0, y: 0, z: 0}
   _wallForward: {x: 0, y: 0, z: 0}
-  _maxWallClingTime: 0
+  _canStartWallTimer: 0
+  _maxWallClingTime: 6
   _wallClingTime: 0
+  _currentWall: {fileID: 0}
+  _previousWall: {fileID: 0}
   _isGrappled: 0
   _isGrounded: 1
   _groundLayer:

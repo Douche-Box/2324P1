@@ -7,10 +7,7 @@ public class CharWalkState : CharBaseState
 {
     public CharWalkState(CharStateMachine currentContext, CharStateFactory charachterStateFactory) : base(currentContext, charachterStateFactory) { }
 
-    public override void EnterState()
-    {
-        Ctx.DesiredMoveForce = Ctx.MoveSpeed;
-    }
+    public override void EnterState() { }
 
     public override void ExitState() { }
 

@@ -613,6 +613,8 @@ public class CharStateMachine : MonoBehaviour
         _currentState = _states.Grounded();
         _currentState.EnterState();
         IsGrounded = true;
+
+        WallClingTime = MaxWallClingTime;
     }
 
     #region MonoBehaviours
@@ -636,14 +638,6 @@ public class CharStateMachine : MonoBehaviour
         if (CanStartWallTimer)
         {
             WallClingTime -= Time.deltaTime;
-        }
-        else if (WallClingTime <= MaxWallClingTime)
-        {
-            WallClingTime += Time.deltaTime;
-        }
-        if (WallClingTime > MaxWallClingTime)
-        {
-            WallClingTime = MaxWallClingTime;
         }
 
         SpeedControl();

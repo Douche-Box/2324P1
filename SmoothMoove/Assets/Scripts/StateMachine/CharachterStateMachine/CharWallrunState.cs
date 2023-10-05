@@ -16,19 +16,28 @@ public class CharWallrunState : CharBaseState
         InitializeSubState();
         Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
-        Ctx.DesiredMoveForce = Ctx.WallRunSpeed;
+        Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
+
+
+
 
         if (Ctx.CurrentWall != null)
         {
             if (Ctx.CurrentWall != Ctx.PreviousWall)
             {
                 Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
-                Ctx.CanStartWallTimer = false;
+                Ctx.WallClingTime = Ctx.MaxWallClingTime;
+                Ctx.CanStartWallTimer = true;
             }
             else
             {
                 Ctx.CanStartWallTimer = true;
             }
+        }
+        else
+        {
+            Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
+            Ctx.CanStartWallTimer = true;
         }
     }
 
@@ -37,14 +46,26 @@ public class CharWallrunState : CharBaseState
         Debug.Log("exit wall run");
         Ctx.IsWallRunning = false;
         Ctx.Rb.useGravity = true;
-        Ctx.CanStartWallTimer = true;
+        Ctx.CanStartWallTimer = false;
     }
 
     #region MonoBehaveiours
 
     public override void UpdateState()
     {
-
+        if (Ctx.MoveForce <= 7)
+        {
+            Ctx.Rb.AddForce(Vector3.down, ForceMode.Force);
+        }
+        if (Ctx.WallClingTime <= 0)
+        {
+            Ctx.DesiredMoveForce = 0f;
+            Ctx.MoveMultiplier = 0.5f;
+        }
+        else
+        {
+            Ctx.DesiredMoveForce = Ctx.WallRunSpeed;
+        }
     }
 
     public override void LateUpdateState() { }
@@ -82,7 +103,6 @@ public class CharWallrunState : CharBaseState
     }
     private void WallRunMovement()
     {
-        Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
 
 
