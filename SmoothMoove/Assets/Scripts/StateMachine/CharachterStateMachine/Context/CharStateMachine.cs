@@ -24,6 +24,15 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] Transform _playerCam;
+    public Transform PlayerCam
+    {
+        get
+        {
+            return _playerCam;
+        }
+    }
+
     [SerializeField] private Transform _orientation;
     public Transform Orientation
     {
@@ -387,7 +396,25 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] float _grappleDistance;
+    public float GrappleDistance
+    {
+        get
+        {
+            return _grappleDistance;
+        }
+    }
 
+    [SerializeField] LayerMask _grappleLayer;
+
+    [SerializeField] RaycastHit _grappleHit;
+    public RaycastHit GrappleHit
+    {
+        get
+        {
+            return _grappleHit;
+        }
+    }
 
     #endregion
 
@@ -512,33 +539,6 @@ public class CharStateMachine : MonoBehaviour
     [Header("Speeds")]
     #region Speeds
 
-    [SerializeField] float _speedIncreaseMultiplier;
-    public float SpeedIncreaseMultiplier
-    {
-        get
-        {
-            return _speedIncreaseMultiplier;
-        }
-    }
-
-    [SerializeField] float _slopeSpeedIncreaseMultiplier;
-    public float SlopeSpeedIncreaseMultiplier
-    {
-        get
-        {
-            return _slopeSpeedIncreaseMultiplier;
-        }
-    }
-
-    [SerializeField] float _grappleSpeedIncreaseMultiplier;
-    public float GrappleSpeedIncreaseMultiplier
-    {
-        get
-        {
-            return _grappleSpeedIncreaseMultiplier;
-        }
-    }
-
     [SerializeField] float _moveSpeed;
     public float MoveSpeed
     {
@@ -593,6 +593,36 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [Header("Speed Multipliers")]
+    #region Speed Multipliers
+
+    [SerializeField] float _speedIncreaseMultiplier;
+    public float SpeedIncreaseMultiplier
+    {
+        get
+        {
+            return _speedIncreaseMultiplier;
+        }
+    }
+
+    [SerializeField] float _slopeSpeedIncreaseMultiplier;
+    public float SlopeSpeedIncreaseMultiplier
+    {
+        get
+        {
+            return _slopeSpeedIncreaseMultiplier;
+        }
+    }
+
+    [SerializeField] float _grappleSpeedIncreaseMultiplier;
+    public float GrappleSpeedIncreaseMultiplier
+    {
+        get
+        {
+            return _grappleSpeedIncreaseMultiplier;
+        }
+    }
+
     [SerializeField] float _moveMultiplier;
     public float MoveMultiplier
     {
@@ -606,6 +636,7 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    #endregion
 
     #endregion
 
@@ -654,6 +685,11 @@ public class CharStateMachine : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.P))
             Debug.Log(_currentState.ToString());
+
+        if (_isShoot)
+        {
+            CheckForGrapple();
+        }
 
         CurrentMovement = Orientation.forward * CurrentMovementInput.y + Orientation.right * CurrentMovementInput.x;
 
@@ -821,6 +857,14 @@ public class CharStateMachine : MonoBehaviour
         WallNormal = WallRight ? RightWallHit.normal : LeftWallHit.normal;
 
         WallForward = Vector3.Cross(WallNormal, transform.up);
+    }
+
+    public void CheckForGrapple()
+    {
+        if (Physics.Raycast(_playerCam.position, _playerCam.forward, out _grappleHit, GrappleDistance, _grappleLayer))
+        {
+            Debug.Log("GRAPPLE");
+        }
     }
 
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
