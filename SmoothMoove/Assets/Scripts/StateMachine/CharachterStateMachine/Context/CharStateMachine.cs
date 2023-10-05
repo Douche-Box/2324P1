@@ -675,6 +675,9 @@ public class CharStateMachine : MonoBehaviour
         IsGrounded = true;
 
         WallClingTime = MaxWallClingTime;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     #region MonoBehaviours
