@@ -417,6 +417,19 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] SpringJoint _grappleJoint;
+    public SpringJoint GrappleJoint
+    {
+        get
+        {
+            return _grappleJoint;
+        }
+        set
+        {
+            _grappleJoint = value;
+        }
+    }
+
     #endregion
 
     [Header("Groundcheck")]
@@ -800,6 +813,34 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    public void MakeGrappleJoint()
+    {
+        // if (GrappleJoint == null)
+        //     return;
+
+        Debug.Log(GrappleHit.point);
+
+        GrappleJoint = this.transform.AddComponent<SpringJoint>();
+        GrappleJoint.autoConfigureConnectedAnchor = false;
+        GrappleJoint.connectedArticulationBody = GrappleHit.transform.GetComponent<ArticulationBody>();
+        // GrappleJoint.connectedAnchor = GrappleHit.point;
+
+        float distanceFromPoint = Vector3.Distance(this.transform.position, GrappleHit.point);
+
+        GrappleJoint.maxDistance = distanceFromPoint * 0.4f;
+        GrappleJoint.minDistance = distanceFromPoint * 0.25f;
+
+        GrappleJoint.spring = 4.5f;
+        GrappleJoint.damper = 7f;
+        GrappleJoint.massScale = 4.5f;
+
+    }
+
+    public void DestroyGrapplePoint()
+    {
+        Destroy(GrappleJoint);
+    }
+
     private bool CheckGrounded()
     {
         Vector3 characterPosition = transform.position;
@@ -870,6 +911,10 @@ public class CharStateMachine : MonoBehaviour
         if (Physics.Raycast(_playerCam.position, _playerCam.forward, out _grappleHit, GrappleDistance, _grappleLayer))
         {
             _isGrappled = true;
+        }
+        else
+        {
+            _isGrappled = false;
         }
     }
 

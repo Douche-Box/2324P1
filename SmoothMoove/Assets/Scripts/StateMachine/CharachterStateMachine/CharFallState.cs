@@ -59,5 +59,9 @@ public class CharFallState : CharBaseState
         {
             SwitchState(Factory.Walled());
         }
+        if (Ctx.IsGrappled && Ctx.IsShoot)
+        {
+            SwitchState(Factory.Grappled());
+        }
     }
 }

@@ -12,42 +12,53 @@ public class CharGrappledState : CharBaseState
 
     public override void EnterState()
     {
+        InitializeSubState();
         Ctx.DesiredMoveForce = Ctx.GrappleSpeed;
+
+        if (Ctx.GrappleJoint == null && Ctx.IsShoot)
+        {
+            Ctx.MakeGrappleJoint();
+        }
     }
 
     public override void ExitState()
     {
         Debug.Log("exit grapple");
+        Ctx.DestroyGrapplePoint();
     }
 
     #region MonoBehaveiours
 
     public override void UpdateState()
     {
-
+        CheckSwitchStates();
     }
 
     public override void LateUpdateState() { }
 
-    public override void FixedUpdateState()
-    {
-        CheckSwitchStates();
-    }
+    public override void FixedUpdateState() { }
 
     #endregion
 
     public override void InitializeSubState()
     {
-
+        if (!Ctx.IsMove)
+        {
+            SetSubState(Factory.Idle());
+        }
+        if (Ctx.IsMove)
+        {
+            Debug.Log("ENTER WALK");
+            SetSubState(Factory.Walk());
+        }
     }
 
     public override void CheckSwitchStates()
     {
-
-    }
-
-    private void GrappleHandler()
-    {
-
+        if (!Ctx.IsShoot)
+        {
+            Debug.Log("WORD FALL");
+            SwitchState(Factory.Fall());
+        }
     }
 }
