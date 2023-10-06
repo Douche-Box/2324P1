@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using Cinemachine;
+using Unity.VisualScripting;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
@@ -644,8 +645,6 @@ public class CharStateMachine : MonoBehaviour
 
     [SerializeField] TMP_Text text;
 
-    CinemachineFreeLook freelookCam;
-
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -672,12 +671,13 @@ public class CharStateMachine : MonoBehaviour
         _states = new CharStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
-        IsGrounded = true;
+        _isGrounded = true;
 
         WallClingTime = MaxWallClingTime;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     #region MonoBehaviours
@@ -687,7 +687,10 @@ public class CharStateMachine : MonoBehaviour
     private void Update()
     {
         if (Input.GetKey(KeyCode.P))
+        {
             Debug.Log(_currentState.ToString());
+        }
+
 
         if (_isShoot)
         {
@@ -866,7 +869,7 @@ public class CharStateMachine : MonoBehaviour
     {
         if (Physics.Raycast(_playerCam.position, _playerCam.forward, out _grappleHit, GrappleDistance, _grappleLayer))
         {
-            Debug.Log("GRAPPLE");
+            _isGrappled = true;
         }
     }
 

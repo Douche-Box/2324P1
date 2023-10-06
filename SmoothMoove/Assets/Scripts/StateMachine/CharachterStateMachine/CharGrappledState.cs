@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharGrappledState : CharBaseState
@@ -8,7 +9,6 @@ public class CharGrappledState : CharBaseState
     {
         IsRootState = true;
     }
-    private SpringJoint joint;
 
     public override void EnterState()
     {
@@ -32,7 +32,6 @@ public class CharGrappledState : CharBaseState
     public override void FixedUpdateState()
     {
         CheckSwitchStates();
-
     }
 
     #endregion
@@ -49,26 +48,6 @@ public class CharGrappledState : CharBaseState
 
     private void GrappleHandler()
     {
-
-
-        Vector3 grapplePoint = Ctx.GrappleHit.point;
-        joint = Ctx.transform.gameObject.AddComponent<SpringJoint>();
-        joint.autoConfigureConnectedAnchor = false;
-        joint.connectedAnchor = grapplePoint;
-
-        float distanceFromPoint = Vector3.Distance(Ctx.transform.position, grapplePoint);
-
-        //The distance grapple will try to keep from grapple point. 
-        joint.maxDistance = distanceFromPoint * 0.8f;
-        joint.minDistance = distanceFromPoint * 0.25f;
-
-        //Adjust these values to fit your game.
-        joint.spring = 4.5f;
-        joint.damper = 7f;
-        joint.massScale = 4.5f;
-
-        //lr.positionCount = 2;
-        //currentGrapplePosition = gunTip.position;
 
     }
 }
