@@ -16,6 +16,7 @@ public class CharWallrunState : CharBaseState
         InitializeSubState();
         Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
+        Ctx.JumpDirection = Ctx.GetWallJumpDirection(Ctx.WallNormal);
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
 
@@ -97,6 +98,7 @@ public class CharWallrunState : CharBaseState
         }
         if (Ctx.IsJump && Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0 || Ctx.IsJump && Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
         {
+            Debug.Log("WALL JUMP");
             SwitchState(Factory.Jump());
         }
         if (Ctx.IsGrounded)

@@ -43,6 +43,7 @@ public class CharWalkState : CharBaseState
 
     private void WalkMovement()
     {
+
         Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier, ForceMode.Force);
     }
 

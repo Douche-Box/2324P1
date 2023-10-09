@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Cinemachine;
 using Unity.VisualScripting;
+using System.Runtime.InteropServices.ComTypes;
+using UnityEditor.Experimental.GraphView;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
@@ -156,6 +158,19 @@ public class CharStateMachine : MonoBehaviour
         get
         {
             return _jumpForce;
+        }
+    }
+
+    [SerializeField] Vector3 _jumpDirection;
+    public Vector3 JumpDirection
+    {
+        get
+        {
+            return _jumpDirection;
+        }
+        set
+        {
+            _jumpDirection = value;
         }
     }
 
@@ -714,8 +729,6 @@ public class CharStateMachine : MonoBehaviour
 
     #region MonoBehaviours
 
-
-
     private void Update()
     {
         if (Input.GetKey(KeyCode.P))
@@ -771,6 +784,9 @@ public class CharStateMachine : MonoBehaviour
     private void FixedUpdate()
     {
         _currentState.FixedUpdateStates();
+
+        Rb.AddForce(Vector3.down * 12.8f, ForceMode.Force);
+
     }
 
     private void Lateupdate()
@@ -936,6 +952,13 @@ public class CharStateMachine : MonoBehaviour
         {
             _isGrappled = false;
         }
+    }
+
+    public Vector3 GetWallJumpDirection(Vector3 inputDir)
+    {
+        Vector3 newInputDir = new Vector3(inputDir.x *= 4, 0, inputDir.z *= 4);
+        newInputDir *= _jumpForce;
+        return newInputDir;
     }
 
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
