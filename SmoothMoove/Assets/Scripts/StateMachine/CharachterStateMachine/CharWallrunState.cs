@@ -106,7 +106,7 @@ public class CharWallrunState : CharBaseState
     }
     private void WallRunMovement()
     {
-
+        Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
 
         if ((Ctx.PlayerObj.forward - Ctx.WallForward).magnitude > (Ctx.PlayerObj.forward - -Ctx.WallForward).magnitude)
