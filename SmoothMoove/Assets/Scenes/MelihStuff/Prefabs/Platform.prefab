@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 342940001395150428}
   - component: {fileID: 3908677629664096968}
   - component: {fileID: 8876140083360382302}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Platformmetal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
