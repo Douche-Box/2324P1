@@ -658,6 +658,24 @@ public class CharStateMachine : MonoBehaviour
 
     [SerializeField] TMP_Text text;
 
+    [SerializeField] float _startYScale;
+    public float StartYScale
+    {
+        get
+        {
+            return _startYScale;
+        }
+    }
+
+    [SerializeField] float _slideYScale;
+    public float SlideYScale
+    {
+        get
+        {
+            return _slideYScale;
+        }
+    }
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -691,6 +709,7 @@ public class CharStateMachine : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
+        _startYScale = 1f;
     }
 
     #region MonoBehaviours
@@ -821,6 +840,7 @@ public class CharStateMachine : MonoBehaviour
         Debug.Log(GrappleHit.point);
 
         GrappleJoint = this.transform.AddComponent<SpringJoint>();
+        GrappleJoint.spring = 80000f;
         GrappleJoint.autoConfigureConnectedAnchor = false;
         GrappleJoint.connectedArticulationBody = GrappleHit.transform.GetComponent<ArticulationBody>();
         // GrappleJoint.connectedAnchor = GrappleHit.point;

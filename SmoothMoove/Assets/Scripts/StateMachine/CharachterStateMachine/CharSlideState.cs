@@ -10,11 +10,15 @@ public class CharSlideState : CharBaseState
     public override void EnterState()
     {
         Ctx.DesiredMoveForce = Ctx.SlideSpeed;
+
+        Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x, Ctx.SlideYScale, Ctx.PlayerObj.localScale.z);
+
+        Ctx.Rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
     }
 
     public override void ExitState()
     {
-
+        Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x, Ctx.StartYScale, Ctx.PlayerObj.localScale.z);
     }
 
     #region MonoBehaveiours
