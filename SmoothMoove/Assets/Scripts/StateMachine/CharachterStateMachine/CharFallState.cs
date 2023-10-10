@@ -1,4 +1,3 @@
-using UnityEngine;
 public class CharFallState : CharBaseState
 {
     public CharFallState(CharStateMachine currentContext, CharStateFactory charachterStateFactory) : base(currentContext, charachterStateFactory)

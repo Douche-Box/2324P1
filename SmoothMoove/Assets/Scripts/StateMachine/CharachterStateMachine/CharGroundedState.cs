@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class CharGroundedState : CharBaseState
 {
     public CharGroundedState(CharStateMachine currentContext, CharStateFactory charachterStateFactory) : base(currentContext, charachterStateFactory)

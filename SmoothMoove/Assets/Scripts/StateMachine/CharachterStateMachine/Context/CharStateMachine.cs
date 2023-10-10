@@ -1,12 +1,8 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using Cinemachine;
 using Unity.VisualScripting;
-using System.Runtime.InteropServices.ComTypes;
-using UnityEditor.Experimental.GraphView;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
