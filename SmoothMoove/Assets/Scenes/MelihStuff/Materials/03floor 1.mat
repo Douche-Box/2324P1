@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 02beginwall
+  m_Name: 03floor 1
   m_Shader: {fileID: -6465566751694194690, guid: 8a07582f6ccd33449b4fdae5b6e6ac72, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -69,7 +69,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 0a60ecdf55d62b84091992156d1b7807, type: 3}
+        m_Texture: {fileID: 2800000, guid: 025a776b43511d24da37d3d2bd07fddf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -102,7 +102,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Roation: 0
-    - _Scale: 0.4
+    - _Scale: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -115,5 +115,5 @@ Material:
     - _Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tiling: {r: -17.85, g: -8.9, b: 0, a: 0}
+    - _Tiling: {r: 60, g: 60, b: 0, a: 0}
   m_BuildTextureStacks: []
