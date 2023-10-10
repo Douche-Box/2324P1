@@ -16,7 +16,10 @@ public class CharWallrunState : CharBaseState
         InitializeSubState();
         Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
-        Ctx.JumpDirection = Ctx.GetWallJumpDirection(Ctx.WallNormal);
+        // NEEDS WORK NEEDS WORK NEEDS WORK NEEDS WORK 
+        // Ctx.JumpDirection = Ctx.GetWallJumpDirection(Ctx.WallNormal);
+        // NEEDS WORK NEEDS WORK NEEDS WORK NEEDS WORK 
+
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
 
@@ -114,9 +117,11 @@ public class CharWallrunState : CharBaseState
         if ((Ctx.PlayerObj.forward - Ctx.WallForward).magnitude > (Ctx.PlayerObj.forward - -Ctx.WallForward).magnitude)
             Ctx.WallForward = -Ctx.WallForward;
 
+        Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 225, ForceMode.Force);
+
         Debug.DrawRay(Ctx.transform.position, Ctx.WallForward, Color.green);
 
-        Ctx.Movement = Ctx.WallForward;
+        Ctx.Movement = new Vector3(Ctx.WallForward.x, 0, Ctx.WallForward.z).normalized;
         Ctx.MoveMultiplier = 2f;
 
         // Ctx.Rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
@@ -129,6 +134,5 @@ public class CharWallrunState : CharBaseState
 
 
         // ?? Maybe use this ?? if (!(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0))
-        Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 100, ForceMode.Force);
     }
 }

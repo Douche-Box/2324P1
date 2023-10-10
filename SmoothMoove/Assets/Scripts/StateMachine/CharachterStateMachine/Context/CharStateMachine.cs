@@ -691,6 +691,35 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    [SerializeField] bool _isPushed;
+    public bool IsPushed
+    {
+        get
+        {
+            return _isPushed;
+        }
+        set
+        {
+            _isPushed = value;
+        }
+    }
+
+    [SerializeField] float _pushForce;
+    public float PushForce
+    {
+        get
+        {
+            return _pushForce;
+        }
+        set
+        {
+            _pushForce = value;
+        }
+    }
+    [SerializeField] float _maxPushTimer;
+
+    [SerializeField] float _pushTimer;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -785,7 +814,6 @@ public class CharStateMachine : MonoBehaviour
     {
         _currentState.FixedUpdateStates();
 
-        Rb.AddForce(Vector3.down * 12.8f, ForceMode.Force);
 
     }
 
@@ -981,14 +1009,37 @@ public class CharStateMachine : MonoBehaviour
         {
             Vector3 flatVel = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
 
-            // limit velocity if needed
-            if (flatVel.magnitude > MoveForce)
+            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
+            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
+            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
+            if (IsPushed && flatVel.magnitude > PushForce)
+            {
+                // IsPushed = false;
+                Vector3 limitedVel = flatVel.normalized * PushForce;
+                Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
+
+                PushForce -= Time.deltaTime;
+
+                if (PushForce <= MoveForce)
+                {
+                    IsPushed = false;
+                    PushForce = 0;
+                }
+            }
+            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
+            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
+            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
+
+
+            if (!IsPushed && flatVel.magnitude > MoveForce)
             {
                 Vector3 limitedVel = flatVel.normalized * MoveForce;
                 Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
             }
         }
     }
+
+
 
     IEnumerator SmoovMoov()
     {
