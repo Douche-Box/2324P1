@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8510554780562200816}
   - component: {fileID: 3737855691295603975}
   - component: {fileID: 2660372205928631555}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Stairs__1_.021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 7329897348887019760}
   - component: {fileID: 5935157155104941125}
   - component: {fileID: 799685100721310963}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stairs__1_.020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1808515314165541047}
   - component: {fileID: 765594531968749419}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GANG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
