@@ -45,16 +45,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Barriermiddle: 10.98
+    - _Barriermiddle: 9.24
     - _Dotnoisescale: 0
     - _NoiseScale: 5.89
     - _ProjectionOffset: 2.94
     - _ProjectionSize: 0.8
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Rotation: 0
     m_Colors:
     - _Noisespeed: {r: 0, g: 0.2, b: 0, a: 0}
-    - _ProjectionColor: {r: 1, g: 0.6818182, b: 0, a: 0}
+    - _ProjectionColor: {r: 2, g: 0.40765375, b: 0, a: 0}
     - _ProjectionTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3235975833535571602
