@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6965794147174766161}
   - component: {fileID: 2016578519407090841}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: JumpRaft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +102,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6276987739639956674, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -4792465741097876222, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -110,9 +114,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 58ee3699eeb8c504e963fa3f2a817e08, type: 2}
+    - target: {fileID: -2040254050740271484, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -930502808880218002, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 340431833019092036, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
       propertyPath: m_Name
       value: FullWoodFloater
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2311072725217357151, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -126,6 +146,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5c4a7e0ab9e674a448f91f134dce1f14, type: 2}
+    - target: {fileID: 8750600399809226851, guid: adaf60ca2185c0d43b916516f60151c4, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
