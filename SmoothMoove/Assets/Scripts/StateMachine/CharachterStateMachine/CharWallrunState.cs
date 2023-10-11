@@ -115,7 +115,9 @@ public class CharWallrunState : CharBaseState
 
 
         if ((Ctx.PlayerObj.forward - Ctx.WallForward).magnitude > (Ctx.PlayerObj.forward - -Ctx.WallForward).magnitude)
-            Ctx.WallForward = -Ctx.WallForward;
+        {
+            Ctx.WallForward = new Vector3(-Ctx.WallForward.x, -Ctx.WallForward.y, -Ctx.WallForward.z);
+        }
 
         Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 225, ForceMode.Force);
 

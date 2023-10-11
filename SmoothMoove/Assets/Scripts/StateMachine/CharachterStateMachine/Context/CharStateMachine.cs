@@ -667,8 +667,6 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
-    [SerializeField] TMP_Text text;
-
     [SerializeField] float _startYScale;
     public float StartYScale
     {
