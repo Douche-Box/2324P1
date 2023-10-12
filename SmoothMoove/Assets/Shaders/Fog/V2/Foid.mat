@@ -52,8 +52,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _waterDepth: 10
+    - _waterDepth: 19.65
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _Color2: {r: 0, g: 0, b: 0, a: 0.89411765}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 0.061807513, g: 1, b: 0, a: 0.6313726}
   m_BuildTextureStacks: []
