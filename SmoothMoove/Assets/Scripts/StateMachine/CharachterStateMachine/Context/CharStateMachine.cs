@@ -685,34 +685,31 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
-    [SerializeField] bool _isPushed;
-    public bool IsPushed
+    [SerializeField] bool _isForced;
+    public bool IsForced
     {
         get
         {
-            return _isPushed;
+            return _isForced;
         }
         set
         {
-            _isPushed = value;
+            _isForced = value;
         }
     }
 
-    [SerializeField] float _pushForce;
-    public float PushForce
+    [SerializeField] float _extraForce;
+    public float ExtraForce
     {
         get
         {
-            return _pushForce;
+            return _extraForce;
         }
         set
         {
-            _pushForce = value;
+            _extraForce = value;
         }
     }
-    [SerializeField] float _maxPushTimer;
-
-    [SerializeField] float _pushTimer;
 
     private void Awake()
     {
@@ -1006,18 +1003,18 @@ public class CharStateMachine : MonoBehaviour
             // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
             // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
             // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            if (IsPushed && flatVel.magnitude > PushForce)
+            if (IsForced && flatVel.magnitude > ExtraForce)
             {
                 // IsPushed = false;
-                Vector3 limitedVel = flatVel.normalized * PushForce;
+                Vector3 limitedVel = flatVel.normalized * ExtraForce;
                 Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
 
-                PushForce -= Time.deltaTime;
+                ExtraForce -= Time.deltaTime;
 
-                if (PushForce <= MoveForce)
+                if (ExtraForce <= MoveForce)
                 {
-                    IsPushed = false;
-                    PushForce = 0;
+                    IsForced = false;
+                    ExtraForce = 0;
                 }
             }
             // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
@@ -1025,15 +1022,13 @@ public class CharStateMachine : MonoBehaviour
             // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
 
 
-            if (!IsPushed && flatVel.magnitude > MoveForce)
+            if (!IsForced && flatVel.magnitude > MoveForce)
             {
                 Vector3 limitedVel = flatVel.normalized * MoveForce;
                 Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
             }
         }
     }
-
-
 
     IEnumerator SmoovMoov()
     {

@@ -16,8 +16,8 @@ public class FanPush : MonoBehaviour
         {
             _rbs.Add(other.GetComponentInParent<Rigidbody>());
 
-            other.GetComponentInParent<CharStateMachine>().IsPushed = true;
-            other.GetComponentInParent<CharStateMachine>().PushForce = _pushForce;
+            other.GetComponentInParent<CharStateMachine>().IsForced = true;
+            other.GetComponentInParent<CharStateMachine>().ExtraForce = _pushForce;
         }
         if (other.GetComponent<Rigidbody>())
         {
