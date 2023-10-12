@@ -26,7 +26,6 @@ public class CharFallState : CharBaseState
     }
 
     public override void LateUpdateState() { }
-
     #endregion
 
     public override void InitializeSubState()
@@ -35,11 +34,11 @@ public class CharFallState : CharBaseState
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsSlide)
+        if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide)
+        if (Ctx.IsSlide && Ctx.IsMove)
         {
             SetSubState(Factory.Slide());
         }
@@ -47,19 +46,19 @@ public class CharFallState : CharBaseState
 
     public override void CheckSwitchStates()
     {
-        if (Ctx.IsGrounded && !Ctx.IsSloped)
+        if (Ctx.IsGrounded)
         {
             SwitchState(Factory.Grounded());
         }
-        else if (Ctx.IsSloped)
+        if (Ctx.IsSloped)
         {
             SwitchState(Factory.Sloped());
         }
-        else if (Ctx.IsWalled && !(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0) && Ctx.IsMove)
+        if (Ctx.IsWalled && !(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0) && Ctx.IsMove)
         {
             SwitchState(Factory.Walled());
         }
-        else if (Ctx.IsGrappled && Ctx.IsShoot)
+        if (Ctx.IsGrappled && Ctx.IsShoot)
         {
             SwitchState(Factory.Grappled());
         }

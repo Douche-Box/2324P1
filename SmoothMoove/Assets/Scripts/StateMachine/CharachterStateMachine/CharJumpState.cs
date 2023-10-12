@@ -36,11 +36,11 @@ public class CharJumpState : CharBaseState
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsSlide)
+        if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide)
+        if (Ctx.IsSlide && Ctx.IsMove)
         {
             SetSubState(Factory.Slide());
         }
@@ -48,18 +48,17 @@ public class CharJumpState : CharBaseState
 
     public override void CheckSwitchStates()
     {
-        if (!Ctx.IsGrounded && !Ctx.IsSloped)
-        {
-            SwitchState(Factory.Fall());
-        }
-        else if (Ctx.IsGrounded)
+        if (Ctx.IsGrounded)
         {
             SwitchState(Factory.Grounded());
         }
-        else if (Ctx.IsSloped)
+        if (Ctx.IsSloped)
         {
             SwitchState(Factory.Sloped());
-
+        }
+        if (!Ctx.IsGrounded && !Ctx.IsSloped)
+        {
+            SwitchState(Factory.Fall());
         }
     }
 
@@ -68,6 +67,11 @@ public class CharJumpState : CharBaseState
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
         Ctx.Rb.AddForce(0, Ctx.JumpForce, 0, ForceMode.Impulse);
+
+
+        // MAKE IT MORE IN DIRECTION OF MOVEMENT // MAKE IT MORE IN DIRECTION OF MOVEMENT
+        // Ctx.Rb.AddForce(Ctx.JumpDirection, ForceMode.Impulse);
+        // MAKE IT MORE IN DIRECTION OF MOVEMENT // MAKE IT MORE IN DIRECTION OF MOVEMENT
     }
 
     void HandleJumpTime()

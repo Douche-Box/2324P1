@@ -39,11 +39,23 @@ public class CharGrappledState : CharBaseState
 
     public override void InitializeSubState()
     {
-
+        if (!Ctx.IsMove)
+        {
+            SetSubState(Factory.Idle());
+        }
+        if (Ctx.IsMove)
+        {
+            Debug.Log("ENTER WALK");
+            SetSubState(Factory.Walk());
+        }
     }
 
     public override void CheckSwitchStates()
     {
-
+        if (!Ctx.IsShoot)
+        {
+            Debug.Log("WORD FALL");
+            SwitchState(Factory.Fall());
+        }
     }
 }

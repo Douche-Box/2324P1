@@ -32,7 +32,7 @@ public class CharWalkState : CharBaseState
         {
             SwitchState(Factory.Idle());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide)
+        if (Ctx.IsSlide && Ctx.IsMove && !Ctx.IsWalled)
         {
             SwitchState(Factory.Slide());
         }
@@ -40,6 +40,7 @@ public class CharWalkState : CharBaseState
 
     private void WalkMovement()
     {
+
         Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier, ForceMode.Force);
     }
 

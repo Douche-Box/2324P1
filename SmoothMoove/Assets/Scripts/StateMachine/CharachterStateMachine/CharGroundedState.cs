@@ -40,11 +40,11 @@ public class CharGroundedState : CharBaseState
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsSlide)
+        if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide)
+        if (Ctx.IsMove && Ctx.IsSlide)
         {
             SetSubState(Factory.Slide());
         }
@@ -56,14 +56,13 @@ public class CharGroundedState : CharBaseState
         {
             SwitchState(Factory.Fall());
         }
-        else if (Ctx.IsSloped)
-        {
-            SwitchState(Factory.Sloped());
-        }
-        else if (Ctx.IsJump)
+        if (Ctx.IsJump)
         {
             SwitchState(Factory.Jump());
         }
-
+        if (Ctx.IsSloped)
+        {
+            SwitchState(Factory.Sloped());
+        }
     }
 }
