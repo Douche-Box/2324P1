@@ -710,9 +710,24 @@ public class CharStateMachine : MonoBehaviour
             _pushForce = value;
         }
     }
-    [SerializeField] float _maxPushTimer;
 
-    [SerializeField] float _pushTimer;
+    [SerializeField] RaycastHit _wallAngleHit;
+    public RaycastHit WallAngleHit
+    {
+        get
+        {
+            return _wallAngleHit;
+        }
+    }
+
+    [SerializeField] float _maxWallAngle;
+    public float MaxWallAngle
+    {
+        get
+        {
+            return _maxWallAngle;
+        }
+    }
 
     private void Awake()
     {
@@ -759,7 +774,6 @@ public class CharStateMachine : MonoBehaviour
             Debug.Log(_currentState.ToString());
         }
 
-
         if (_isShoot)
         {
             CheckForGrapple();
@@ -771,6 +785,7 @@ public class CharStateMachine : MonoBehaviour
 
         IsGrounded = CheckGrounded();
         IsSloped = CheckSloped();
+
         CheckForWall();
         CheckWallDirection();
 
@@ -957,6 +972,16 @@ public class CharStateMachine : MonoBehaviour
         }
     }
 
+    public bool CheckWallAngle()
+    {
+        if (Physics.Raycast(transform.position, Vector3.forward, out _wallAngleHit, _playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.forward, _wallAngleHit.normal);
+            return angle < _maxWallAngle && angle != 0;
+        }
+        return false;
+    }
+
     public void CheckWallDirection()
     {
         WallNormal = WallRight ? RightWallHit.normal : LeftWallHit.normal;
@@ -1003,12 +1028,8 @@ public class CharStateMachine : MonoBehaviour
         {
             Vector3 flatVel = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
 
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
             if (IsPushed && flatVel.magnitude > PushForce)
             {
-                // IsPushed = false;
                 Vector3 limitedVel = flatVel.normalized * PushForce;
                 Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
 
@@ -1020,10 +1041,6 @@ public class CharStateMachine : MonoBehaviour
                     PushForce = 0;
                 }
             }
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-
 
             if (!IsPushed && flatVel.magnitude > MoveForce)
             {
@@ -1032,8 +1049,6 @@ public class CharStateMachine : MonoBehaviour
             }
         }
     }
-
-
 
     IEnumerator SmoovMoov()
     {

@@ -16,27 +16,23 @@ public class CharWallrunState : CharBaseState
         InitializeSubState();
         Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
-        // NEEDS WORK NEEDS WORK NEEDS WORK NEEDS WORK 
+
+        // NEEDS WORK NEEDS WORK NEEDS WORK NEEDS WORK
         // Ctx.JumpDirection = Ctx.GetWallJumpDirection(Ctx.WallNormal);
-        // NEEDS WORK NEEDS WORK NEEDS WORK NEEDS WORK 
+        // NEEDS WORK NEEDS WORK NEEDS WORK NEEDS WORK
 
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
-
-
-
 
         if (Ctx.CurrentWall != null)
         {
             Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
             if (Ctx.CurrentWall != Ctx.PreviousWall)
             {
-                Debug.Log("THIS");
                 Ctx.WallClingTime = Ctx.MaxWallClingTime;
                 Ctx.CanStartWallTimer = true;
             }
             else
             {
-                Debug.Log("THAT");
                 Ctx.CanStartWallTimer = true;
             }
         }
@@ -46,6 +42,7 @@ public class CharWallrunState : CharBaseState
             Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
             Ctx.CanStartWallTimer = true;
         }
+
     }
 
     public override void ExitState()
@@ -87,28 +84,32 @@ public class CharWallrunState : CharBaseState
 
     public override void InitializeSubState()
     {
-        if (Ctx.IsMove)
+        if (!Ctx.IsGrounded && !Ctx.IsMove || !Ctx.IsGrounded && !Ctx.IsWalled)
         {
-            SetSubState(Factory.Walk());
+            SwitchState(Factory.Fall());
+        }
+        else if (Ctx.IsGrounded && !Ctx.IsMove || Ctx.IsGrounded && !Ctx.IsWalled)
+        {
+            SwitchState(Factory.Grounded());
+        }
+        else if (Ctx.IsJump)
+        {
+            SwitchState(Factory.Jump());
         }
     }
 
     public override void CheckSwitchStates()
     {
-        if (!Ctx.IsMove || !Ctx.IsWalled)
+        if (Ctx.IsMove)
         {
-            SwitchState(Factory.Fall());
+            SetSubState(Factory.Walk());
         }
-        if (Ctx.IsJump && Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0 || Ctx.IsJump && Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
+        else if (Ctx.IsSlide && !Ctx.IsWallRunning)
         {
-            Debug.Log("WALL JUMP");
-            SwitchState(Factory.Jump());
-        }
-        if (Ctx.IsGrounded)
-        {
-            SwitchState(Factory.Grounded());
+            SetSubState(Factory.Slide());
         }
     }
+
     private void WallRunMovement()
     {
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
@@ -125,8 +126,6 @@ public class CharWallrunState : CharBaseState
 
         Ctx.Movement = new Vector3(Ctx.WallForward.x, 0, Ctx.WallForward.z).normalized;
         Ctx.MoveMultiplier = 2f;
-
-        // Ctx.Rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
 
         // upwards/downwards force
         // if (upwardsRunning)
