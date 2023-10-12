@@ -52,11 +52,11 @@ public class CharSlopeState : CharBaseState
         {
             SetSubState(Factory.Idle());
         }
-        if (Ctx.IsMove && !Ctx.IsSlide)
+        else if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
         }
-        if (Ctx.IsSlide && Ctx.IsMove)
+        else if (Ctx.IsSlide && Ctx.IsMove)
         {
             SetSubState(Factory.Slide());
         }
@@ -68,11 +68,11 @@ public class CharSlopeState : CharBaseState
         {
             SwitchState(Factory.Grounded());
         }
-        if (!Ctx.IsGrounded && !Ctx.IsSloped)
+        else if (!Ctx.IsGrounded && !Ctx.IsSloped)
         {
             SwitchState(Factory.Fall());
         }
-        if (Ctx.IsJump)
+        else if (Ctx.IsJump)
         {
             SwitchState(Factory.Jump());
         }

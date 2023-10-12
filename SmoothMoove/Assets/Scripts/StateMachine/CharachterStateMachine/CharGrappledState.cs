@@ -43,7 +43,7 @@ public class CharGrappledState : CharBaseState
         {
             SetSubState(Factory.Idle());
         }
-        if (Ctx.IsMove)
+        else if (Ctx.IsMove)
         {
             Debug.Log("ENTER WALK");
             SetSubState(Factory.Walk());

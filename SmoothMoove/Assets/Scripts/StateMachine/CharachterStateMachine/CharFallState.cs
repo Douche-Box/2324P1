@@ -34,11 +34,11 @@ public class CharFallState : CharBaseState
         {
             SetSubState(Factory.Idle());
         }
-        if (Ctx.IsMove && !Ctx.IsSlide)
+        else if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
         }
-        if (Ctx.IsSlide && Ctx.IsMove)
+        else if (Ctx.IsSlide && Ctx.IsMove)
         {
             SetSubState(Factory.Slide());
         }
@@ -50,15 +50,15 @@ public class CharFallState : CharBaseState
         {
             SwitchState(Factory.Grounded());
         }
-        if (Ctx.IsSloped)
+        else if (Ctx.IsSloped)
         {
             SwitchState(Factory.Sloped());
         }
-        if (Ctx.IsWalled && !(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0) && Ctx.IsMove)
+        else if (Ctx.IsWalled && !(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0) && Ctx.IsMove)
         {
             SwitchState(Factory.Walled());
         }
-        if (Ctx.IsGrappled && Ctx.IsShoot)
+        else if (Ctx.IsGrappled && Ctx.IsShoot)
         {
             SwitchState(Factory.Grappled());
         }

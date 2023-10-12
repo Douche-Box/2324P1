@@ -42,7 +42,7 @@ public class CharSlideState : CharBaseState
         {
             SwitchState(Factory.Idle());
         }
-        if (Ctx.IsMove && !Ctx.IsSlide)
+        else if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SwitchState(Factory.Walk());
         }

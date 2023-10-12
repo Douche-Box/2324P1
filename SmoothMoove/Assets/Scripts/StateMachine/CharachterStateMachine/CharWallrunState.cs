@@ -91,6 +91,10 @@ public class CharWallrunState : CharBaseState
         {
             SetSubState(Factory.Walk());
         }
+        if (Ctx.IsSlide && !Ctx.IsWallRunning)
+        {
+            SetSubState(Factory.Slide());
+        }
     }
 
     public override void CheckSwitchStates()
@@ -99,12 +103,12 @@ public class CharWallrunState : CharBaseState
         {
             SwitchState(Factory.Fall());
         }
-        if (Ctx.IsJump && Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0 || Ctx.IsJump && Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
+        else if (Ctx.IsJump && Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0 || Ctx.IsJump && Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
         {
             Debug.Log("WALL JUMP");
             SwitchState(Factory.Jump());
         }
-        if (Ctx.IsGrounded)
+        else if (Ctx.IsGrounded)
         {
             SwitchState(Factory.Grounded());
         }
