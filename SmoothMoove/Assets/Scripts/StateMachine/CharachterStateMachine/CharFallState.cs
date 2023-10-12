@@ -54,7 +54,7 @@ public class CharFallState : CharBaseState
         {
             SwitchState(Factory.Sloped());
         }
-        else if (Ctx.IsWalled && !(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0) && Ctx.IsMove)
+        else if (Ctx.IsWalled && !(Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0) && !(Ctx.WallRight && Ctx.CurrentMovementInput.x < 0) && Ctx.IsMove && Ctx.IsWallAngle)
         {
             SwitchState(Factory.Walled());
         }

@@ -17,51 +17,33 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] Transform _playerObj;
     public Transform PlayerObj
     {
-        get
-        {
-            return _playerObj;
-        }
+        get { return _playerObj; }
     }
 
     [SerializeField] Transform _playerCam;
     public Transform PlayerCam
     {
-        get
-        {
-            return _playerCam;
-        }
+        get { return _playerCam; }
     }
 
     [SerializeField] private Transform _orientation;
     public Transform Orientation
     {
-        get
-        {
-            return _orientation;
-        }
+        get { return _orientation; }
     }
 
     [SerializeField] Rigidbody _rb;
     public Rigidbody Rb
     {
-        get
-        {
-            return _rb;
-        }
+        get { return _rb; }
     }
 
     CharStateFactory _states;
     CharBaseState _currentState;
     public CharBaseState CurrentState
     {
-        get
-        {
-            return _currentState;
-        }
-        set
-        {
-            _currentState = value;
-        }
+        get { return _currentState; }
+        set { _currentState = value; }
     }
 
     #endregion
@@ -72,75 +54,42 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] Vector2 _currentMovementInput;
     public Vector2 CurrentMovementInput
     {
-        get
-        {
-            return _currentMovementInput;
-        }
+        get { return _currentMovementInput; }
     }
 
     [SerializeField] Vector3 _currentMovement;
     public Vector3 CurrentMovement
     {
-        get
-        {
-            return _currentMovement;
-        }
-        set
-        {
-            _currentMovement = value;
-        }
+        get { return _currentMovement; }
+        set { _currentMovement = value; }
     }
 
     [SerializeField] Vector3 _movement;
     public Vector3 Movement
     {
-        get
-        {
-            return _movement;
-        }
-        set
-        {
-            _movement = value;
-        }
+        get { return _movement; }
+        set { _movement = value; }
     }
 
     [SerializeField] float _moveForce;
     public float MoveForce
     {
-        get
-        {
-            return _moveForce;
-        }
-        set
-        {
-            _moveForce = value;
-        }
+        get { return _moveForce; }
+        set { _moveForce = value; }
     }
 
     [SerializeField] float _desiredMoveForce;
     public float DesiredMoveForce
     {
-        get
-        {
-            return _desiredMoveForce;
-        }
-        set
-        {
-            _desiredMoveForce = value;
-        }
+        get { return _desiredMoveForce; }
+        set { _desiredMoveForce = value; }
     }
 
     [SerializeField] float _lastDesiredMoveForce;
     public float LastDesiredMoveForce
     {
-        get
-        {
-            return _lastDesiredMoveForce;
-        }
-        set
-        {
-            _lastDesiredMoveForce = value;
-        }
+        get { return _lastDesiredMoveForce; }
+        set { _lastDesiredMoveForce = value; }
     }
 
     #endregion
@@ -151,45 +100,27 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] float _jumpForce;
     public float JumpForce
     {
-        get
-        {
-            return _jumpForce;
-        }
+        get { return _jumpForce; }
     }
 
     [SerializeField] Vector3 _jumpDirection;
     public Vector3 JumpDirection
     {
-        get
-        {
-            return _jumpDirection;
-        }
-        set
-        {
-            _jumpDirection = value;
-        }
+        get { return _jumpDirection; }
+        set { _jumpDirection = value; }
     }
 
     [SerializeField] float _maxJumpTime;
     public float MaxJumpTime
     {
-        get
-        {
-            return _maxJumpTime;
-        }
+        get { return _maxJumpTime; }
     }
 
     [SerializeField] float _isJumpTime;
     public float IsJumpTime
     {
-        get
-        {
-            return _isJumpTime;
-        }
-        set
-        {
-            _isJumpTime = value;
-        }
+        get { return _isJumpTime; }
+        set { _isJumpTime = value; }
     }
 
     #endregion
@@ -200,23 +131,14 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] float _slideForce;
     public float SlideForce
     {
-        get
-        {
-            return _slideForce;
-        }
+        get { return _slideForce; }
     }
 
     [SerializeField] bool _isSliding;
     public bool IsSliding
     {
-        get
-        {
-            return _isSliding;
-        }
-        set
-        {
-            _isSliding = value;
-        }
+        get { return _isSliding; }
+        set { _isSliding = value; }
     }
 
     #endregion
@@ -227,69 +149,39 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] bool _isWallRunning;
     public bool IsWallRunning
     {
-        get
-        {
-            return _isWallRunning;
-        }
-        set
-        {
-            _isWallRunning = value;
-        }
+        get { return _isWallRunning; }
+        set { _isWallRunning = value; }
     }
 
     [SerializeField] bool _isWalled;
     public bool IsWalled
     {
-        get
-        {
-            return _isWalled;
-        }
-        set
-        {
-            _isWalled = value;
-        }
+        get { return _isWalled; }
+        set { _isWalled = value; }
     }
 
     [SerializeField] bool _wallRight;
     public bool WallRight
     {
-        get
-        {
-            return _wallRight;
-        }
-        set
-        {
-            _wallRight = value;
-        }
+        get { return _wallRight; }
+        set { _wallRight = value; }
     }
     [SerializeField] RaycastHit _rightWallHit;
     public RaycastHit RightWallHit
     {
-        get
-        {
-            return _rightWallHit;
-        }
+        get { return _rightWallHit; }
     }
 
     [SerializeField] bool _wallLeft;
     public bool WallLeft
     {
-        get
-        {
-            return _wallLeft;
-        }
-        set
-        {
-            _wallLeft = value;
-        }
+        get { return _wallLeft; }
+        set { _wallLeft = value; }
     }
     [SerializeField] RaycastHit _leftWallHit;
     public RaycastHit LeftWallHit
     {
-        get
-        {
-            return _leftWallHit;
-        }
+        get { return _leftWallHit; }
     }
 
     [SerializeField] LayerMask _wallLayer;
@@ -297,97 +189,73 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] float _wallCheckDistance;
     public float WallCheckDistance
     {
-        get
-        {
-            return _wallCheckDistance;
-        }
+        get { return _wallCheckDistance; }
     }
 
     [SerializeField] Vector3 _wallNormal;
     public Vector3 WallNormal
     {
-        get
-        {
-            return _wallNormal;
-        }
-        set
-        {
-            _wallNormal = value;
-        }
+        get { return _wallNormal; }
+        set { _wallNormal = value; }
     }
 
     [SerializeField] Vector3 _wallForward;
     public Vector3 WallForward
     {
-        get
-        {
-            return _wallForward;
-        }
-        set
-        {
-            _wallForward = value;
-        }
+        get { return _wallForward; }
+        set { _wallForward = value; }
+    }
+
+    [SerializeField] RaycastHit _wallAngleHit;
+    public RaycastHit WallAngleHit
+    {
+        get { return _wallAngleHit; }
+    }
+
+    [SerializeField] float _maxWallAngle;
+    public float MaxWallAngle
+    {
+        get { return _maxWallAngle; }
+    }
+
+    [SerializeField] bool _isWallAngle;
+    public bool IsWallAngle
+    {
+        get { return _isWallAngle; }
     }
 
     [SerializeField] bool _canStartWallTimer;
     public bool CanStartWallTimer
     {
-        get
-        {
-            return _canStartWallTimer;
-        }
-        set
-        {
-            _canStartWallTimer = value;
-        }
+        get { return _canStartWallTimer; }
+        set { _canStartWallTimer = value; }
     }
 
     [SerializeField] float _maxWallClingTime;
     public float MaxWallClingTime
     {
-        get
-        {
-            return _maxWallClingTime;
-        }
+        get { return _maxWallClingTime; }
     }
 
     [SerializeField] float _wallClingTime;
     public float WallClingTime
     {
-        get
-        {
-            return _wallClingTime;
-        }
-        set
-        {
-            _wallClingTime = value;
-        }
+        get { return _wallClingTime; }
+        set { _wallClingTime = value; }
     }
 
     [SerializeField] Transform _currentWall;
     public Transform CurrentWall
     {
-        get
-        {
-            return _currentWall;
-        }
-        set
-        {
-            _currentWall = value;
-        }
+        get { return _currentWall; }
+        set { _currentWall = value; }
     }
 
     [SerializeField] Transform _previousWall;
     public Transform PreviousWall
     {
-        get
-        {
-            return _previousWall;
-        }
-        set
-        {
-            _previousWall = value;
-        }
+        get { return _previousWall; }
+        set { _previousWall = value; }
     }
 
     #endregion
@@ -398,23 +266,14 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] bool _isGrappled;
     public bool IsGrappled
     {
-        get
-        {
-            return _isGrappled;
-        }
-        set
-        {
-            _isGrappled = value;
-        }
+        get { return _isGrappled; }
+        set { _isGrappled = value; }
     }
 
     [SerializeField] float _grappleDistance;
     public float GrappleDistance
     {
-        get
-        {
-            return _grappleDistance;
-        }
+        get { return _grappleDistance; }
     }
 
     [SerializeField] LayerMask _grappleLayer;
@@ -422,23 +281,14 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] RaycastHit _grappleHit;
     public RaycastHit GrappleHit
     {
-        get
-        {
-            return _grappleHit;
-        }
+        get { return _grappleHit; }
     }
 
     [SerializeField] SpringJoint _grappleJoint;
     public SpringJoint GrappleJoint
     {
-        get
-        {
-            return _grappleJoint;
-        }
-        set
-        {
-            _grappleJoint = value;
-        }
+        get { return _grappleJoint; }
+        set { _grappleJoint = value; }
     }
 
     #endregion
@@ -449,14 +299,8 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] bool _isGrounded;
     public bool IsGrounded
     {
-        get
-        {
-            return _isGrounded;
-        }
-        set
-        {
-            _isGrounded = value;
-        }
+        get { return _isGrounded; }
+        set { _isGrounded = value; }
     }
 
     [SerializeField] LayerMask _groundLayer;
@@ -464,10 +308,7 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] float _groundDrag;
     public float GroundDrag
     {
-        get
-        {
-            return _groundDrag;
-        }
+        get { return _groundDrag; }
     }
 
     [SerializeField] float sphereRadius;
@@ -481,26 +322,14 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] bool _isSloped;
     public bool IsSloped
     {
-        get
-        {
-            return _isSloped;
-        }
-        set
-        {
-            _isSloped = value;
-        }
+        get { return _isSloped; }
+        set { _isSloped = value; }
     }
     [SerializeField] bool _isExitingSlope;
     public bool IsExitingSlope
     {
-        get
-        {
-            return _isExitingSlope;
-        }
-        set
-        {
-            _isExitingSlope = value;
-        }
+        get { return _isExitingSlope; }
+        set { _isExitingSlope = value; }
     }
 
     RaycastHit _slopeHit;
@@ -517,46 +346,31 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] bool _isMove;
     public bool IsMove
     {
-        get
-        {
-            return _isMove;
-        }
+        get { return _isMove; }
     }
 
     [SerializeField] bool _isSlide;
     public bool IsSlide
     {
-        get
-        {
-            return _isSlide;
-        }
+        get { return _isSlide; }
     }
 
     [SerializeField] bool _isJump;
     public bool IsJump
     {
-        get
-        {
-            return _isJump;
-        }
+        get { return _isJump; }
     }
 
     [SerializeField] bool _isAim;
     public bool IsAim
     {
-        get
-        {
-            return _isAim;
-        }
+        get { return _isAim; }
     }
 
     [SerializeField] bool _isShoot;
     public bool IsShoot
     {
-        get
-        {
-            return _isShoot;
-        }
+        get { return _isShoot; }
     }
 
     #endregion
@@ -567,55 +381,37 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] float _moveSpeed;
     public float MoveSpeed
     {
-        get
-        {
-            return _moveSpeed;
-        }
+        get { return _moveSpeed; }
     }
 
     [SerializeField] float _airSpeed;
     public float AirSpeed
     {
-        get
-        {
-            return _airSpeed;
-        }
+        get { return _airSpeed; }
     }
 
     [SerializeField] float _slideSpeed;
     public float SlideSpeed
     {
-        get
-        {
-            return _slideSpeed;
-        }
+        get { return _slideSpeed; }
     }
 
     [SerializeField] float _slopeSlideSpeed;
     public float SlopeSlideSpeed
     {
-        get
-        {
-            return _slopeSlideSpeed;
-        }
+        get { return _slopeSlideSpeed; }
     }
 
     [SerializeField] float _wallRunSpeed;
     public float WallRunSpeed
     {
-        get
-        {
-            return _wallRunSpeed;
-        }
+        get { return _wallRunSpeed; }
     }
 
     [SerializeField] float _grappleSpeed;
     public float GrappleSpeed
     {
-        get
-        {
-            return _grappleSpeed;
-        }
+        get { return _grappleSpeed; }
     }
 
     [Header("Speed Multipliers")]
@@ -624,41 +420,26 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] float _speedIncreaseMultiplier;
     public float SpeedIncreaseMultiplier
     {
-        get
-        {
-            return _speedIncreaseMultiplier;
-        }
+        get { return _speedIncreaseMultiplier; }
     }
 
     [SerializeField] float _slopeSpeedIncreaseMultiplier;
     public float SlopeSpeedIncreaseMultiplier
     {
-        get
-        {
-            return _slopeSpeedIncreaseMultiplier;
-        }
+        get { return _slopeSpeedIncreaseMultiplier; }
     }
 
     [SerializeField] float _grappleSpeedIncreaseMultiplier;
     public float GrappleSpeedIncreaseMultiplier
     {
-        get
-        {
-            return _grappleSpeedIncreaseMultiplier;
-        }
+        get { return _grappleSpeedIncreaseMultiplier; }
     }
 
     [SerializeField] float _moveMultiplier;
     public float MoveMultiplier
     {
-        get
-        {
-            return _moveMultiplier;
-        }
-        set
-        {
-            _moveMultiplier = value;
-        }
+        get { return _moveMultiplier; }
+        set { _moveMultiplier = value; }
     }
 
     #endregion
@@ -670,10 +451,7 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] float _startYScale;
     public float StartYScale
     {
-        get
-        {
-            return _startYScale;
-        }
+        get { return _startYScale; }
     }
 
     [SerializeField] float _slideYScale;
@@ -688,28 +466,17 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] bool _isForced;
     public bool IsForced
     {
-        get
-        {
-            return _isForced;
-        }
-        set
-        {
-            _isForced = value;
-        }
+        get { return _isForced; }
+        set { _isForced = value; }
     }
 
     [SerializeField] float _extraForce;
     public float ExtraForce
     {
-        get
-        {
-            return _extraForce;
-        }
-        set
-        {
-            _extraForce = value;
-        }
+        get { return _extraForce; }
+        set { _extraForce = value; }
     }
+
 
     private void Awake()
     {
@@ -747,8 +514,6 @@ public class CharStateMachine : MonoBehaviour
         _startYScale = 1f;
     }
 
-    #region MonoBehaviours
-
     private void Update()
     {
         if (Input.GetKey(KeyCode.P))
@@ -770,6 +535,7 @@ public class CharStateMachine : MonoBehaviour
         IsSloped = CheckSloped();
         CheckForWall();
         CheckWallDirection();
+        _isWallAngle = CheckWallAngle();
 
         if (CanStartWallTimer)
         {
@@ -801,11 +567,11 @@ public class CharStateMachine : MonoBehaviour
         LastDesiredMoveForce = DesiredMoveForce;
     }
 
+    #region MonoBehaviours
+
     private void FixedUpdate()
     {
         _currentState.FixedUpdateStates();
-
-
     }
 
     private void Lateupdate()
@@ -959,6 +725,18 @@ public class CharStateMachine : MonoBehaviour
         WallNormal = WallRight ? RightWallHit.normal : LeftWallHit.normal;
 
         WallForward = Vector3.Cross(WallNormal, transform.up);
+    }
+
+    public bool CheckWallAngle()
+    {
+        if (Physics.Raycast(transform.position, PlayerObj.forward, out _wallAngleHit, _playerHeight * 0.5f + 1f, _wallLayer))
+        {
+            Debug.Log("HIT WALL");
+            float angle = Vector3.Angle(PlayerObj.forward, _wallAngleHit.normal);
+            return angle < _maxWallAngle && angle != 0;
+        }
+
+        return false;
     }
 
     public void CheckForGrapple()
