@@ -9,14 +9,18 @@ public class CharSlideState : CharBaseState
         Ctx.DesiredMoveForce = Ctx.SlideSpeed;
         Ctx.MoveForce = Ctx.SlideSpeed;
 
-        Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x + 1, Ctx.PlayerObj.localScale.y, Ctx.PlayerObj.localScale.z + 1);
+        Ctx.PlayerAnimator.SetBool("Sliding", true);
+
+        // Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x + 1, Ctx.PlayerObj.localScale.y, Ctx.PlayerObj.localScale.z + 1);
 
         Ctx.Rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
     }
 
     public override void ExitState()
     {
-        Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x - 1, Ctx.PlayerObj.localScale.y, Ctx.PlayerObj.localScale.z - 1);
+        Ctx.PlayerAnimator.SetBool("Sliding", false);
+
+        // Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x - 1, Ctx.PlayerObj.localScale.y, Ctx.PlayerObj.localScale.z - 1);
     }
 
     #region MonoBehaveiours

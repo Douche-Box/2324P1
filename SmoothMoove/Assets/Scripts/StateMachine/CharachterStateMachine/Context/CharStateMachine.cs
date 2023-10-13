@@ -20,6 +20,12 @@ public class CharStateMachine : MonoBehaviour
         get { return _playerObj; }
     }
 
+    [SerializeField] Animator _playerAnimator;
+    public Animator PlayerAnimator
+    {
+        get { return _playerAnimator; }
+    }
+
     [SerializeField] Transform _playerCam;
     public Transform PlayerCam
     {
