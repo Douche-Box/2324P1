@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1527614881612994136, guid: 13bc601c5e6cc5642bc72549f3d4378a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e1afd9a1ff88c34d8b651c37ddf3ffa, type: 2}
     - target: {fileID: 919132149155446097, guid: 13bc601c5e6cc5642bc72549f3d4378a, type: 3}
       propertyPath: m_Name
       value: PVCCurtain
