@@ -8,6 +8,8 @@ public class CharWalkState : CharBaseState
     {
         Debug.Log("WALK ENTER");
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
+
+        Ctx.PlayerAnimator.SetFloat("Running", Ctx.MovementSpeed);
     }
 
     public override void ExitState() { }
