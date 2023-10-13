@@ -4,7 +4,11 @@ public class CharWalkState : CharBaseState
 {
     public CharWalkState(CharStateMachine currentContext, CharStateFactory charachterStateFactory) : base(currentContext, charachterStateFactory) { }
 
-    public override void EnterState() { }
+    public override void EnterState()
+    {
+        Debug.Log("WALK ENTER");
+        Ctx.DesiredMoveForce = Ctx.MoveSpeed;
+    }
 
     public override void ExitState() { }
 
@@ -32,8 +36,9 @@ public class CharWalkState : CharBaseState
         {
             SwitchState(Factory.Idle());
         }
-        else if (Ctx.IsSlide && Ctx.IsMove && !Ctx.IsWalled)
+        else if (Ctx.IsSlide && Ctx.IsMove && !Ctx.IsWalled && Ctx.MoveForce >= Ctx.MoveSpeed)
         {
+            Debug.Log("walk > slide");
             SwitchState(Factory.Slide());
         }
     }

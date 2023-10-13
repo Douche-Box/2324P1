@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class CharFallState : CharBaseState
 {
     public CharFallState(CharStateMachine currentContext, CharStateFactory charachterStateFactory) : base(currentContext, charachterStateFactory)
@@ -38,10 +40,12 @@ public class CharFallState : CharBaseState
         {
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsSlide && Ctx.IsMove)
-        {
-            SetSubState(Factory.Slide());
-        }
+        // else if (Ctx.IsSlide && Ctx.IsMove)
+        // {
+        //     Debug.Log("fall > slide");
+
+        //     SetSubState(Factory.Slide());
+        // }
     }
 
     public override void CheckSwitchStates()

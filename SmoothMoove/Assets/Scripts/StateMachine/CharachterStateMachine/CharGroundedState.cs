@@ -1,3 +1,4 @@
+using UnityEngine;
 public class CharGroundedState : CharBaseState
 {
     public CharGroundedState(CharStateMachine currentContext, CharStateFactory charachterStateFactory) : base(currentContext, charachterStateFactory)
@@ -44,8 +45,10 @@ public class CharGroundedState : CharBaseState
         {
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide)
+        else if (Ctx.IsMove && Ctx.IsSlide && Ctx.MoveForce >= Ctx.MoveSpeed)
         {
+            Debug.Log("grounded > slide");
+
             SetSubState(Factory.Slide());
         }
     }

@@ -71,6 +71,12 @@ public class CharStateMachine : MonoBehaviour
         set { _movement = value; }
     }
 
+    [SerializeField] float _movementSpeed;
+    public float MovementSpeed
+    {
+        get { return _movementSpeed; }
+    }
+
     [SerializeField] float _moveForce;
     public float MoveForce
     {
@@ -127,12 +133,6 @@ public class CharStateMachine : MonoBehaviour
 
     [Header("Sliding")]
     #region Sliding
-
-    [SerializeField] float _slideForce;
-    public float SlideForce
-    {
-        get { return _slideForce; }
-    }
 
     [SerializeField] bool _isSliding;
     public bool IsSliding
@@ -518,6 +518,8 @@ public class CharStateMachine : MonoBehaviour
         _currentState.EnterState();
         _isGrounded = true;
 
+        MoveForce = DesiredMoveForce;
+
         WallClingTime = MaxWallClingTime;
 
         Cursor.visible = false;
@@ -528,6 +530,8 @@ public class CharStateMachine : MonoBehaviour
 
     private void Update()
     {
+        _movementSpeed = Rb.velocity.magnitude;
+
         if (Input.GetKey(KeyCode.P))
         {
             Debug.Log(_currentState.ToString());
