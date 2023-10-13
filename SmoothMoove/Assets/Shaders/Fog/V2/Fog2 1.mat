@@ -52,7 +52,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _waterDepth: 544.9
+    - _waterDepth: 361.19
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 0.07058824}
     - _Color2: {r: 0.08462594, g: 0.1669137, b: 0.24528301, a: 1}
