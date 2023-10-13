@@ -7,6 +7,7 @@ public class CharSlideState : CharBaseState
     public override void EnterState()
     {
         Ctx.DesiredMoveForce = Ctx.SlideSpeed;
+        Ctx.MoveForce = Ctx.SlideSpeed;
 
         Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x, Ctx.SlideYScale, Ctx.PlayerObj.localScale.z);
 
@@ -50,22 +51,6 @@ public class CharSlideState : CharBaseState
 
     private void SlidingMovement()
     {
-        if (Ctx.IsSloped && Ctx.Rb.velocity.y < 0.1f)
-        {
-            Ctx.DesiredMoveForce = Ctx.SlopeSlideSpeed;
-        }
-        else
-        {
-            Ctx.DesiredMoveForce = Ctx.SlideSpeed;
-        }
-
-        if (!Ctx.IsSloped || Ctx.Rb.velocity.y > -0.1f)
-        {
-            Ctx.Rb.AddForce(Ctx.CurrentMovement.normalized * Ctx.SlideForce, ForceMode.Force);
-        }
-        else
-        {
-            Ctx.Rb.AddForce(Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement.normalized) * Ctx.SlideForce, ForceMode.Force);
-        }
+        Ctx.Rb.AddForce(Ctx.Movement * Ctx.SlideForce, ForceMode.Force);
     }
 }

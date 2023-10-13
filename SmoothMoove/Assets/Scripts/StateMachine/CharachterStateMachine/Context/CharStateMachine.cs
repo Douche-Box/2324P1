@@ -141,6 +141,12 @@ public class CharStateMachine : MonoBehaviour
         set { _isSliding = value; }
     }
 
+    [SerializeField] float _lowestSlideSpeed;
+    public float LowestSlideSpeed
+    {
+        get { return _lowestSlideSpeed; }
+    }
+
     #endregion
 
     [Header("WallRunning")]
@@ -396,6 +402,12 @@ public class CharStateMachine : MonoBehaviour
         get { return _slideSpeed; }
     }
 
+    [SerializeField] float _slideSpeedDecrease;
+    public float SlideSpeedDecrease
+    {
+        get { return _slideSpeedDecrease; }
+    }
+
     [SerializeField] float _slopeSlideSpeed;
     public float SlopeSlideSpeed
     {
@@ -554,7 +566,7 @@ public class CharStateMachine : MonoBehaviour
             Rb.drag = 0;
         }
 
-        if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 4f && MoveForce != 0)
+        if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 0f && MoveForce != 0)
         {
             StopAllCoroutines();
             StartCoroutine(SmoovMoov());
