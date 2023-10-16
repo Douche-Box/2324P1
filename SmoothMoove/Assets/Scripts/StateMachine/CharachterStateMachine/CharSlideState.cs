@@ -7,26 +7,33 @@ public class CharSlideState : CharBaseState
     public override void EnterState()
     {
         Ctx.DesiredMoveForce = Ctx.SlideSpeed;
-        Ctx.MoveForce = Ctx.SlideSpeed;
+
+        Ctx.IsSliding = true;
+
+        if (Ctx.MoveForce < Ctx.SlideSpeed)
+        {
+            Ctx.MoveForce = Ctx.SlideSpeed;
+        }
 
         Ctx.PlayerAnimator.SetBool("Sliding", true);
-
-        // Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x + 1, Ctx.PlayerObj.localScale.y, Ctx.PlayerObj.localScale.z + 1);
-
-        Ctx.Rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
     }
 
     public override void ExitState()
     {
-        Ctx.PlayerAnimator.SetBool("Sliding", false);
+        Ctx.IsSliding = false;
 
-        // Ctx.PlayerObj.localScale = new Vector3(Ctx.PlayerObj.localScale.x - 1, Ctx.PlayerObj.localScale.y, Ctx.PlayerObj.localScale.z - 1);
+        Ctx.PlayerAnimator.SetBool("Sliding", false);
     }
 
     #region MonoBehaveiours
 
     public override void UpdateState()
     {
+        if (!Ctx.IsSloped || Ctx.Rb.velocity.y > 0.1f)
+        {
+            Debug.Log("SLOWER");
+            Ctx.DesiredMoveForce = Ctx.LowestSlideSpeed;
+        }
     }
 
     public override void FixedUpdateState()
@@ -67,11 +74,6 @@ public class CharSlideState : CharBaseState
 
     private void SlidingMovement()
     {
-        if (!Ctx.IsSloped || Ctx.Rb.velocity.y > 0.1f)
-        {
-            Ctx.DesiredMoveForce = Ctx.LowestSlideSpeed;
-        }
-
         Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier, ForceMode.Force);
     }
 }

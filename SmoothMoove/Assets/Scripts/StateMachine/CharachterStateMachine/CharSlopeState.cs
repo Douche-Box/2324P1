@@ -24,7 +24,7 @@ public class CharSlopeState : CharBaseState
     {
         Ctx.Movement = Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement).normalized;
 
-        if (Ctx.Rb.velocity.y < 0.1f)
+        if (Ctx.IsSliding && Ctx.Rb.velocity.y < 0.1f)
         {
             Ctx.DesiredMoveForce = Ctx.SlopeSlideSpeed;
         }

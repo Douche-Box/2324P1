@@ -115,11 +115,11 @@ public class CharStateMachine : MonoBehaviour
         get { return _jumpForce; }
     }
 
-    [SerializeField] Vector3 _jumpDirection;
-    public Vector3 JumpDirection
+    [SerializeField] Vector3 _jumpMent;
+    public Vector3 JumpMent
     {
-        get { return _jumpDirection; }
-        set { _jumpDirection = value; }
+        get { return _jumpMent; }
+        set { _jumpMent = value; }
     }
 
     [SerializeField] float _maxJumpTime;
@@ -564,29 +564,29 @@ public class CharStateMachine : MonoBehaviour
             WallClingTime -= Time.deltaTime;
         }
 
-        SpeedControl();
+        // SpeedControl();
 
         // DO THIS IN GROUNDED STATE NOT IN STATE MACHINE
-        if (IsGrounded || IsSloped)
-        {
-            Rb.drag = GroundDrag;
-        }
-        else if (!IsSloped && !IsGrounded)
-        {
-            Rb.drag = 0;
-        }
+        // if (IsGrounded || IsSloped)
+        // {
+        //     Rb.drag = GroundDrag;
+        // }
+        // else if (!IsSloped && !IsGrounded)
+        // {
+        //     Rb.drag = 0;
+        // }
 
-        if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 0f && MoveForce != 0)
-        {
-            StopAllCoroutines();
-            StartCoroutine(SmoovMoov());
-        }
-        else
-        {
-            MoveForce = DesiredMoveForce;
-        }
+        // if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 0f && MoveForce != 0)
+        // {
+        //     StopAllCoroutines();
+        //     StartCoroutine(SmoovMoov());
+        // }
+        // else
+        // {
+        //     MoveForce = DesiredMoveForce;
+        // }
 
-        LastDesiredMoveForce = DesiredMoveForce;
+        // LastDesiredMoveForce = DesiredMoveForce;
     }
 
     #region MonoBehaviours
