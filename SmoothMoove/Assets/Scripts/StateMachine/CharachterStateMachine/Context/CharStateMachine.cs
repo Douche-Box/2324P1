@@ -797,7 +797,15 @@ public class CharStateMachine : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
     }
 
+    public void LimitSidewaysMovement()
+    {
 
+    }
+
+    public void LimitSpeedTurning()
+    {
+
+    }
 
     private void SpeedControl()
     {

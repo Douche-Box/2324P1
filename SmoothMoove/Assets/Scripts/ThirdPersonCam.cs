@@ -24,7 +24,17 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField]
     private CharStateMachine _stateMachine;
 
-    // Update is called once per frame
+
+    public enum CamState
+    {
+        ground,
+        air,
+        jump,
+        wallrun,
+    }
+    public CamState camState;
+
+
     void Update()
     {
         Vector3 viewDir = _player.position - new Vector3(transform.position.x, _player.position.y, transform.position.z);
@@ -53,7 +63,5 @@ public class ThirdPersonCam : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(inputDir, Vector3.up);
             _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
         }
-
-
     }
 }
