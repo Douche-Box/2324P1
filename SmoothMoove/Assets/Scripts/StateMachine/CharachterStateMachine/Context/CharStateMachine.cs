@@ -216,11 +216,11 @@ public class CharStateMachine : MonoBehaviour
         get { return _maxWallAngle; }
     }
 
-    [SerializeField] bool _isWallAngle;
-    public bool IsWallAngle
-    {
-        get { return _isWallAngle; }
-    }
+    // [SerializeField] bool _isWallAngle;
+    // public bool IsWallAngle
+    // {
+    //     get { return _isWallAngle; }
+    // }
 
     [SerializeField] bool _canStartWallTimer;
     public bool CanStartWallTimer
@@ -569,7 +569,7 @@ public class CharStateMachine : MonoBehaviour
         IsSloped = CheckSloped();
         CheckForWall();
         CheckWallDirection();
-        _isWallAngle = CheckWallAngle();
+        // _isWallAngle = CheckWallAngle();
 
         if (CanStartWallTimer)
         {
@@ -578,7 +578,6 @@ public class CharStateMachine : MonoBehaviour
 
         SpeedControl();
 
-        // DO THIS IN GROUNDED STATE NOT IN STATE MACHINE
         if (IsGrounded || IsSloped)
         {
             Rb.drag = GroundDrag;
@@ -798,26 +797,21 @@ public class CharStateMachine : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
     }
 
+
+
     private void SpeedControl()
     {
-        // limiting speed on slope
         if (IsSloped && !IsExitingSlope)
         {
             if (Rb.velocity.magnitude > MoveForce)
                 Rb.velocity = Rb.velocity.normalized * MoveForce;
         }
-
-        // limiting speed on ground or in air
         else
         {
             Vector3 flatVel = new Vector3(Rb.velocity.x, 0f, Rb.velocity.z);
 
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
             if (IsForced && flatVel.magnitude > ExtraForce)
             {
-                // IsPushed = false;
                 Vector3 limitedVel = flatVel.normalized * ExtraForce;
                 Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
 
@@ -829,10 +823,6 @@ public class CharStateMachine : MonoBehaviour
                     ExtraForce = 0;
                 }
             }
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-            // DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY DO THIS DIFFERENTLY
-
 
             if (!IsForced && flatVel.magnitude > MoveForce)
             {
