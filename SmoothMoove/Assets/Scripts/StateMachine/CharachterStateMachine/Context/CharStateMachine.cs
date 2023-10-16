@@ -140,13 +140,6 @@ public class CharStateMachine : MonoBehaviour
     [Header("Sliding")]
     #region Sliding
 
-    [SerializeField] bool _isSliding;
-    public bool IsSliding
-    {
-        get { return _isSliding; }
-        set { _isSliding = value; }
-    }
-
     [SerializeField] float _lowestSlideSpeed;
     public float LowestSlideSpeed
     {
@@ -157,13 +150,6 @@ public class CharStateMachine : MonoBehaviour
 
     [Header("WallRunning")]
     #region WallRunning
-
-    [SerializeField] bool _isWallRunning;
-    public bool IsWallRunning
-    {
-        get { return _isWallRunning; }
-        set { _isWallRunning = value; }
-    }
 
     [SerializeField] bool _isWalled;
     public bool IsWalled
@@ -464,6 +450,32 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    [Header("States")]
+    #region States
+
+    [SerializeField] bool _isAired;
+    public bool IsAired
+    {
+        get { return _isAired; }
+        set { _isAired = value; }
+    }
+
+    [SerializeField] bool _isSliding;
+    public bool IsSliding
+    {
+        get { return _isSliding; }
+        set { _isSliding = value; }
+    }
+
+    [SerializeField] bool _isWallRunning;
+    public bool IsWallRunning
+    {
+        get { return _isWallRunning; }
+        set { _isWallRunning = value; }
+    }
+
+    #endregion
+
     #endregion
 
     [SerializeField] float _startYScale;
@@ -564,29 +576,29 @@ public class CharStateMachine : MonoBehaviour
             WallClingTime -= Time.deltaTime;
         }
 
-        // SpeedControl();
+        SpeedControl();
 
         // DO THIS IN GROUNDED STATE NOT IN STATE MACHINE
-        // if (IsGrounded || IsSloped)
-        // {
-        //     Rb.drag = GroundDrag;
-        // }
-        // else if (!IsSloped && !IsGrounded)
-        // {
-        //     Rb.drag = 0;
-        // }
+        if (IsGrounded || IsSloped)
+        {
+            Rb.drag = GroundDrag;
+        }
+        else if (!IsSloped && !IsGrounded)
+        {
+            Rb.drag = 0;
+        }
 
-        // if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 0f && MoveForce != 0)
-        // {
-        //     StopAllCoroutines();
-        //     StartCoroutine(SmoovMoov());
-        // }
-        // else
-        // {
-        //     MoveForce = DesiredMoveForce;
-        // }
+        if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 0f && MoveForce != 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SmoovMoov());
+        }
+        else
+        {
+            MoveForce = DesiredMoveForce;
+        }
 
-        // LastDesiredMoveForce = DesiredMoveForce;
+        LastDesiredMoveForce = DesiredMoveForce;
     }
 
     #region MonoBehaviours

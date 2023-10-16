@@ -10,10 +10,14 @@ public class CharFallState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
+        Ctx.IsAired = true;
         Ctx.MoveMultiplier = Ctx.AirSpeed;
     }
 
-    public override void ExitState() { }
+    public override void ExitState()
+    {
+        Ctx.IsAired = false;
+    }
 
     #region MonoBehaveiours
 

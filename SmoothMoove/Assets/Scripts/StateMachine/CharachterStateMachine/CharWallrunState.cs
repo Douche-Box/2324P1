@@ -79,8 +79,8 @@ public class CharWallrunState : CharBaseState
 
     public override void FixedUpdateState()
     {
-        CheckSwitchStates();
         WallRunMovement();
+        CheckSwitchStates();
     }
 
     #endregion
@@ -103,7 +103,7 @@ public class CharWallrunState : CharBaseState
         {
             SwitchState(Factory.Fall());
         }
-        else if (Ctx.IsJump && Ctx.WallLeft && Ctx.CurrentMovementInput.x > 0 || Ctx.IsJump && Ctx.WallRight && Ctx.CurrentMovementInput.x < 0)
+        else if (Ctx.IsJump)
         {
             Debug.Log("WALL JUMP");
             SwitchState(Factory.Jump());
@@ -120,10 +120,16 @@ public class CharWallrunState : CharBaseState
 
         if ((Ctx.PlayerObj.forward - Ctx.WallForward).magnitude > (Ctx.PlayerObj.forward - -Ctx.WallForward).magnitude)
         {
-            Ctx.WallForward = new Vector3(-Ctx.WallForward.x, -Ctx.WallForward.y, -Ctx.WallForward.z);
+            Ctx.WallForward = new Vector3(-Ctx.WallForward.x, -Ctx.WallForward.y, -Ctx.WallForward.z).normalized;
         }
 
-        Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 225, ForceMode.Force);
+        if (!Ctx.IsJump)
+        {
+            Debug.Log("WALL JUMP");
+            Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 225, ForceMode.Force);
+        }
+
+        Ctx.JumpMent = new Vector3(Ctx.WallNormal.x * 3, 1, Ctx.WallNormal.z * 3);
 
         Debug.DrawRay(Ctx.transform.position, Ctx.WallForward, Color.green);
 

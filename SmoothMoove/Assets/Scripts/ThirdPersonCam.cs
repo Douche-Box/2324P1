@@ -33,8 +33,12 @@ public class ThirdPersonCam : MonoBehaviour
         Vector3 inputDir = _orientation.forward * _stateMachine.CurrentMovementInput.y + _orientation.right * _stateMachine.CurrentMovementInput.x;
 
         inputDir.y = 0;
-
-        if (_stateMachine.IsWallRunning)
+        if (_stateMachine.IsAired)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(viewDir, Vector3.up);
+            _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
+        }
+        else if (_stateMachine.IsWallRunning)
         {
             if ((_stateMachine.PlayerObj.forward - _stateMachine.WallForward).magnitude > (_stateMachine.PlayerObj.forward - -_stateMachine.WallForward).magnitude)
             {
@@ -44,7 +48,7 @@ public class ThirdPersonCam : MonoBehaviour
             Quaternion wallLookRotation = Quaternion.LookRotation(_stateMachine.WallForward.normalized, Vector3.up);
             _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, wallLookRotation, Time.deltaTime);
         }
-        if (inputDir != Vector3.zero && !_stateMachine.IsWallRunning)
+        else if (inputDir != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(inputDir, Vector3.up);
             _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);

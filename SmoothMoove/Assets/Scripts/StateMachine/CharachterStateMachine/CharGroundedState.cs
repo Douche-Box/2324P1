@@ -15,6 +15,7 @@ public class CharGroundedState : CharBaseState
         Ctx.IsForced = false;
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
+        Ctx.JumpMent = new Vector3(0, 1, 0);
     }
 
     public override void ExitState() { }

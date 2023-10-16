@@ -74,6 +74,16 @@ public class CharSlideState : CharBaseState
 
     private void SlidingMovement()
     {
+
+        if (Ctx.IsSloped && Ctx.Rb.velocity.y < 0.1f)
+        {
+            Ctx.DesiredMoveForce = Ctx.SlopeSlideSpeed;
+        }
+        else
+        {
+            Ctx.DesiredMoveForce = Ctx.LowestSlideSpeed;
+        }
+
         Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier, ForceMode.Force);
     }
 }
