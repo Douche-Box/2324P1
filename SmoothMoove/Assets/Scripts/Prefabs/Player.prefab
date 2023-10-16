@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 7026157007269521851}
   _playerObj: {fileID: 6817362835529599521}
-  _playerAnimator: {fileID: 2283328475307665963}
+  _playerAnimator: {fileID: 5406195150147533923}
   _playerCam: {fileID: 0}
   _orientation: {fileID: 6728180880063546339}
   _rb: {fileID: 310293542375093590}
@@ -239,7 +239,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5157326758663913866}
+  - {fileID: 7963941156521438833}
   m_Father: {fileID: 8951745564806009274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7914669506364166505
@@ -346,7 +346,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8951745564806009274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4618503135449245281
+--- !u!1001 &7570308204881480090
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -404,26 +404,21 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b9f817a54d8cb948bff97d4ca7f09a2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2283328475307665963}
+      addedObject: {fileID: 5406195150147533923}
   m_SourcePrefab: {fileID: 100100000, guid: 3b9f817a54d8cb948bff97d4ca7f09a2, type: 3}
---- !u!4 &5157326758663913866 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3b9f817a54d8cb948bff97d4ca7f09a2, type: 3}
-  m_PrefabInstance: {fileID: 4618503135449245281}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5537547309580540720 stripped
+--- !u!1 &7335883194268562635 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b9f817a54d8cb948bff97d4ca7f09a2, type: 3}
-  m_PrefabInstance: {fileID: 4618503135449245281}
+  m_PrefabInstance: {fileID: 7570308204881480090}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2283328475307665963
+--- !u!95 &5406195150147533923
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5537547309580540720}
+  m_GameObject: {fileID: 7335883194268562635}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 549a1c6523f0e2448bc532067a14db20, type: 2}
@@ -437,3 +432,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &7963941156521438833 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3b9f817a54d8cb948bff97d4ca7f09a2, type: 3}
+  m_PrefabInstance: {fileID: 7570308204881480090}
+  m_PrefabAsset: {fileID: 0}

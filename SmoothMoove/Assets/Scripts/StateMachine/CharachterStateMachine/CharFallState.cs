@@ -44,12 +44,12 @@ public class CharFallState : CharBaseState
         {
             SetSubState(Factory.Walk());
         }
-        // else if (Ctx.IsSlide && Ctx.IsMove)
-        // {
-        //     Debug.Log("fall > slide");
+        else if (Ctx.IsSlide && Ctx.IsMove)
+        {
+            Debug.Log("fall > slide");
 
-        //     SetSubState(Factory.Slide());
-        // }
+            SetSubState(Factory.Slide());
+        }
     }
 
     public override void CheckSwitchStates()
