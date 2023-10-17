@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SewerWater
+  m_Name: SewerWater 1
   m_Shader: {fileID: -6465566751694194690, guid: 2221c2174e31b314c87e3d16934e7e2b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -50,18 +50,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FoamAmount: 1
-    - _FoamCutOff: 1
-    - _FoamScale: 100
-    - _FoamSpeed: 1
+    - _FoamAmount: 26.22
+    - _FoamCutOff: 1.44
+    - _FoamScale: 107.63
+    - _FoamSpeed: 5.56
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RefractionScale: 111.19
     - _RefractionSpeed: 115.68
     - _RefractionStrength: 0
-    - _waterDepth: 10
+    - _waterDepth: 5.1
     m_Colors:
-    - _DeepWater: {r: 0.1597988, g: 0.53773576, b: 0.1616844, a: 0.34901962}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 0.8352941}
-    - _ShalowWater: {r: 0.062254116, g: 0.8018868, b: 0.049172305, a: 0.2901961}
+    - _DeepWater: {r: 0.09251513, g: 0.40729576, b: 0.5943396, a: 0.34901962}
+    - _FoamColor: {r: 0, g: 0, b: 0, a: 0.8352941}
+    - _ShalowWater: {r: 0, g: 0.21046491, b: 0.3018868, a: 0.80784315}
   m_BuildTextureStacks: []

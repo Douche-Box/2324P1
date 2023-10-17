@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2399178947571528934
+--- !u!114 &-2920868206103442661
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SewerWater
-  m_Shader: {fileID: -6465566751694194690, guid: 2221c2174e31b314c87e3d16934e7e2b, type: 3}
+  m_Name: Shader Graphs_StylizedWaterShader 1
+  m_Shader: {fileID: -6465566751694194690, guid: b8da51c55acf1b5488353a62e17b89fe, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -56,12 +56,12 @@ Material:
     - _FoamSpeed: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RefractionScale: 111.19
-    - _RefractionSpeed: 115.68
+    - _RefractionScale: 1
+    - _RefractionSpeed: 0.5
     - _RefractionStrength: 0
     - _waterDepth: 10
     m_Colors:
-    - _DeepWater: {r: 0.1597988, g: 0.53773576, b: 0.1616844, a: 0.34901962}
+    - _DeepWater: {r: 0, g: 0.076679684, b: 0.7647059, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0.8352941}
-    - _ShalowWater: {r: 0.062254116, g: 0.8018868, b: 0.049172305, a: 0.2901961}
+    - _ShalowWater: {r: 0, g: 0.862421, b: 1, a: 1}
   m_BuildTextureStacks: []
