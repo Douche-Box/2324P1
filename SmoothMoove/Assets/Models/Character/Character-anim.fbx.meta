@@ -53,11 +53,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle1
-      takeName: Idle1
+      name: CharacterRig|Idle1
+      takeName: CharacterRig|Idle1
       internalID: -9121621101649706817
-      firstFrame: 0
-      lastFrame: 56
+      firstFrame: 5
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -82,11 +82,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle1 (1)
-      takeName: Idle1
+      name: CharacterRig|Idle
+      takeName: CharacterRig|Idle
       internalID: -6590947616227208868
-      firstFrame: 0
-      lastFrame: 56
+      firstFrame: 5
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -111,11 +111,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: SLIDE
-      takeName: SLIDE
+      name: CharacterRig|SLIDE
+      takeName: CharacterRig|SLIDE
       internalID: 4117072771204563701
-      firstFrame: 0
-      lastFrame: 35
+      firstFrame: 1
+      lastFrame: 34
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -140,8 +140,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Jump
-      takeName: Jump
+      name: CharacterRig|Jump
+      takeName: CharacterRig|Jump
       internalID: -5655404466494344135
       firstFrame: 0
       lastFrame: 50
@@ -169,8 +169,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Falling
-      takeName: Falling
+      name: CharacterRig|Falling
+      takeName: CharacterRig|Falling
       internalID: -3228945923731997179
       firstFrame: 0
       lastFrame: 30
@@ -198,8 +198,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Landing
-      takeName: Landing
+      name: CharacterRig|Landing
+      takeName: CharacterRig|Landing
       internalID: -2142858612569777151
       firstFrame: 0
       lastFrame: 52
@@ -227,11 +227,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Running
-      takeName: Running
+      name: CharacterRig|Running
+      takeName: CharacterRig|Running
       internalID: 8108545612673539974
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -256,11 +256,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Wallrunning-L
-      takeName: Wallrunning-L
+      name: CharacterRig|Wallrunning-L
+      takeName: CharacterRig|Wallrunning-L
       internalID: 5437412692796602587
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -285,11 +285,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: WallRunning-R
-      takeName: WallRunning-R
+      name: CharacterRig|WallRunning-R
+      takeName: CharacterRig|WallRunning-R
       internalID: 683557868967944585
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -314,11 +314,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: walk
-      takeName: walk
+      name: CharacterRig|walk
+      takeName: CharacterRig|walk
       internalID: 7889182810651272419
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -343,11 +343,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: walk.001
-      takeName: walk.001
+      name: CharacterRig|walk.001
+      takeName: CharacterRig|walk.001
       internalID: 6184753236964551871
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -372,11 +372,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: walk.002
-      takeName: walk.002
+      name: CharacterRig|walk.002
+      takeName: CharacterRig|walk.002
       internalID: 180394595597575290
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
