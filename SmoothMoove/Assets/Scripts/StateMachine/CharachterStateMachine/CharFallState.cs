@@ -46,8 +46,6 @@ public class CharFallState : CharBaseState
         }
         else if (Ctx.IsSlide && Ctx.IsMove)
         {
-            Debug.Log("fall > slide");
-
             SetSubState(Factory.Slide());
         }
     }

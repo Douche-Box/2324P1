@@ -52,6 +52,12 @@ public class CharStateMachine : MonoBehaviour
         set { _currentState = value; }
     }
 
+    [SerializeField] Collider[] _colliders;
+    public Collider[] Colliders
+    {
+        get { return _colliders; }
+    }
+
     #endregion
 
     [Header("Movement")]
@@ -330,7 +336,11 @@ public class CharStateMachine : MonoBehaviour
         set { _isExitingSlope = value; }
     }
 
-    RaycastHit _slopeHit;
+    public RaycastHit _slopeHit;
+    // public RaycastHit SlopeHit
+    // {
+    //     get { return _slopeHit; }
+    // }
 
     [SerializeField] float _maxSlopeAngle;
 
@@ -418,8 +428,16 @@ public class CharStateMachine : MonoBehaviour
         get { return _grappleSpeed; }
     }
 
+    #endregion
+
     [Header("Speed Multipliers")]
     #region Speed Multipliers
+
+    [SerializeField] float _strafeSpeedMultiplier;
+    public float StrafeSpeedMultiplier
+    {
+        get { return _strafeSpeedMultiplier; }
+    }
 
     [SerializeField] float _speedIncreaseMultiplier;
     public float SpeedIncreaseMultiplier
@@ -446,7 +464,7 @@ public class CharStateMachine : MonoBehaviour
         set { _moveMultiplier = value; }
     }
 
-    #endregion
+
 
     #endregion
 
@@ -477,21 +495,6 @@ public class CharStateMachine : MonoBehaviour
     #endregion
 
     #endregion
-
-    [SerializeField] float _startYScale;
-    public float StartYScale
-    {
-        get { return _startYScale; }
-    }
-
-    [SerializeField] float _slideYScale;
-    public float SlideYScale
-    {
-        get
-        {
-            return _slideYScale;
-        }
-    }
 
     [SerializeField] bool _isForced;
     public bool IsForced
@@ -542,8 +545,6 @@ public class CharStateMachine : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
-        _startYScale = 1f;
     }
 
     private void Update()
@@ -561,7 +562,7 @@ public class CharStateMachine : MonoBehaviour
             CheckForGrapple();
         }
 
-        CurrentMovement = Orientation.forward * CurrentMovementInput.y + Orientation.right * CurrentMovementInput.x;
+        CurrentMovement = (Orientation.forward * CurrentMovementInput.y).normalized + (Orientation.right * CurrentMovementInput.x).normalized;
 
         _currentState.UpdateStates();
 
@@ -576,7 +577,6 @@ public class CharStateMachine : MonoBehaviour
             WallClingTime -= Time.deltaTime;
         }
 
-        SpeedControl();
 
         if (IsGrounded || IsSloped)
         {
@@ -586,6 +586,9 @@ public class CharStateMachine : MonoBehaviour
         {
             Rb.drag = 0;
         }
+
+        HandleStrafeSpeed();
+        SpeedControl();
 
         if (Mathf.Abs(DesiredMoveForce - LastDesiredMoveForce) > 0f && MoveForce != 0)
         {
@@ -655,16 +658,16 @@ public class CharStateMachine : MonoBehaviour
     void OnAim(InputAction.CallbackContext context)
     {
         _isAim = context.ReadValueAsButton();
-        Debug.Log("AIM");
     }
 
     void OnShoot(InputAction.CallbackContext context)
     {
         _isShoot = context.ReadValueAsButton();
-        Debug.Log("SHOOT");
     }
 
     #endregion
+
+    #region STUFF
 
     public void MakeGrappleJoint()
     {
@@ -729,7 +732,7 @@ public class CharStateMachine : MonoBehaviour
 
     bool CheckSloped()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.3f, _groundLayer))
         {
             float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
             return angle < _maxSlopeAngle && angle != 0;
@@ -797,14 +800,43 @@ public class CharStateMachine : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, _slopeHit.normal).normalized;
     }
 
-    public void LimitSidewaysMovement()
+    private void OnDrawGizmos()
     {
+        Debug.DrawRay(transform.position, Orientation.forward, Color.black);
 
+        if (WallRight)
+        {
+            Debug.DrawRay(transform.position, Orientation.right, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, Orientation.right, Color.red);
+        }
+
+        if (WallLeft)
+        {
+            Debug.DrawRay(transform.position, -Orientation.right, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, -Orientation.right, Color.red);
+        }
     }
 
-    public void LimitSpeedTurning()
-    {
 
+    #endregion
+
+    public void HandleStrafeSpeed()
+    {
+        if (_currentMovementInput.y == 1)
+        {
+            _strafeSpeedMultiplier = 1.0f; // Full speed when moving forward
+        }
+        else
+        {
+            // Adjust strafe speed based on forward input
+            _strafeSpeedMultiplier = Mathf.Lerp(0.5f, 1.0f, Mathf.Abs(_currentMovementInput.y));
+        }
     }
 
     private void SpeedControl()
@@ -868,24 +900,4 @@ public class CharStateMachine : MonoBehaviour
         MoveForce = DesiredMoveForce;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (WallRight)
-        {
-            Debug.DrawRay(transform.position, Orientation.right, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, Orientation.right, Color.red);
-        }
-
-        if (WallLeft)
-        {
-            Debug.DrawRay(transform.position, -Orientation.right, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, -Orientation.right, Color.red);
-        }
-    }
 }

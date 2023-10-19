@@ -12,13 +12,9 @@ public class CharWallrunState : CharBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Enter wall");
         InitializeSubState();
         Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
-        // NEEDS WORK NEEDS WORK NEEDS WORK NEEDS WORK 
-        // Ctx.JumpDirection = Ctx.GetWallJumpDirection(Ctx.WallNormal);
-        // NEEDS WORK NEEDS WORK NEEDS WORK NEEDS WORK 
 
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
@@ -30,19 +26,16 @@ public class CharWallrunState : CharBaseState
             Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
             if (Ctx.CurrentWall != Ctx.PreviousWall)
             {
-                Debug.Log("THIS");
                 Ctx.WallClingTime = Ctx.MaxWallClingTime;
                 Ctx.CanStartWallTimer = true;
             }
             else
             {
-                Debug.Log("THAT");
                 Ctx.CanStartWallTimer = true;
             }
         }
         else
         {
-            Debug.Log("DEEZ");
             Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
             Ctx.CanStartWallTimer = true;
         }
@@ -50,7 +43,6 @@ public class CharWallrunState : CharBaseState
 
     public override void ExitState()
     {
-        Debug.Log("exit wall run");
         Ctx.IsWallRunning = false;
         Ctx.Rb.useGravity = true;
         Ctx.PreviousWall = Ctx.CurrentWall;
@@ -105,7 +97,6 @@ public class CharWallrunState : CharBaseState
         }
         else if (Ctx.IsJump)
         {
-            Debug.Log("WALL JUMP");
             SwitchState(Factory.Jump());
         }
         else if (Ctx.IsGrounded)
@@ -125,7 +116,6 @@ public class CharWallrunState : CharBaseState
 
         if (!Ctx.IsJump)
         {
-            Debug.Log("WALL JUMP");
             Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 225, ForceMode.Force);
         }
 

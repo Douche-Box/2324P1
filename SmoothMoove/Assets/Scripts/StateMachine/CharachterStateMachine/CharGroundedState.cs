@@ -49,8 +49,6 @@ public class CharGroundedState : CharBaseState
         }
         else if (Ctx.IsMove && Ctx.IsSlide && Ctx.MoveForce >= Ctx.MoveSpeed)
         {
-            Debug.Log("grounded > slide");
-
             SetSubState(Factory.Slide());
         }
     }

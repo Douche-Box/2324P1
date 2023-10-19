@@ -20,7 +20,6 @@ public class CharGrappledState : CharBaseState
 
     public override void ExitState()
     {
-        Debug.Log("exit grapple");
         Ctx.DestroyGrapplePoint();
     }
 
@@ -45,7 +44,6 @@ public class CharGrappledState : CharBaseState
         }
         else if (Ctx.IsMove)
         {
-            Debug.Log("ENTER WALK");
             SetSubState(Factory.Walk());
         }
     }
@@ -54,7 +52,6 @@ public class CharGrappledState : CharBaseState
     {
         if (!Ctx.IsShoot)
         {
-            Debug.Log("WORD FALL");
             SwitchState(Factory.Fall());
         }
     }

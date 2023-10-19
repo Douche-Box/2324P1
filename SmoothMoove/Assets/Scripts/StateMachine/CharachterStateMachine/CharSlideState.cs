@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CharSlideState : CharBaseState
@@ -10,18 +11,25 @@ public class CharSlideState : CharBaseState
 
         Ctx.IsSliding = true;
 
+        Ctx.Colliders[0].enabled = false;
+        Ctx.Colliders[1].enabled = true;
+
         if (Ctx.MoveForce < Ctx.SlideSpeed)
         {
             Ctx.MoveForce = Ctx.SlideSpeed;
         }
 
         Ctx.PlayerAnimator.SetBool("Sliding", true);
+
+
     }
 
     public override void ExitState()
     {
         Ctx.IsSliding = false;
 
+        Ctx.Colliders[0].enabled = true;
+        Ctx.Colliders[1].enabled = false;
         Ctx.PlayerAnimator.SetBool("Sliding", false);
     }
 
@@ -29,10 +37,9 @@ public class CharSlideState : CharBaseState
 
     public override void UpdateState()
     {
-        if (!Ctx.IsSloped || Ctx.Rb.velocity.y > 0.1f)
+        if (Ctx._slopeHit.transform != null)
         {
-            Debug.Log("SLOWER");
-            Ctx.DesiredMoveForce = Ctx.LowestSlideSpeed;
+
         }
     }
 
@@ -56,33 +63,33 @@ public class CharSlideState : CharBaseState
         }
         else if (Ctx.IsMove && !Ctx.IsSlide)
         {
-            Debug.Log("slide > walk 1");
             SwitchState(Factory.Walk());
         }
         else if (Ctx.IsMove && Ctx.IsSlide && Ctx.IsWalled)
         {
-            Debug.Log("slide > walk 2");
-
             SwitchState(Factory.Walk());
         }
         else if (Ctx.MoveForce <= Ctx.LowestSlideSpeed)
         {
-            Debug.Log("slide > walk 3");
             SwitchState(Factory.Walk());
         }
     }
 
     private void SlidingMovement()
     {
-
+        Debug.Log(Ctx.IsSloped);
         if (Ctx.IsSloped && Ctx.Rb.velocity.y < 0.1f)
         {
             Ctx.DesiredMoveForce = Ctx.SlopeSlideSpeed;
         }
-        else
+        else if (!Ctx.IsSloped || Ctx.Rb.velocity.y > 0.1f)
         {
             Ctx.DesiredMoveForce = Ctx.LowestSlideSpeed;
         }
+        // else
+        // {
+        //     Ctx.DesiredMoveForce = Ctx.LowestSlideSpeed;
+        // }
 
         Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier, ForceMode.Force);
     }

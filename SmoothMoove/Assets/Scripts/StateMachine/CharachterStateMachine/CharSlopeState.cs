@@ -11,6 +11,8 @@ public class CharSlopeState : CharBaseState
     {
         InitializeSubState();
         Ctx.Rb.useGravity = false;
+
+        Ctx.JumpMent = new Vector3(0, 1, 0);
     }
 
     public override void ExitState()
@@ -22,19 +24,12 @@ public class CharSlopeState : CharBaseState
 
     public override void UpdateState()
     {
-        Ctx.Movement = Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement).normalized;
-
-        // if (Ctx.IsSliding && Ctx.Rb.velocity.y < 0.1f)
-        // {
-        //     Ctx.DesiredMoveForce = Ctx.SlopeSlideSpeed;
-        // }
+        Ctx.Movement = Ctx.GetSlopeMoveDirection(Ctx.CurrentMovement);
 
         if (Ctx.Rb.velocity.y > 0)
         {
             Ctx.MoveMultiplier = 2f;
         }
-
-
 
         if (Ctx.Rb.velocity.y > 0 || Ctx.Rb.velocity.y > 0)
         {

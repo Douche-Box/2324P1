@@ -6,8 +6,12 @@ public class CharWalkState : CharBaseState
 
     public override void EnterState()
     {
-        Debug.Log("WALK ENTER");
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
+
+        if (Ctx.MoveForce < Ctx.MoveSpeed)
+        {
+            Ctx.MoveForce = Ctx.MoveSpeed;
+        }
 
         Ctx.PlayerAnimator.SetFloat("Running", Ctx.MovementSpeed);
     }
@@ -40,15 +44,13 @@ public class CharWalkState : CharBaseState
         }
         else if (Ctx.IsSlide && Ctx.IsMove && !Ctx.IsWalled && Ctx.MoveForce >= Ctx.MoveSpeed)
         {
-            Debug.Log("walk > slide");
             SwitchState(Factory.Slide());
         }
     }
 
     private void WalkMovement()
     {
-
-        Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier, ForceMode.Force);
+        Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier * Ctx.StrafeSpeedMultiplier, ForceMode.Force);
     }
 
 }
