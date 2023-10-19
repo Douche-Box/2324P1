@@ -13,7 +13,7 @@ public class CharWalkState : CharBaseState
             Ctx.MoveForce = Ctx.MoveSpeed;
         }
 
-        Ctx.PlayerAnimator.SetFloat("Running", Ctx.MoveForce);
+        // Ctx.PlayerAnimator.SetFloat("Running", Ctx.MoveForce);
     }
 
     public override void ExitState() { }

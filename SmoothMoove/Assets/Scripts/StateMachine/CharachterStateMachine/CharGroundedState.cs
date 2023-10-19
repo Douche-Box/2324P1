@@ -13,6 +13,7 @@ public class CharGroundedState : CharBaseState
         Ctx.CanStartWallTimer = false;
         Ctx.WallClingTime = Ctx.MaxWallClingTime;
         Ctx.IsForced = false;
+        Ctx.IsAired = false;
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
         Ctx.JumpMent = new Vector3(0, 1, 0);
@@ -24,7 +25,7 @@ public class CharGroundedState : CharBaseState
 
     public override void UpdateState()
     {
-        Ctx.PlayerAnimator.SetFloat("Running", Ctx.MoveForce);
+        Ctx.PlayerAnimator.SetFloat("Running", Ctx.MovementSpeed);
         Ctx.Movement = Ctx.CurrentMovement.normalized;
     }
 
@@ -49,6 +50,7 @@ public class CharGroundedState : CharBaseState
         }
         else if (Ctx.IsMove && Ctx.IsSlide && Ctx.MoveForce >= Ctx.MoveSpeed)
         {
+            Debug.Log("GROUND => slide");
             SetSubState(Factory.Slide());
         }
     }

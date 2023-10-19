@@ -76,14 +76,10 @@ public class CharSlideState : CharBaseState
         {
             Ctx.DesiredMoveForce = Ctx.SlopeSlideSpeed;
         }
-        else if (!Ctx.IsSloped || Ctx.Rb.velocity.y > 0.1f)
+        else if (!Ctx.IsSloped && Ctx.IsGrounded || Ctx.Rb.velocity.y > 0.1f && Ctx.IsGrounded)
         {
             Ctx.DesiredMoveForce = Ctx.LowestSlideSpeed;
         }
-        // else
-        // {
-        //     Ctx.DesiredMoveForce = Ctx.LowestSlideSpeed;
-        // }
 
         Ctx.Rb.AddForce(Ctx.Movement * Ctx.MoveForce * 10f * Ctx.MoveMultiplier, ForceMode.Force);
     }

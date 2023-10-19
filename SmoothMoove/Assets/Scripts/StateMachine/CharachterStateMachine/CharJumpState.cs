@@ -11,12 +11,15 @@ public class CharJumpState : CharBaseState
     {
         InitializeSubState();
         Debug.Log("DO JUMP ENTER");
-        Ctx.PlayerAnimator.SetTrigger("Jump");
+        Ctx.PlayerAnimator.SetBool("Jump", true);
         Ctx.IsExitingSlope = true;
         HandleJump();
     }
 
-    public override void ExitState() { }
+    public override void ExitState()
+    {
+        Ctx.PlayerAnimator.SetBool("Jump", false);
+    }
 
     #region MonoBehaveiours
 
