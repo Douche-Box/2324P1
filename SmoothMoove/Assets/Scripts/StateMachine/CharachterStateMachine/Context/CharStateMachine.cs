@@ -567,6 +567,8 @@ public class CharStateMachine : MonoBehaviour
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
+        PlayerAnimator.SetBool("OnGround", IsGrounded);
+
         IsSloped = CheckSloped();
         CheckForWall();
         CheckWallDirection();
@@ -715,7 +717,7 @@ public class CharStateMachine : MonoBehaviour
             {
                 if (CheckSloped())
                 {
-                    return false;
+                    return true;
                 }
                 return true;
             }
@@ -732,7 +734,7 @@ public class CharStateMachine : MonoBehaviour
 
     bool CheckSloped()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.3f, _groundLayer))
+        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.4f, _groundLayer))
         {
             float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
             return angle < _maxSlopeAngle && angle != 0;

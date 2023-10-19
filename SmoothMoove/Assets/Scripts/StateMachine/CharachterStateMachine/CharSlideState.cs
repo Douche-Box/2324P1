@@ -35,13 +35,7 @@ public class CharSlideState : CharBaseState
 
     #region MonoBehaveiours
 
-    public override void UpdateState()
-    {
-        if (Ctx._slopeHit.transform != null)
-        {
-
-        }
-    }
+    public override void UpdateState() { }
 
     public override void FixedUpdateState()
     {

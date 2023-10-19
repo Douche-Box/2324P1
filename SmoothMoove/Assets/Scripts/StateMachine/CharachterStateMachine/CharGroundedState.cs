@@ -24,7 +24,7 @@ public class CharGroundedState : CharBaseState
 
     public override void UpdateState()
     {
-        Ctx.PlayerAnimator.SetFloat("Running", Ctx.MovementSpeed);
+        Ctx.PlayerAnimator.SetFloat("Running", Ctx.MoveForce);
         Ctx.Movement = Ctx.CurrentMovement.normalized;
     }
 

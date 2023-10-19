@@ -40,13 +40,9 @@ public class CharFallState : CharBaseState
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMove && !Ctx.IsSlide)
+        else if (Ctx.IsMove)
         {
             SetSubState(Factory.Walk());
-        }
-        else if (Ctx.IsSlide && Ctx.IsMove)
-        {
-            SetSubState(Factory.Slide());
         }
     }
 

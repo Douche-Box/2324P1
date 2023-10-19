@@ -18,7 +18,8 @@ public class CharWallrunState : CharBaseState
 
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
-
+        Ctx.PlayerAnimator.SetBool("WallRunningL", Ctx.WallLeft);
+        Ctx.PlayerAnimator.SetBool("WallRunningR", Ctx.WallRight);
 
 
         if (Ctx.CurrentWall != null)
@@ -43,6 +44,10 @@ public class CharWallrunState : CharBaseState
 
     public override void ExitState()
     {
+
+        Ctx.PlayerAnimator.SetBool("WallRunningL", false);
+        Ctx.PlayerAnimator.SetBool("WallRunningR", false);
+
         Ctx.IsWallRunning = false;
         Ctx.Rb.useGravity = true;
         Ctx.PreviousWall = Ctx.CurrentWall;
@@ -82,10 +87,6 @@ public class CharWallrunState : CharBaseState
         if (Ctx.IsMove)
         {
             SetSubState(Factory.Walk());
-        }
-        if (Ctx.IsSlide && !Ctx.IsWallRunning)
-        {
-            SetSubState(Factory.Slide());
         }
     }
 

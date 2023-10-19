@@ -13,7 +13,7 @@ public class CharWalkState : CharBaseState
             Ctx.MoveForce = Ctx.MoveSpeed;
         }
 
-        Ctx.PlayerAnimator.SetFloat("Running", Ctx.MovementSpeed);
+        Ctx.PlayerAnimator.SetFloat("Running", Ctx.MoveForce);
     }
 
     public override void ExitState() { }
@@ -42,7 +42,7 @@ public class CharWalkState : CharBaseState
         {
             SwitchState(Factory.Idle());
         }
-        else if (Ctx.IsSlide && Ctx.IsMove && !Ctx.IsWalled && Ctx.MoveForce >= Ctx.MoveSpeed)
+        else if (Ctx.IsSlide && Ctx.IsMove && !Ctx.IsWalled && Ctx.MoveForce >= Ctx.MoveSpeed && !Ctx.IsAired)
         {
             SwitchState(Factory.Slide());
         }

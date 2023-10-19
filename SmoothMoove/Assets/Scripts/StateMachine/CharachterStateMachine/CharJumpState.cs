@@ -10,6 +10,8 @@ public class CharJumpState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
+        Debug.Log("DO JUMP ENTER");
+        Ctx.PlayerAnimator.SetTrigger("Jump");
         Ctx.IsExitingSlope = true;
         HandleJump();
     }
@@ -39,10 +41,6 @@ public class CharJumpState : CharBaseState
         else if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SetSubState(Factory.Walk());
-        }
-        else if (Ctx.IsSlide && Ctx.IsMove)
-        {
-            SetSubState(Factory.Slide());
         }
     }
 
