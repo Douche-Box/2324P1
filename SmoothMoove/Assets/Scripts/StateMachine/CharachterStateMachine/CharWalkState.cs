@@ -42,7 +42,7 @@ public class CharWalkState : CharBaseState
         {
             SwitchState(Factory.Idle());
         }
-        else if (Ctx.IsSlide && Ctx.IsMove && !Ctx.IsWalled && Ctx.MoveForce >= Ctx.MoveSpeed && !Ctx.IsAired && !Ctx.IsJumping)
+        else if (Ctx.IsSlide && Ctx.IsMove && !Ctx.IsWalled && Ctx.MoveForce >= Ctx.MoveSpeed && !Ctx.IsJumping)
         {
             SwitchState(Factory.Slide());
         }
