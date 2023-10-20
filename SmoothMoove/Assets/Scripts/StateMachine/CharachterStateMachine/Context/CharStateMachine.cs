@@ -492,6 +492,13 @@ public class CharStateMachine : MonoBehaviour
         set { _isWallRunning = value; }
     }
 
+    [SerializeField] bool _isJumping;
+    public bool IsJumping
+    {
+        get { return _isJumping; }
+        set { _isJumping = value; }
+    }
+
     #endregion
 
     #endregion

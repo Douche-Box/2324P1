@@ -55,6 +55,10 @@ public class CharSlideState : CharBaseState
         {
             SwitchState(Factory.Idle());
         }
+        else if (Ctx.IsMove && Ctx.IsJumping)
+        {
+            SwitchState(Factory.Walk());
+        }
         else if (Ctx.IsMove && !Ctx.IsSlide)
         {
             SwitchState(Factory.Walk());
