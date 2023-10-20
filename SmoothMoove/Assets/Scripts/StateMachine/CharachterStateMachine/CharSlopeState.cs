@@ -31,7 +31,7 @@ public class CharSlopeState : CharBaseState
             Ctx.MoveMultiplier = 2f;
         }
 
-        if (Ctx.Rb.velocity.y > 0 || Ctx.Rb.velocity.y > 0)
+        if (Ctx.Rb.velocity.y > 0 || Ctx.Rb.velocity.y > 0 || Ctx.IsSliding)
         {
             Ctx.Rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }

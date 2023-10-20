@@ -46,12 +46,10 @@ public class CharGroundedState : CharBaseState
         }
         else if (Ctx.IsMove && !Ctx.IsSlide)
         {
-            Debug.Log("GROUND => walk");
             SetSubState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide && Ctx.MoveForce >= Ctx.MoveSpeed)
+        else if (Ctx.IsMove && Ctx.IsSlide && Ctx.MoveForce >= Ctx.MoveSpeed && !Ctx.IsAired)
         {
-            Debug.Log("GROUND => slide");
             SetSubState(Factory.Slide());
         }
     }

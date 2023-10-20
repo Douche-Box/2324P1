@@ -11,12 +11,12 @@ public class Navmeshplayer : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        
+
     }
 
     private void Update()
     {
-        agent.destination = player.position;
-       
+        // agent.destination = player.position;
+
     }
 }

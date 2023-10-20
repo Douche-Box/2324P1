@@ -577,6 +577,8 @@ public class CharStateMachine : MonoBehaviour
         PlayerAnimator.SetBool("OnGround", IsGrounded);
 
         IsSloped = CheckSloped();
+        Debug.Log("SLOPED == " + IsSloped);
+
         CheckForWall();
         CheckWallDirection();
         // _isWallAngle = CheckWallAngle();
@@ -713,6 +715,7 @@ public class CharStateMachine : MonoBehaviour
 
         Vector3 sphereCenter = characterPosition + Vector3.down * sphereOffset;
         bool isOnGround = Physics.SphereCast(sphereCenter, sphereRadius, Vector3.down, out RaycastHit hit, sphereOffset + 0.1f, _groundLayer);
+        Debug.Log("GROUNDED == " + isOnGround);
 
         if (isOnGround)
         {
@@ -741,7 +744,7 @@ public class CharStateMachine : MonoBehaviour
 
     bool CheckSloped()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.3f, _groundLayer))
+        if (Physics.Raycast(transform.position, Vector3.down, out _slopeHit, _playerHeight * 0.5f + 0.8f, _groundLayer))
         {
             float angle = Vector3.Angle(Vector3.up, _slopeHit.normal);
             return angle < _maxSlopeAngle && angle != 0;

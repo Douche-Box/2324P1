@@ -10,7 +10,6 @@ public class CharJumpState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
-        Debug.Log("DO JUMP ENTER");
         Ctx.IsJumping = true;
         Ctx.PlayerAnimator.SetBool("Jump", true);
         Ctx.IsExitingSlope = true;
