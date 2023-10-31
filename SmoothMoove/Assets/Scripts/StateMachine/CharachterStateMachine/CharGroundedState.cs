@@ -60,6 +60,10 @@ public class CharGroundedState : CharBaseState
         {
             SwitchState(Factory.Fall());
         }
+        else if (Ctx.IsJump && Ctx.VaultLow && !Ctx.VaultMedium)
+        {
+            SwitchState(Factory.Vaulted());
+        }
         else if (Ctx.IsJump)
         {
             SwitchState(Factory.Jump());

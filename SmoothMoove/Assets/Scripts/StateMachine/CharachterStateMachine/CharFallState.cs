@@ -52,7 +52,7 @@ public class CharFallState : CharBaseState
         {
             SwitchState(Factory.Grounded());
         }
-        else if (Ctx.IsJump && Ctx.VaultLow && !Ctx.VaultHigh)
+        else if (Ctx.IsJump && Ctx.VaultLow && !Ctx.VaultMedium)
         {
             SwitchState(Factory.Vaulted());
         }

@@ -548,25 +548,34 @@ public class CharStateMachine : MonoBehaviour
         get { return _vaultLow; }
     }
 
+    [SerializeField] bool _vaultMedium;
+    public bool VaultMedium
+    {
+        get { return _vaultMedium; }
+    }
+
     [SerializeField] bool _vaultHigh;
     public bool VaultHigh
     {
         get { return _vaultHigh; }
     }
 
+    [SerializeField] float _lowVaultOffset;
+    public float LowVaultOffset
+    {
+        get { return _lowVaultOffset; }
+    }
+
+    [SerializeField] float _mediumVaultOffset;
+    public float MediumVaultOffset
+    {
+        get { return _mediumVaultOffset; }
+    }
 
     [SerializeField] float _highVaultOffset;
     public float HighVaultOffset
     {
         get { return _highVaultOffset; }
-    }
-
-
-
-    [SerializeField] float _lowVaultOffset;
-    public float LowVaultOffset
-    {
-        get { return _lowVaultOffset; }
     }
 
     [SerializeField] Transform _vaultObj;
@@ -621,8 +630,6 @@ public class CharStateMachine : MonoBehaviour
     private void Update()
     {
         _movementSpeed = Rb.velocity.magnitude;
-
-        Debug.Log(_currentState.ToString());
 
         if (Input.GetKey(KeyCode.P))
         {
@@ -755,15 +762,21 @@ public class CharStateMachine : MonoBehaviour
             _vaultObj = _vaultHit.transform;
             _vaultLow = true;
 
-            Vector3 offsetHigh = this.transform.position + new Vector3(0, _highVaultOffset, 0);
-            if (Physics.Raycast(offsetHigh, Orientation.forward, out _vaultHit, _vaultCheckDistance, _vaultLayer))
+            Vector3 offsetMedium = this.transform.position + new Vector3(0, _mediumVaultOffset, 0);
+            if (Physics.Raycast(offsetMedium, Orientation.forward, out _vaultHit, _vaultCheckDistance, _vaultLayer))
             {
                 print("high");
-                _vaultHigh = true;
+                _vaultMedium = true;
+
+                Vector3 offsetHigh = this.transform.position + new Vector3(0, _highVaultOffset, 0);
+                if (Physics.Raycast(offsetHigh, Orientation.forward, out _vaultHit, _vaultCheckDistance, _vaultLayer))
+                {
+
+                }
             }
             else
             {
-                _vaultHigh = false;
+                _vaultMedium = false;
             }
         }
         else

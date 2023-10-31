@@ -34,13 +34,23 @@ public class ThirdPersonCam : MonoBehaviour
     }
     public CamState camState;
 
+    [SerializeField] float inputY;
+    [SerializeField] float inputX;
+
+    [SerializeField] float oldInputY;
+    [SerializeField] float oldInputX;
+
+
+    Vector3 inputDir;
 
     void Update()
     {
         Vector3 viewDir = _player.position - new Vector3(transform.position.x, _player.position.y, transform.position.z);
         _orientation.forward = viewDir.normalized;
 
-        Vector3 inputDir = _orientation.forward * _stateMachine.CurrentMovementInput.y + _orientation.right * _stateMachine.CurrentMovementInput.x;
+        inputDir = _orientation.forward * _stateMachine.CurrentMovementInput.y + _orientation.right * _stateMachine.CurrentMovementInput.x;
+        inputY = _stateMachine.CurrentMovementInput.y;
+        inputX = _stateMachine.CurrentMovementInput.x;
 
         inputDir.y = 0;
 
@@ -69,8 +79,30 @@ public class ThirdPersonCam : MonoBehaviour
         }
         else if (inputDir != Vector3.zero)
         {
-            Quaternion lookRotation = Quaternion.LookRotation(inputDir, Vector3.up);
-            _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
+
+
+            if (inputY == -oldInputY && inputY == 1f || inputY == -oldInputY && inputY == -1f || inputX == -oldInputX && inputX == 1f || inputX == -oldInputX && inputX == -1f)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(inputDir, Vector3.up);
+                _playerObj.transform.rotation = lookRotation;
+            }
+            else
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(inputDir, Vector3.up);
+                _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
+            }
+
+        }
+
+        if (inputY != 0)
+        {
+            oldInputY = inputY;
+            oldInputX = inputX;
+        }
+        if (inputX != 0)
+        {
+            oldInputX = inputX;
+            oldInputY = inputY;
         }
     }
 }
