@@ -69,9 +69,9 @@ public class CharJumpState : CharBaseState
     {
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
-        Ctx.IsForced = true;
+        // Ctx.IsForced = true;
 
-        Ctx.ExtraForce = Ctx.JumpForce;
+        // Ctx.ExtraForce = Ctx.JumpForce;
 
         Ctx.Rb.AddForce(Ctx.JumpMent * Ctx.JumpForce, ForceMode.VelocityChange);
     }

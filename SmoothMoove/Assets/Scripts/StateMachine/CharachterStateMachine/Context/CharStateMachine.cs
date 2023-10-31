@@ -348,6 +348,85 @@ public class CharStateMachine : MonoBehaviour
 
     #endregion
 
+    [Header("Vaulting")]
+    #region Vaulting
+
+    [SerializeField] RaycastHit _vaultHit;
+    public RaycastHit VaultHit
+    {
+        get { return _vaultHit; }
+    }
+
+    [SerializeField] RaycastHit _vaultUnHit;
+    public RaycastHit VaultUnHit
+    {
+        get { return _vaultUnHit; }
+    }
+
+    [SerializeField] float _vaultCheckDistance;
+    public float VaultCheckDistance
+    {
+        get { return _vaultCheckDistance; }
+    }
+
+    [SerializeField] LayerMask _vaultLayer;
+    public LayerMask VaultLayer
+    {
+        get { return _vaultLayer; }
+    }
+
+
+    [SerializeField] bool _vaultLow;
+    public bool VaultLow
+    {
+        get { return _vaultLow; }
+    }
+
+    [SerializeField] bool _vaultMedium;
+    public bool VaultMedium
+    {
+        get { return _vaultMedium; }
+    }
+
+    [SerializeField] bool _vaultHigh;
+    public bool VaultHigh
+    {
+        get { return _vaultHigh; }
+    }
+
+    [SerializeField] float _lowVaultOffset;
+    public float LowVaultOffset
+    {
+        get { return _lowVaultOffset; }
+    }
+
+    [SerializeField] float _mediumVaultOffset;
+    public float MediumVaultOffset
+    {
+        get { return _mediumVaultOffset; }
+    }
+
+    [SerializeField] float _highVaultOffset;
+    public float HighVaultOffset
+    {
+        get { return _highVaultOffset; }
+    }
+
+    [SerializeField] Transform _vaultObj;
+    public Transform VaultObj
+    {
+        get { return _vaultObj; }
+    }
+
+    [SerializeField] bool _isVaulted;
+    public bool IsVaulted
+    {
+        get { return _isVaulted; }
+        set { _isVaulted = value; }
+    }
+
+    #endregion
+
     [Header("Inputs")]
     #region Inputs
 
@@ -517,79 +596,14 @@ public class CharStateMachine : MonoBehaviour
         set { _extraForce = value; }
     }
 
-    [SerializeField] RaycastHit _vaultHit;
-    public RaycastHit VaultHit
+    [SerializeField] float _forceSlowDownRate;
+    public float ForceSlowDownRate
     {
-        get { return _vaultHit; }
-    }
-
-    [SerializeField] RaycastHit _vaultUnHit;
-    public RaycastHit VaultUnHit
-    {
-        get { return _vaultUnHit; }
-    }
-
-    [SerializeField] float _vaultCheckDistance;
-    public float VaultCheckDistance
-    {
-        get { return _vaultCheckDistance; }
-    }
-
-    [SerializeField] LayerMask _vaultLayer;
-    public LayerMask VaultLayer
-    {
-        get { return _vaultLayer; }
+        get { return _forceSlowDownRate; }
+        set { _forceSlowDownRate = value; }
     }
 
 
-    [SerializeField] bool _vaultLow;
-    public bool VaultLow
-    {
-        get { return _vaultLow; }
-    }
-
-    [SerializeField] bool _vaultMedium;
-    public bool VaultMedium
-    {
-        get { return _vaultMedium; }
-    }
-
-    [SerializeField] bool _vaultHigh;
-    public bool VaultHigh
-    {
-        get { return _vaultHigh; }
-    }
-
-    [SerializeField] float _lowVaultOffset;
-    public float LowVaultOffset
-    {
-        get { return _lowVaultOffset; }
-    }
-
-    [SerializeField] float _mediumVaultOffset;
-    public float MediumVaultOffset
-    {
-        get { return _mediumVaultOffset; }
-    }
-
-    [SerializeField] float _highVaultOffset;
-    public float HighVaultOffset
-    {
-        get { return _highVaultOffset; }
-    }
-
-    [SerializeField] Transform _vaultObj;
-    public Transform VaultObj
-    {
-        get { return _vaultObj; }
-    }
-
-    [SerializeField] bool _isVaulted;
-    public bool IsVaulted
-    {
-        get { return _isVaulted; }
-        set { _isVaulted = value; }
-    }
 
     private void Awake()
     {
@@ -968,8 +982,15 @@ public class CharStateMachine : MonoBehaviour
             {
                 Vector3 limitedVel = flatVel.normalized * ExtraForce;
                 Rb.velocity = new Vector3(limitedVel.x, Rb.velocity.y, limitedVel.z);
+            }
+            else if (IsForced && flatVel.magnitude <= 1)
+            {
+                ExtraForce = 0;
+            }
 
-                ExtraForce -= Time.deltaTime;
+            if (IsForced)
+            {
+                ExtraForce -= _forceSlowDownRate * Time.deltaTime;
 
                 if (ExtraForce <= MoveForce)
                 {

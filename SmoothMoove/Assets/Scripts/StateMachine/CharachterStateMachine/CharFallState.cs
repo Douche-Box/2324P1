@@ -12,6 +12,7 @@ public class CharFallState : CharBaseState
         InitializeSubState();
         Ctx.IsAired = true;
         Ctx.MoveMultiplier = Ctx.AirSpeed;
+        Ctx.ForceSlowDownRate = 1;
     }
 
     public override void ExitState()

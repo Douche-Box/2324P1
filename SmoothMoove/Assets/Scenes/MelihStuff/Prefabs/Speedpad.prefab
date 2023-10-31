@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7921483405241578755}
   - component: {fileID: 1950871168509969698}
   - component: {fileID: 4790372621096426661}
-  - component: {fileID: 4196375827126859876}
   m_Layer: 0
   m_Name: er
   m_TagString: Untagged
@@ -84,28 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4196375827126859876
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274411112526957071}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5059670473189649827
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +94,8 @@ GameObject:
   - component: {fileID: 890400472606353848}
   - component: {fileID: 6898544974483266875}
   - component: {fileID: 8761798234637048048}
-  - component: {fileID: 6308169674776881889}
+  - component: {fileID: 7723283161802860945}
+  - component: {fileID: 4369206454506208610}
   m_Layer: 0
   m_Name: Speedpad
   m_TagString: Untagged
@@ -193,8 +171,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6308169674776881889
-MeshCollider:
+--- !u!65 &7723283161802860945
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -208,13 +186,25 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 28875071110253183, guid: fe5eda5f7569c4e4ea57ebf3b5fa529e, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 0.024726912, z: 1.0000002}
+  m_Center: {x: -0.0000076293945, y: 0.012363441, z: 0.000015258789}
+--- !u!114 &4369206454506208610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5059670473189649827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bfe3ed1572498a488d1e03d27a70aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _extraSpeed: 0
 --- !u!1 &8399152274673653158
 GameObject:
   m_ObjectHideFlags: 0

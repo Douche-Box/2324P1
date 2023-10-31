@@ -12,7 +12,7 @@ public class CharGroundedState : CharBaseState
         Ctx.MoveMultiplier = 1f;
         Ctx.CanStartWallTimer = false;
         Ctx.WallClingTime = Ctx.MaxWallClingTime;
-        Ctx.IsForced = false;
+        Ctx.ForceSlowDownRate = 5;
         Ctx.IsAired = false;
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
