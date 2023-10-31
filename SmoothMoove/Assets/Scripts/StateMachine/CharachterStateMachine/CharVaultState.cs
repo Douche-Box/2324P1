@@ -11,10 +11,12 @@ public class CharVaultState : CharBaseState
     {
         Debug.Log("Vault ENTER");
         Ctx.IsVaulted = true;
-        Vector3 offset = new Vector3(Ctx.VaultObj.transform.position.x, Ctx.VaultObj.GetComponent<Renderer>().bounds.max.y + 1f, Ctx.VaultObj.transform.position.z);
-        Debug.Log(Ctx.VaultObj.GetComponent<Renderer>().bounds.max);
-        Debug.Log(Ctx.VaultObj.GetComponent<Renderer>().bounds.min);
-        Ctx.transform.position = offset;
+        Ctx.Rb.useGravity = false;
+        Vector3 offset = new Vector3(Ctx.transform.position.x, Ctx.VaultObj.GetComponent<Renderer>().bounds.max.y + 1f, Ctx.transform.position.z);
+        // Debug.Log(Ctx.VaultObj.GetComponent<Renderer>().bounds.max);
+        // Debug.Log(Ctx.VaultObj.GetComponent<Renderer>().bounds.min);
+        // Ctx.transform.position = offset;
+        Ctx.transform.position = Vector3.Slerp(Ctx.transform.position, offset, 1f * Time.deltaTime);
     }
 
     public override void ExitState()
@@ -26,6 +28,8 @@ public class CharVaultState : CharBaseState
 
     public override void UpdateState()
     {
+        // Vector3 offset = new Vector3(Ctx.transform.position.x, Ctx.VaultObj.GetComponent<Renderer>().bounds.max.y + 1f, Ctx.transform.position.z);
+        // Ctx.transform.position = offset;
         CheckSwitchStates();
     }
 
@@ -46,7 +50,6 @@ public class CharVaultState : CharBaseState
     {
         if (Ctx.IsGrounded)
         {
-            Debug.Log("VAULT > GROUNDED");
             SwitchState(Factory.Grounded());
         }
     }
