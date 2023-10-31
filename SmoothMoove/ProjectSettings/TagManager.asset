@@ -23,8 +23,8 @@ TagManager:
   - Ground_Wall
   - Grapple
   - Vault
-  - 
-  - 
+  - Player
+  - NavMesh
   - 
   - 
   - 
