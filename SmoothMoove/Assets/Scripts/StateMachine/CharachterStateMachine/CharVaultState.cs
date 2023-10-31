@@ -11,13 +11,13 @@ public class CharVaultState : CharBaseState
     {
         Debug.Log("Vault ENTER");
         Ctx.IsVaulted = true;
-        // Ctx.Rb.useGravity = false;
-        Vector3 offset = new Vector3(Ctx.transform.position.x, Ctx.VaultObj.GetComponent<Renderer>().bounds.max.y + 1f, Ctx.transform.position.z);
-        // Debug.Log(Ctx.VaultObj.GetComponent<Renderer>().bounds.max);
-        // Debug.Log(Ctx.VaultObj.GetComponent<Renderer>().bounds.min);
-        Ctx.transform.position = offset;
-        // Ctx.transform.position = Vector3.Slerp(Ctx.transform.position, offset, 8f * Time.deltaTime);
-        // Ctx.Rb.useGravity = true;
+
+        float yOffset = Ctx.VaultObj.GetComponent<Renderer>().bounds.max.y + 1f;
+        float xOffset = Mathf.Abs(Ctx.transform.forward.x) > Mathf.Abs(Ctx.transform.forward.z) ? (Ctx.VaultObj.transform.position.x - Ctx.transform.position.x) : 0f;
+        float zOffset = Mathf.Abs(Ctx.transform.forward.z) > Mathf.Abs(Ctx.transform.forward.x) ? (Ctx.VaultObj.transform.position.z - Ctx.transform.position.z) : 0f;
+
+        Vector3 newPosition = new Vector3(Ctx.transform.position.x + xOffset, yOffset, Ctx.transform.position.z + zOffset);
+        Ctx.transform.position = newPosition;
     }
 
     public override void ExitState()
@@ -29,8 +29,6 @@ public class CharVaultState : CharBaseState
 
     public override void UpdateState()
     {
-        // Vector3 offset = new Vector3(Ctx.transform.position.x, Ctx.VaultObj.GetComponent<Renderer>().bounds.max.y + 1f, Ctx.transform.position.z);
-        // Ctx.transform.position = offset;
         CheckSwitchStates();
     }
 
