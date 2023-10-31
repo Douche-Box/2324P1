@@ -517,6 +517,70 @@ public class CharStateMachine : MonoBehaviour
         set { _extraForce = value; }
     }
 
+    [SerializeField] RaycastHit _vaultHit;
+    public RaycastHit VaultHit
+    {
+        get { return _vaultHit; }
+    }
+
+    [SerializeField] RaycastHit _vaultUnHit;
+    public RaycastHit VaultUnHit
+    {
+        get { return _vaultUnHit; }
+    }
+
+    [SerializeField] float _vaultCheckDistance;
+    public float VaultCheckDistance
+    {
+        get { return _vaultCheckDistance; }
+    }
+
+    [SerializeField] LayerMask _vaultLayer;
+    public LayerMask VaultLayer
+    {
+        get { return _vaultLayer; }
+    }
+
+
+    [SerializeField] bool _vaultLow;
+    public bool VaultLow
+    {
+        get { return _vaultLow; }
+    }
+
+    [SerializeField] bool _vaultHigh;
+    public bool VaultHigh
+    {
+        get { return _vaultHigh; }
+    }
+
+
+    [SerializeField] float _highVaultOffset;
+    public float HighVaultOffset
+    {
+        get { return _highVaultOffset; }
+    }
+
+
+
+    [SerializeField] float _lowVaultOffset;
+    public float LowVaultOffset
+    {
+        get { return _lowVaultOffset; }
+    }
+
+    [SerializeField] Transform _vaultObj;
+    public Transform VaultObj
+    {
+        get { return _vaultObj; }
+    }
+
+    [SerializeField] bool _isVaulted;
+    public bool IsVaulted
+    {
+        get { return _isVaulted; }
+        set { _isVaulted = value; }
+    }
 
     private void Awake()
     {
@@ -558,11 +622,14 @@ public class CharStateMachine : MonoBehaviour
     {
         _movementSpeed = Rb.velocity.magnitude;
 
+        Debug.Log(_currentState.ToString());
+
         if (Input.GetKey(KeyCode.P))
         {
             Debug.Log(_currentState.ToString());
         }
 
+        VaultCheck();
 
         if (_isShoot)
         {
@@ -577,7 +644,6 @@ public class CharStateMachine : MonoBehaviour
         PlayerAnimator.SetBool("OnGround", IsGrounded);
 
         IsSloped = CheckSloped();
-        Debug.Log("SLOPED == " + IsSloped);
 
         CheckForWall();
         CheckWallDirection();
@@ -680,12 +746,36 @@ public class CharStateMachine : MonoBehaviour
 
     #region STUFF
 
+    public void VaultCheck()
+    {
+        Vector3 offsetLow = this.transform.position + new Vector3(0, -_lowVaultOffset, 0);
+        if (Physics.Raycast(offsetLow, Orientation.forward, out _vaultHit, _vaultCheckDistance, _vaultLayer))
+        {
+            print("low");
+            _vaultObj = _vaultHit.transform;
+            _vaultLow = true;
+
+            Vector3 offsetHigh = this.transform.position + new Vector3(0, _highVaultOffset, 0);
+            if (Physics.Raycast(offsetHigh, Orientation.forward, out _vaultHit, _vaultCheckDistance, _vaultLayer))
+            {
+                print("high");
+                _vaultHigh = true;
+            }
+            else
+            {
+                _vaultHigh = false;
+            }
+        }
+        else
+        {
+            _vaultLow = false;
+        }
+    }
+
     public void MakeGrappleJoint()
     {
         // if (GrappleJoint == null)
         //     return;
-
-        Debug.Log(GrappleHit.point);
 
         GrappleJoint = this.transform.AddComponent<SpringJoint>();
         GrappleJoint.spring = 80000f;
@@ -715,7 +805,6 @@ public class CharStateMachine : MonoBehaviour
 
         Vector3 sphereCenter = characterPosition + Vector3.down * sphereOffset;
         bool isOnGround = Physics.SphereCast(sphereCenter, sphereRadius, Vector3.down, out RaycastHit hit, sphereOffset + 0.1f, _groundLayer);
-        Debug.Log("GROUNDED == " + isOnGround);
 
         if (isOnGround)
         {

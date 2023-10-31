@@ -11,6 +11,7 @@ enum CharStates
     Sloped,
     Walled,
     Grappled,
+    Vaulted,
 }
 
 public class CharStateFactory
@@ -30,6 +31,7 @@ public class CharStateFactory
         _states[CharStates.Sloped] = new CharSlopeState(_context, this);
         _states[CharStates.Walled] = new CharWallrunState(_context, this);
         _states[CharStates.Grappled] = new CharGrappledState(_context, this);
+        _states[CharStates.Vaulted] = new CharVaultState(_context, this);
     }
 
     public CharBaseState Grounded()
@@ -77,5 +79,8 @@ public class CharStateFactory
         return _states[CharStates.Grappled];
     }
 
-
+    public CharBaseState Vaulted()
+    {
+        return _states[CharStates.Vaulted];
+    }
 }

@@ -52,6 +52,11 @@ public class CharFallState : CharBaseState
         {
             SwitchState(Factory.Grounded());
         }
+        else if (Ctx.IsJump && Ctx.VaultLow && !Ctx.VaultHigh)
+        {
+            Debug.Log("Vault enter");
+            SwitchState(Factory.Vaulted());
+        }
         else if (Ctx.IsSloped)
         {
             SwitchState(Factory.Sloped());
