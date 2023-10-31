@@ -11,12 +11,13 @@ public class CharVaultState : CharBaseState
     {
         Debug.Log("Vault ENTER");
         Ctx.IsVaulted = true;
-        Ctx.Rb.useGravity = false;
+        // Ctx.Rb.useGravity = false;
         Vector3 offset = new Vector3(Ctx.transform.position.x, Ctx.VaultObj.GetComponent<Renderer>().bounds.max.y + 1f, Ctx.transform.position.z);
         // Debug.Log(Ctx.VaultObj.GetComponent<Renderer>().bounds.max);
         // Debug.Log(Ctx.VaultObj.GetComponent<Renderer>().bounds.min);
-        // Ctx.transform.position = offset;
-        Ctx.transform.position = Vector3.Slerp(Ctx.transform.position, offset, 1f * Time.deltaTime);
+        Ctx.transform.position = offset;
+        // Ctx.transform.position = Vector3.Slerp(Ctx.transform.position, offset, 8f * Time.deltaTime);
+        // Ctx.Rb.useGravity = true;
     }
 
     public override void ExitState()
