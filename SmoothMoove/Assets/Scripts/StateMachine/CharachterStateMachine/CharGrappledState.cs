@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Video;
 
 public class CharGrappledState : CharBaseState
 {
@@ -6,21 +7,18 @@ public class CharGrappledState : CharBaseState
     {
         IsRootState = true;
     }
-
+    Vector3 hookshotdir;
     public override void EnterState()
     {
         InitializeSubState();
-        Ctx.DesiredMoveForce = Ctx.GrappleSpeed;
+        hookshotdir = (Ctx.GrappleHit.point - Ctx.transform.position).normalized;
 
-        if (Ctx.GrappleJoint == null && Ctx.IsShoot)
-        {
-            Ctx.MakeGrappleJoint();
-        }
+        Ctx.DesiredMoveForce = Ctx.GrappleSpeed;
     }
 
     public override void ExitState()
     {
-        Ctx.DestroyGrapplePoint();
+
     }
 
     #region MonoBehaveiours
@@ -28,6 +26,7 @@ public class CharGrappledState : CharBaseState
     public override void UpdateState()
     {
         CheckSwitchStates();
+        HandleGrapple();
     }
 
     public override void LateUpdateState() { }
@@ -38,21 +37,28 @@ public class CharGrappledState : CharBaseState
 
     public override void InitializeSubState()
     {
-        if (!Ctx.IsMove)
-        {
-            SetSubState(Factory.Idle());
-        }
-        else if (Ctx.IsMove)
-        {
-            SetSubState(Factory.Walk());
-        }
+
     }
 
     public override void CheckSwitchStates()
     {
-        if (!Ctx.IsShoot)
+
+    }
+
+    private void HandleGrapple()
+    {
+        // Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z); 
+
+        float GrappleSpeed = Vector3.Distance(Ctx.transform.position, Ctx.GrappleHit.point);
+        float GrappleSpeedMultiplier = 5f;
+
+        Ctx.Rb.AddForce(hookshotdir * GrappleSpeed * GrappleSpeedMultiplier * Time.deltaTime, ForceMode.Impulse);
+
+        float reachedPoint = 1f;
+
+        if (Vector3.Distance(Ctx.transform.position, Ctx.GrappleHit.point) < reachedPoint)
         {
-            SwitchState(Factory.Fall());
+            Debug.Log("AH");
         }
     }
 }

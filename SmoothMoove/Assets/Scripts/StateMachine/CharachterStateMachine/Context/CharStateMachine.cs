@@ -783,10 +783,11 @@ public class CharStateMachine : MonoBehaviour
                 _vaultMedium = true;
 
                 Vector3 offsetHigh = this.transform.position + new Vector3(0, _highVaultOffset, 0);
-                if (Physics.Raycast(offsetHigh, Orientation.forward, out _vaultHit, _vaultCheckDistance, _vaultLayer))
-                {
 
-                }
+                // if (Physics.Raycast(offsetHigh, Orientation.forward, out _vaultHit, _vaultCheckDistance, _vaultLayer))
+                // {
+
+                // }
             }
             else
             {
@@ -797,33 +798,6 @@ public class CharStateMachine : MonoBehaviour
         {
             _vaultLow = false;
         }
-    }
-
-    public void MakeGrappleJoint()
-    {
-        // if (GrappleJoint == null)
-        //     return;
-
-        GrappleJoint = this.transform.AddComponent<SpringJoint>();
-        GrappleJoint.spring = 80000f;
-        GrappleJoint.autoConfigureConnectedAnchor = false;
-        GrappleJoint.connectedArticulationBody = GrappleHit.transform.GetComponent<ArticulationBody>();
-        // GrappleJoint.connectedAnchor = GrappleHit.point;
-
-        float distanceFromPoint = Vector3.Distance(this.transform.position, GrappleHit.point);
-
-        GrappleJoint.maxDistance = distanceFromPoint * 0.4f;
-        GrappleJoint.minDistance = distanceFromPoint * 0.25f;
-
-        GrappleJoint.spring = 4.5f;
-        GrappleJoint.damper = 7f;
-        GrappleJoint.massScale = 4.5f;
-
-    }
-
-    public void DestroyGrapplePoint()
-    {
-        Destroy(GrappleJoint);
     }
 
     private bool CheckGrounded()
