@@ -7,22 +7,23 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] float _elapsedTime;
     [SerializeField] TMP_Text _text;
-    //hallo
-    bool cantime = true;
+    //halloasdf
+    bool cantime;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            cantime = false;
+            cantime = !cantime;
         }
-        if (cantime)
+
+        if (!cantime)
         {
             _elapsedTime += Time.deltaTime;
         }
-        int minutes = (int)(Time.timeSinceLevelLoad / 60f) % 60;
-        int seconds = (int)(Time.timeSinceLevelLoad % 60f);
-        int milliseconds = (int)(Time.timeSinceLevelLoad * 1000f) % 1000;
+        int minutes = (int)(_elapsedTime / 60f) % 60;
+        int seconds = (int)(_elapsedTime % 60f);
+        int milliseconds = (int)(_elapsedTime * 1000f) % 1000;
         _text.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
     }
 }
