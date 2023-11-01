@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] float _elapsedTime;
     [SerializeField] TMP_Text _text;
+    //hallo
 
     private void Update()
     {
