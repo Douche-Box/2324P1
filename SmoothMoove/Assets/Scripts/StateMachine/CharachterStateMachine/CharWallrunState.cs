@@ -57,12 +57,11 @@ public class CharWallrunState : CharBaseState
 
     public override void UpdateState()
     {
-        if (Ctx.MoveForce <= 7)
+        Ctx.WallRunDownForce = 10 - Ctx.MoveForce;
+
+        if (Ctx.WallClingTime <= 0 || Ctx.MovementSpeed <= 2)
         {
-            Ctx.Rb.AddForce(Vector3.down, ForceMode.Force);
-        }
-        if (Ctx.WallClingTime <= 0)
-        {
+            Ctx.Rb.AddForce(Vector3.down * Ctx.WallRunDownForce, ForceMode.Force);
             Ctx.DesiredMoveForce = 0f;
             Ctx.MoveMultiplier = 0.5f;
         }
@@ -107,7 +106,10 @@ public class CharWallrunState : CharBaseState
     }
     private void WallRunMovement()
     {
-        Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
+        if (Ctx.Rb.velocity.y > 0)
+        {
+            Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
+        }
 
 
         if ((Ctx.PlayerObj.forward - Ctx.WallForward).magnitude > (Ctx.PlayerObj.forward - -Ctx.WallForward).magnitude)

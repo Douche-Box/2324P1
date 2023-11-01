@@ -222,6 +222,12 @@ public class CharStateMachine : MonoBehaviour
         get { return _maxWallAngle; }
     }
 
+    [SerializeField] float _wallRunDownForce;
+    public float WallRunDownForce
+    {
+        get { return _wallRunDownForce; }
+        set { _wallRunDownForce = value; }
+    }
     // [SerializeField] bool _isWallAngle;
     // public bool IsWallAngle
     // {
@@ -288,11 +294,11 @@ public class CharStateMachine : MonoBehaviour
         get { return _grappleHit; }
     }
 
-    [SerializeField] SpringJoint _grappleJoint;
-    public SpringJoint GrappleJoint
+    [SerializeField] Vector3 _grappleDirection;
+    public Vector3 GrappleDirection
     {
-        get { return _grappleJoint; }
-        set { _grappleJoint = value; }
+        get { return _grappleDirection; }
+        set { _grappleDirection = value; }
     }
 
     #endregion
@@ -505,6 +511,13 @@ public class CharStateMachine : MonoBehaviour
     public float GrappleSpeed
     {
         get { return _grappleSpeed; }
+        set { _grappleSpeed = value; }
+    }
+
+    [SerializeField] Vector3 _grapplePoint;
+    public Vector3 GrapplePoint
+    {
+        get { return _grapplePoint; }
     }
 
     #endregion
@@ -542,8 +555,6 @@ public class CharStateMachine : MonoBehaviour
         get { return _moveMultiplier; }
         set { _moveMultiplier = value; }
     }
-
-
 
     #endregion
 
@@ -882,6 +893,7 @@ public class CharStateMachine : MonoBehaviour
         if (Physics.Raycast(_playerCam.position, _playerCam.forward, out _grappleHit, GrappleDistance, _grappleLayer))
         {
             _isGrappled = true;
+            _grapplePoint = GrappleHit.point;
         }
         else
         {

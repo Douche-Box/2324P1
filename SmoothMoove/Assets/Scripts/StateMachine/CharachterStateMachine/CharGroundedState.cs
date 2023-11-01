@@ -17,6 +17,11 @@ public class CharGroundedState : CharBaseState
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
         Ctx.JumpMent = new Vector3(0, 1, 0);
+
+        if (Ctx.MoveForce < Ctx.MoveSpeed)
+        {
+            Ctx.MoveForce = Ctx.MoveSpeed;
+        }
     }
 
     public override void ExitState() { }
@@ -71,6 +76,10 @@ public class CharGroundedState : CharBaseState
         else if (Ctx.IsSloped)
         {
             SwitchState(Factory.Sloped());
+        }
+        else if (Ctx.IsGrappled)
+        {
+            SwitchState(Factory.Grappled());
         }
     }
 }

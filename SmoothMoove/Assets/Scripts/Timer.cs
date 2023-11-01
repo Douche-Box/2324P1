@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
         }
         int minutes = (int)(_elapsedTime / 60f) % 60;
         int seconds = (int)(_elapsedTime % 60f);
-        int milliseconds = (int)(_elapsedTime * 1000f) % 1000;
-        _text.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        int milliseconds = (int)(_elapsedTime * 100f) % 100;
+        _text.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
     }
 }

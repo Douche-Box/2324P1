@@ -43,6 +43,11 @@ public class ThirdPersonCam : MonoBehaviour
 
     Vector3 inputDir;
 
+    Quaternion currentCameraRotation;
+    Quaternion previousCameraRotation;
+
+    [SerializeField] float _rotationThreshold;
+
     void Update()
     {
         Vector3 viewDir = _player.position - new Vector3(transform.position.x, _player.position.y, transform.position.z);
@@ -54,10 +59,14 @@ public class ThirdPersonCam : MonoBehaviour
 
         inputDir.y = 0;
 
-        if (_stateMachine.IsAired)
+        currentCameraRotation = transform.rotation;
+        float rotationChange = Quaternion.Angle(currentCameraRotation, previousCameraRotation);
+
+        if (_stateMachine.IsAired && rotationChange > _rotationThreshold)
         {
             Quaternion lookRotation = Quaternion.LookRotation(viewDir, Vector3.up);
             _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
+            previousCameraRotation = currentCameraRotation;
         }
         else if (_stateMachine.IsWallRunning)
         {

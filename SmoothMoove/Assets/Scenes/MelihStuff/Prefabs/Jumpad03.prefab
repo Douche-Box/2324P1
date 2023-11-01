@@ -5035,7 +5035,7 @@ GameObject:
   - component: {fileID: 2648522789689949801}
   - component: {fileID: 2252673914889605023}
   m_Layer: 0
-  m_Name: er (1)
+  m_Name: Jumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5093,4 +5093,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fanTransform: {fileID: 5445817966905347413}
   _pushForce: 0
-  _rbs: []

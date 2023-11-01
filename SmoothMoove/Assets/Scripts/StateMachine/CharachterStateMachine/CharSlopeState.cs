@@ -60,6 +60,10 @@ public class CharSlopeState : CharBaseState
         {
             SetSubState(Factory.Slide());
         }
+        else if (Ctx.IsAired)
+        {
+            SetSubState(Factory.Fall());
+        }
     }
 
     public override void CheckSwitchStates()
