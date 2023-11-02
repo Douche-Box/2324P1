@@ -16,7 +16,6 @@ public class CharWallrunState : CharBaseState
         Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
 
-        Ctx.GrappleHooks = 1;
 
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
@@ -29,11 +28,13 @@ public class CharWallrunState : CharBaseState
             Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
             if (Ctx.CurrentWall != Ctx.PreviousWall)
             {
+                // Ctx.JumpForce--;
                 Ctx.WallClingTime = Ctx.MaxWallClingTime;
                 Ctx.CanStartWallTimer = true;
             }
             else
             {
+                Ctx.GrappleHooks = 1;
                 Ctx.CanStartWallTimer = true;
             }
         }

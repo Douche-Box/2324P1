@@ -10,6 +10,7 @@ public class CharGrappledState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
+        Ctx.PlayerAnimator.SetBool("Grapple", true);
         Ctx.GrappleHooks--;
         Ctx.DesiredMoveForce = Ctx.GrappleSpeed;
         Ctx.GrappleDirection = (Ctx.GrapplePoint - Ctx.transform.position).normalized;
@@ -19,6 +20,7 @@ public class CharGrappledState : CharBaseState
 
     public override void ExitState()
     {
+        Ctx.PlayerAnimator.SetBool("Grapple", false);
         Ctx.IsGrappled = false;
     }
 
