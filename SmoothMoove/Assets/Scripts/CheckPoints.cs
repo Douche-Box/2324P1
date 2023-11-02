@@ -8,17 +8,22 @@ public class CheckPoints : MonoBehaviour
 
     [SerializeField] Transform _checkPoint;
 
+
     private void Awake()
     {
         _deathManager = FindObjectOfType<DeathManager>();
+        _checkPoint = this.transform;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            _deathManager.ResetPoint = _checkPoint;
-            _deathManager.HasDied = false;
+            _deathManager.DoCheckPoint(_checkPoint);
         }
     }
+
+
+
+
 }

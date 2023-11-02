@@ -80,6 +80,24 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c87a696-6ef2-47a4-806c-bf8072423026"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Next"",
+                    ""type"": ""Button"",
+                    ""id"": ""74583cc8-dbea-4586-a380-ba810cfc90e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -368,6 +386,28 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""431e7516-50ef-42a4-a4f2-22ec735667ff"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30ed9548-2b86-4782-aaf6-529f9ea6ec15"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -438,6 +478,8 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         m_Game_Camera = m_Game.FindAction("Camera", throwIfNotFound: true);
         m_Game_Aim = m_Game.FindAction("Aim", throwIfNotFound: true);
         m_Game_Shoot = m_Game.FindAction("Shoot", throwIfNotFound: true);
+        m_Game_Reset = m_Game.FindAction("Reset", throwIfNotFound: true);
+        m_Game_Next = m_Game.FindAction("Next", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
@@ -508,6 +550,8 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Camera;
     private readonly InputAction m_Game_Aim;
     private readonly InputAction m_Game_Shoot;
+    private readonly InputAction m_Game_Reset;
+    private readonly InputAction m_Game_Next;
     public struct GameActions
     {
         private @NewControls m_Wrapper;
@@ -518,6 +562,8 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         public InputAction @Camera => m_Wrapper.m_Game_Camera;
         public InputAction @Aim => m_Wrapper.m_Game_Aim;
         public InputAction @Shoot => m_Wrapper.m_Game_Shoot;
+        public InputAction @Reset => m_Wrapper.m_Game_Reset;
+        public InputAction @Next => m_Wrapper.m_Game_Next;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -545,6 +591,12 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
+            @Next.started += instance.OnNext;
+            @Next.performed += instance.OnNext;
+            @Next.canceled += instance.OnNext;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -567,6 +619,12 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
+            @Next.started -= instance.OnNext;
+            @Next.performed -= instance.OnNext;
+            @Next.canceled -= instance.OnNext;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -656,6 +714,8 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
+        void OnNext(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

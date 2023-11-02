@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 6894167742568719730}
   - component: {fileID: 3982679897210051924}
   - component: {fileID: 6402329714016068328}
+  - component: {fileID: 2871895944179252032}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -269,10 +270,25 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2871895944179252032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8814795080995507108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1407bdd149743604197302de6efb570a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathManager: {fileID: 0}
+  _laserDeathSound: {fileID: 0}
+  deathType: 4

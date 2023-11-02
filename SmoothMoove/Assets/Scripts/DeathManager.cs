@@ -1,9 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DeathManager : MonoBehaviour
 {
+    [SerializeField] PlayerInput _playerInput;
+    [SerializeField] CharStateMachine _player;
+    public CharStateMachine Player
+    {
+        get { return _player; }
+    }
+
+    [SerializeField] Transform _checkpointCollection;
+    public List<Transform> _checkPointsList = new List<Transform>();
+
+
+    [SerializeField] int _deathCount;
+    public int DeathCount
+    {
+        get { return _deathCount; }
+    }
+
     [SerializeField] bool _hasDied;
     public bool HasDied
     {
@@ -18,26 +37,54 @@ public class DeathManager : MonoBehaviour
     }
 
     [SerializeField] Transform _resetPoint;
-    public Transform ResetPoint
+
+    [SerializeField] GameObject _deathScreen;
+
+    [SerializeField] GameObject _checkPointScreen;
+    [SerializeField] float _checkPointScreenTime;
+
+    [SerializeField] TimeManager _timeManager;
+
+    private void Awake()
     {
-        get
+        _playerInput = FindObjectOfType<PlayerInput>();
+        _player = FindObjectOfType<CharStateMachine>();
+
+        _timeManager = FindObjectOfType<TimeManager>();
+
+        for (int i = 0; i < _checkpointCollection.childCount; i++)
         {
-            return _resetPoint;
-        }
-        set
-        {
-            _resetPoint = value;
+            _checkPointsList.Add(_checkpointCollection.GetChild(i));
         }
     }
 
-    private void Update()
+    public void DoDeath()
     {
-        if (HasDied)
+        _deathCount++;
+        _timeManager.CanTime = false;
+        if (_resetPoint != null)
         {
-            if (ResetPoint != null)
-            {
-                FindObjectOfType<CharStateMachine>().transform.position = ResetPoint.position;
-            }
+            _player.Rb.velocity = new Vector3(0, 0, 0);
+            _player.PlayerObj.forward = _resetPoint.forward;
+            _playerInput.enabled = false;
+            _deathScreen.SetActive(true);
+            FindObjectOfType<CharStateMachine>().transform.position = _resetPoint.position;
         }
+    }
+
+    public void DoCheckPoint(Transform point)
+    {
+        if (_resetPoint != point)
+        {
+            _checkPointScreen.SetActive(true);
+            StartCoroutine(CheckPointScreenTimer());
+        }
+        _resetPoint = point;
+    }
+
+    IEnumerator CheckPointScreenTimer()
+    {
+        yield return new WaitForSeconds(_checkPointScreenTime);
+        _checkPointScreen.SetActive(false);
     }
 }
