@@ -10,9 +10,7 @@ public class CharGrappledState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
-
-        Ctx.Rb.useGravity = false;
-
+        Ctx.GrappleHooks--;
         Ctx.DesiredMoveForce = Ctx.GrappleSpeed;
         Ctx.GrappleDirection = (Ctx.GrapplePoint - Ctx.transform.position).normalized;
 
@@ -22,7 +20,6 @@ public class CharGrappledState : CharBaseState
     public override void ExitState()
     {
         Ctx.IsGrappled = false;
-        Ctx.Rb.useGravity = true;
     }
 
     #region MonoBehaveiours
@@ -62,6 +59,12 @@ public class CharGrappledState : CharBaseState
     private void HandleGrapple()
     {
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
-        Ctx.Rb.AddForce(Ctx.GrappleDirection * Ctx.GrappleSpeed * Ctx.GrappleSpeedIncreaseMultiplier, ForceMode.Impulse);
+
+        Ctx.GrappleSpeed = 13;
+        float grapplespeedextra = Ctx.GrappleSpeed = 13 + Vector3.Distance(Ctx.transform.position, Ctx.GrapplePoint);
+
+        Vector3 newDirection = new Vector3(Ctx.GrappleDirection.x * grapplespeedextra * Ctx.GrappleSpeedIncreaseMultiplier, Ctx.GrappleDirection.y * Ctx.GrappleSpeed, Ctx.GrappleDirection.z * grapplespeedextra * Ctx.GrappleSpeedIncreaseMultiplier);
+
+        Ctx.Rb.AddForce(newDirection, ForceMode.Impulse);
     }
 }

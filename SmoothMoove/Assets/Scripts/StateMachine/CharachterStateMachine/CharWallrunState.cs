@@ -16,6 +16,8 @@ public class CharWallrunState : CharBaseState
         Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
 
+        Ctx.GrappleHooks = 1;
+
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
         Ctx.PlayerAnimator.SetBool("WallRunningL", Ctx.WallLeft);

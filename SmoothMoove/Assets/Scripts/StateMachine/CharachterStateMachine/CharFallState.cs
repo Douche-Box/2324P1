@@ -66,7 +66,7 @@ public class CharFallState : CharBaseState
         {
             SwitchState(Factory.Walled());
         }
-        else if (Ctx.IsGrappled && Ctx.IsShoot)
+        else if (Ctx.IsGrappled && Ctx.IsShoot && Ctx.GrappleHooks > 0)
         {
             SwitchState(Factory.Grappled());
         }

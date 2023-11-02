@@ -280,10 +280,10 @@ public class CharStateMachine : MonoBehaviour
         set { _isGrappled = value; }
     }
 
-    [SerializeField] float _grappleDistance;
-    public float GrappleDistance
+    [SerializeField] float _grappleLenght;
+    public float GrappleLenght
     {
-        get { return _grappleDistance; }
+        get { return _grappleLenght; }
     }
 
     [SerializeField] LayerMask _grappleLayer;
@@ -299,6 +299,13 @@ public class CharStateMachine : MonoBehaviour
     {
         get { return _grappleDirection; }
         set { _grappleDirection = value; }
+    }
+
+    [SerializeField] int _grappleHooks;
+    public int GrappleHooks
+    {
+        get { return _grappleHooks; }
+        set { _grappleHooks = value; }
     }
 
     #endregion
@@ -890,7 +897,7 @@ public class CharStateMachine : MonoBehaviour
 
     public void CheckForGrapple()
     {
-        if (Physics.Raycast(_playerCam.position, _playerCam.forward, out _grappleHit, GrappleDistance, _grappleLayer))
+        if (Physics.Raycast(_playerCam.position, _playerCam.forward, out _grappleHit, GrappleLenght, _grappleLayer))
         {
             _isGrappled = true;
             _grapplePoint = GrappleHit.point;

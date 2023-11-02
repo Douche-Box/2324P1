@@ -723,8 +723,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3155573620155055292}
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _grappleSpeed
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _wallRunSpeed
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _grappleLenght
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _lowVaultOffset
@@ -749,6 +757,10 @@ PrefabInstance:
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _vaultCheckDistance
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _grappleSpeedIncreaseMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4706520322803797927, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: m_Layer

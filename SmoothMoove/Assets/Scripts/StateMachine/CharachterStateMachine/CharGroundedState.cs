@@ -18,6 +18,8 @@ public class CharGroundedState : CharBaseState
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
         Ctx.JumpMent = new Vector3(0, 1, 0);
 
+        Ctx.GrappleHooks = 1;
+
         if (Ctx.MoveForce < Ctx.MoveSpeed)
         {
             Ctx.MoveForce = Ctx.MoveSpeed;
@@ -77,7 +79,7 @@ public class CharGroundedState : CharBaseState
         {
             SwitchState(Factory.Sloped());
         }
-        else if (Ctx.IsGrappled)
+        else if (Ctx.IsGrappled && Ctx.IsShoot && Ctx.GrappleHooks > 0)
         {
             SwitchState(Factory.Grappled());
         }
