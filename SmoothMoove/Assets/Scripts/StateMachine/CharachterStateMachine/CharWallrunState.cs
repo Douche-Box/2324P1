@@ -27,13 +27,12 @@ public class CharWallrunState : CharBaseState
             Ctx.CurrentWall = Ctx.WallLeft ? Ctx.LeftWallHit.transform : Ctx.WallRight ? Ctx.RightWallHit.transform : null;
             if (Ctx.CurrentWall != Ctx.PreviousWall)
             {
-                // Ctx.JumpForce--;
+                Ctx.GrappleHooks = 1;
                 Ctx.WallClingTime = Ctx.MaxWallClingTime;
                 Ctx.CanStartWallTimer = true;
             }
             else
             {
-                Ctx.GrappleHooks = 1;
                 Ctx.CanStartWallTimer = true;
             }
         }
@@ -120,7 +119,7 @@ public class CharWallrunState : CharBaseState
             Ctx.WallForward = new Vector3(-Ctx.WallForward.x, -Ctx.WallForward.y, -Ctx.WallForward.z).normalized;
         }
 
-        if (!Ctx.IsJump)
+        if (!Ctx.IsExitingSlope)
         {
             Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 225, ForceMode.Force);
         }
