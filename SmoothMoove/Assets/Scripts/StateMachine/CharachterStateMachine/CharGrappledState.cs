@@ -20,7 +20,7 @@ public class CharGrappledState : CharBaseState
 
     public override void ExitState()
     {
-        Ctx.PlayerAnimator.SetBool("Grapple", false);
+        // Ctx.PlayerAnimator.SetBool("Grapple", false);
         Ctx.IsGrappled = false;
     }
 
