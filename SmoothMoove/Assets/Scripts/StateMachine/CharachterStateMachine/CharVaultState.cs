@@ -63,7 +63,7 @@ public class CharVaultState : CharBaseState
 
     public override void CheckSwitchStates()
     {
-        if (Ctx.IsGrounded && Input.GetKeyDown(KeyCode.P))
+        if (Ctx.IsGrounded)
         {
             SwitchState(Factory.Grounded());
         }
