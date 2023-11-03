@@ -13,12 +13,12 @@ public class CharWallrunState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
-        Ctx.IsWallRunning = true;
         Ctx.Rb.useGravity = false;
+        Ctx.IsWallRunning = true;
 
 
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
-
+        Ctx.PlayerAnimator.SetBool("IsWallRunning", Ctx.IsWallRunning);
         Ctx.PlayerAnimator.SetFloat("WallRun", Ctx.WallLeftRight);
 
 
@@ -46,11 +46,12 @@ public class CharWallrunState : CharBaseState
 
     public override void ExitState()
     {
+        Ctx.IsWallRunning = false;
 
         Ctx.PlayerAnimator.SetBool("WallRunningL", false);
         Ctx.PlayerAnimator.SetBool("WallRunningR", false);
 
-        Ctx.IsWallRunning = false;
+        Ctx.PlayerAnimator.SetBool("IsWallRunning", Ctx.IsWallRunning);
         Ctx.Rb.useGravity = true;
         Ctx.PreviousWall = Ctx.CurrentWall;
     }
