@@ -188,6 +188,13 @@ public class CharStateMachine : MonoBehaviour
         get { return _leftWallHit; }
     }
 
+
+    [SerializeField] float _wallLeftRight;
+    public float WallLeftRight
+    {
+        get { return _wallLeftRight; }
+    }
+
     [SerializeField] LayerMask _wallLayer;
 
     [SerializeField] float _wallCheckDistance;
@@ -350,10 +357,6 @@ public class CharStateMachine : MonoBehaviour
     }
 
     public RaycastHit _slopeHit;
-    // public RaycastHit SlopeHit
-    // {
-    //     get { return _slopeHit; }
-    // }
 
     [SerializeField] float _maxSlopeAngle;
 
@@ -863,8 +866,16 @@ public class CharStateMachine : MonoBehaviour
 
     private void CheckForWall()
     {
-        WallRight = Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer);
-        WallLeft = Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer);
+        if (Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer))
+        {
+            _wallRight = true;
+            _wallLeftRight = 1;
+        }
+        if (Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer))
+        {
+            _wallLeft = true;
+            _wallLeftRight = 0;
+        }
 
         if (WallRight || WallLeft)
         {

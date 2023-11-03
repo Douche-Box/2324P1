@@ -19,8 +19,7 @@ public class CharWallrunState : CharBaseState
 
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
 
-        Ctx.PlayerAnimator.SetBool("WallRunningL", Ctx.IsWallRunning);
-        // Ctx.PlayerAnimator.SetBool("WallRunningR", Ctx.IsWallRunning);
+        Ctx.PlayerAnimator.SetFloat("WallRun", Ctx.WallLeftRight);
 
 
         if (Ctx.CurrentWall != null)
