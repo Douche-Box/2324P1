@@ -12,6 +12,8 @@ public class CharVaultState : CharBaseState
         Debug.Log("Vault ENTER");
         Ctx.IsVaulted = true;
 
+        Ctx.PlayerAnimator.SetBool("Vault", true);
+
         float yOffset = Ctx.VaultObj.GetComponent<Renderer>().bounds.max.y + 1f;
         float xOffset = Mathf.Abs(Ctx.transform.forward.x) > Mathf.Abs(Ctx.transform.forward.z) ? (Ctx.VaultObj.transform.position.x - Ctx.transform.position.x) : 0f;
         float zOffset = Mathf.Abs(Ctx.transform.forward.z) > Mathf.Abs(Ctx.transform.forward.x) ? (Ctx.VaultObj.transform.position.z - Ctx.transform.position.z) : 0f;
@@ -23,6 +25,7 @@ public class CharVaultState : CharBaseState
     public override void ExitState()
     {
         Ctx.IsVaulted = false;
+        Ctx.PlayerAnimator.SetBool("Vault", false);
     }
 
     #region MonoBehaveiours
