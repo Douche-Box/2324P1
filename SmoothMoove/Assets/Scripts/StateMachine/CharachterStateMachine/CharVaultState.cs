@@ -9,7 +9,7 @@ public class CharVaultState : CharBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Vault ENTER");
+        // Debug.Log("Vault ENTER");
         Ctx.IsVaulted = true;
 
 
@@ -19,7 +19,9 @@ public class CharVaultState : CharBaseState
 
         Vector3 newPosition = new Vector3(Ctx.transform.position.x + xOffset, yOffset, Ctx.transform.position.z + zOffset);
         Ctx.transform.position = newPosition;
+        Debug.Log("vaultanimationfor");
         Ctx.PlayerAnimator.SetBool("Vault", true);
+        Debug.Log("vaultanimationaft");
     }
 
     public override void ExitState()
