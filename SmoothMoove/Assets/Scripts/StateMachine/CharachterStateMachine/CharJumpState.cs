@@ -10,7 +10,9 @@ public class CharJumpState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
+        Debug.Log("JUMP");
         Ctx.IsJumping = true;
+        Ctx.MoveMultiplier = Ctx.AirSpeed;
         Ctx.PlayerAnimator.SetBool("Jump", true);
         Ctx.IsExitingSlope = true;
 
@@ -68,11 +70,6 @@ public class CharJumpState : CharBaseState
     void HandleJump()
     {
         Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
-
-        // Ctx.IsForced = true;
-
-        // Ctx.ExtraForce = Ctx.JumpForce;
-
         Ctx.Rb.AddForce(Ctx.JumpMent * Ctx.JumpForce, ForceMode.VelocityChange);
     }
 
