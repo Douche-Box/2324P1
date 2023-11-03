@@ -18,14 +18,14 @@ public class CharVaultState : CharBaseState
 
 
         Debug.Log("vaultanimationfor");
-        Ctx.PlayerAnimator.SetBool("Vault", true);
+        Ctx.PlayerAnimator.SetTrigger("Vault");
         Debug.Log("vaultanimationaft");
     }
 
     public override void ExitState()
     {
         Ctx.IsVaulted = false;
-        Ctx.PlayerAnimator.SetBool("Vault", false);
+        // Ctx.PlayerAnimator.SetBool("Vault", false);
     }
 
     #region MonoBehaveiours

@@ -10,7 +10,7 @@ public class CharGrappledState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
-        Ctx.PlayerAnimator.SetBool("Grapple", true);
+        Ctx.PlayerAnimator.SetTrigger("Grapple");
         Ctx.GrappleHooks--;
         Ctx.DesiredMoveForce = Ctx.GrappleSpeed;
         Ctx.GrappleDirection = (Ctx.GrapplePoint - Ctx.transform.position).normalized;
@@ -44,18 +44,18 @@ public class CharGrappledState : CharBaseState
 
     public override void CheckSwitchStates()
     {
-        // if (Ctx.IsGrounded)
-        // {
-        //     SwitchState(Factory.Grounded());
-        // }
-        // else if (Ctx.IsSloped)
-        // {
-        //     SwitchState(Factory.Sloped());
-        // }
-        // else if (!Ctx.IsGrounded && !Ctx.IsSloped)
-        // {
-        //     SwitchState(Factory.Fall());
-        // }
+        if (Ctx.IsGrounded)
+        {
+            SwitchState(Factory.Grounded());
+        }
+        else if (Ctx.IsSloped)
+        {
+            SwitchState(Factory.Sloped());
+        }
+        else if (!Ctx.IsGrounded && !Ctx.IsSloped)
+        {
+            SwitchState(Factory.Fall());
+        }
     }
 
     private void HandleGrapple()

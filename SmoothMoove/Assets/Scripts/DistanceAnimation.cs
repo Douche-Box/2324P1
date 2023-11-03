@@ -28,5 +28,12 @@ public class DistanceAnimation : MonoBehaviour
                 _animation[i].SetBool("Open", true);
             }
         }
+        else if (Vector3.Distance(_player.transform.position, this.transform.position) > _distanceRequired)
+        {
+            for (int i = 0; i < _animation.Length; i++)
+            {
+                _animation[i].SetBool("Open", false);
+            }
+        }
     }
 }
