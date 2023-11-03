@@ -866,14 +866,18 @@ public class CharStateMachine : MonoBehaviour
 
     private void CheckForWall()
     {
-        if (Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer))
+        _wallRight = (Physics.Raycast(transform.position, Orientation.right, out _rightWallHit, WallCheckDistance, _wallLayer));
+
+
+        if (_wallRight)
         {
-            _wallRight = true;
             _wallLeftRight = 1;
         }
-        if (Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer))
+        _wallLeft = (Physics.Raycast(transform.position, -Orientation.right, out _leftWallHit, WallCheckDistance, _wallLayer));
+
+
+        if (_wallLeft)
         {
-            _wallLeft = true;
             _wallLeftRight = 0;
         }
 
