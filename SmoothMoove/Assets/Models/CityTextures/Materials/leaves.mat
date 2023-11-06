@@ -339,7 +339,7 @@ Material:
     - _MCapIntensity: 1
     - _MVCOL: 0
     - _MaiColPo: 0.8
-    - _MaxFadDistance: 5.65
+    - _MaxFadDistance: 4.63
     - _Metallic: 0
     - _MinFadDistance: 0
     - _MixMainTexToOutline: 0
@@ -504,7 +504,7 @@ Material:
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
-    - _MainColor: {r: 0.045612313, g: 0.38679248, b: 0.09906756, a: 1}
+    - _MainColor: {r: 0.062429, g: 0.16299999, b: 0.07745685, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
