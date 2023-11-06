@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using Unity.VisualScripting;
+using Cinemachine;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
@@ -31,6 +32,7 @@ public class CharStateMachine : MonoBehaviour
     {
         get { return _playerCam; }
     }
+
 
     [SerializeField] private Transform _orientation;
     public Transform Orientation
@@ -659,6 +661,7 @@ public class CharStateMachine : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         Application.targetFrameRate = 60;
         playerInput.actions.FindAction("Move").started += OnMovement;
         playerInput.actions.FindAction("Move").performed += OnMovement;
@@ -693,7 +696,6 @@ public class CharStateMachine : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         _playerCam = FindObjectOfType<Camera>().transform;
-
     }
 
     private void Update()

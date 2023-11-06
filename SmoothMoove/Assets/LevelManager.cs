@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] int checkPointInt;
 
+    [SerializeField] string _levelScene;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class LevelManager : MonoBehaviour
             if (checkPointInt >= _deathManager._checkPointsList.Count - 1)
             {
                 checkPointInt = 0;
+                SceneManager.LoadScene(_levelScene);
             }
             else
             {

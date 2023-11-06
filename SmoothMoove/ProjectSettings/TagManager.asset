@@ -11,6 +11,7 @@ TagManager:
   - Door04
   - Door05
   - Door06
+  - CamHolder
   layers:
   - Default
   - TransparentFX
