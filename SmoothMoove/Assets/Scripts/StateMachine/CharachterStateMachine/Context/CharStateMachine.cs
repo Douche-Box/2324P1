@@ -293,6 +293,8 @@ public class CharStateMachine : MonoBehaviour
         get { return _grappleLenght; }
     }
 
+    [SerializeField] float _grappleDetectionRadius;
+
     [SerializeField] LayerMask _grappleLayer;
 
     [SerializeField] RaycastHit _grappleHit;
@@ -314,6 +316,28 @@ public class CharStateMachine : MonoBehaviour
         get { return _grappleHooks; }
         set { _grappleHooks = value; }
     }
+
+    [SerializeField] float _grappleDelay;
+    public float GrappleDelay
+    {
+        get { return _grappleDelay; }
+        set { _grappleDelay = value; }
+    }
+
+    [SerializeField] float _maxGrappleDelay;
+    public float MaxGrappleDelay
+    {
+        get { return _maxGrappleDelay; }
+    }
+
+    [SerializeField] bool _finishedGrapple;
+    public bool FinishedGrapple
+    {
+        get { return _finishedGrapple; }
+        set { _finishedGrapple = value; }
+    }
+
+
 
     #endregion
 
@@ -521,7 +545,6 @@ public class CharStateMachine : MonoBehaviour
     public float GrappleSpeed
     {
         get { return _grappleSpeed; }
-        set { _grappleSpeed = value; }
     }
 
     [SerializeField] Vector3 _grapplePoint;
@@ -591,6 +614,14 @@ public class CharStateMachine : MonoBehaviour
         get { return _isWallRunning; }
         set { _isWallRunning = value; }
     }
+
+    [SerializeField] bool _isGrappling;
+    public bool IsGrappling
+    {
+        get { return _isGrappling; }
+        set { _isGrappling = value; }
+    }
+
 
     [SerializeField] bool _isJumping;
     public bool IsJumping
@@ -912,7 +943,7 @@ public class CharStateMachine : MonoBehaviour
 
     public void CheckForGrapple()
     {
-        if (Physics.Raycast(_playerCam.position, _playerCam.forward, out _grappleHit, GrappleLenght, _grappleLayer))
+        if (Physics.SphereCast(_playerCam.position, _grappleDetectionRadius, _playerCam.forward, out _grappleHit, GrappleLenght, _grappleLayer))
         {
             _isGrappled = true;
             _grapplePoint = GrappleHit.point;

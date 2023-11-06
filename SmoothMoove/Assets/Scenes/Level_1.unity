@@ -726,6 +726,10 @@ PrefabInstance:
       value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _maxGrappleDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _wallLayer.m_Bits
       value: 320
       objectReference: {fileID: 0}

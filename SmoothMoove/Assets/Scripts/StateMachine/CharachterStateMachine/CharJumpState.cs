@@ -11,10 +11,8 @@ public class CharJumpState : CharBaseState
     {
         InitializeSubState();
 
-
-        Debug.Log("JUMP" + Ctx.JumpMent);
         Ctx.IsJumping = true;
-        // Ctx.MoveMultiplier = Ctx.AirSpeed;
+
         Ctx.PlayerAnimator.SetBool("Jump", true);
         Ctx.IsExitingSlope = true;
 

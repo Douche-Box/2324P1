@@ -10,18 +10,28 @@ public class CharGrappledState : CharBaseState
     public override void EnterState()
     {
         InitializeSubState();
-        Ctx.PlayerAnimator.SetTrigger("Grapple");
+        Ctx.FinishedGrapple = false;
+
+        Ctx.IsGrappling = true;
+
         Ctx.GrappleHooks--;
+
         Ctx.DesiredMoveForce = Ctx.GrappleSpeed;
+
+        Ctx.IsForced = true;
+
+        Ctx.ExtraForce = Ctx.GrappleSpeed;
+
         Ctx.GrappleDirection = (Ctx.GrapplePoint - Ctx.transform.position).normalized;
 
-        HandleGrapple();
+        Ctx.PlayerAnimator.SetTrigger("Grapple");
+
+        Ctx.GrappleDelay = Ctx.MaxGrappleDelay;
     }
 
     public override void ExitState()
     {
-        // Ctx.PlayerAnimator.SetBool("Grapple", false);
-        Ctx.IsGrappled = false;
+        Ctx.IsGrappling = false;
     }
 
     #region MonoBehaveiours
@@ -29,6 +39,14 @@ public class CharGrappledState : CharBaseState
     public override void UpdateState()
     {
         CheckSwitchStates();
+
+        Ctx.GrappleDelay -= Time.deltaTime;
+
+        if (Ctx.GrappleDelay <= 0)
+        {
+            HandleGrappleMovement();
+            Ctx.GrappleDelay = Ctx.MaxGrappleDelay;
+        }
     }
 
     public override void LateUpdateState() { }
@@ -44,29 +62,26 @@ public class CharGrappledState : CharBaseState
 
     public override void CheckSwitchStates()
     {
-        if (Ctx.IsGrounded)
+        if (Ctx.IsGrounded && Ctx.FinishedGrapple)
         {
             SwitchState(Factory.Grounded());
         }
-        else if (Ctx.IsSloped)
+        else if (Ctx.IsSloped && Ctx.FinishedGrapple)
         {
             SwitchState(Factory.Sloped());
         }
-        else if (!Ctx.IsGrounded && !Ctx.IsSloped)
+        else if (!Ctx.IsGrounded && !Ctx.IsSloped && Ctx.FinishedGrapple)
         {
             SwitchState(Factory.Fall());
         }
     }
 
-    private void HandleGrapple()
+    private void HandleGrappleMovement()
     {
-        Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0f, Ctx.Rb.velocity.z);
+        Ctx.Rb.velocity = new Vector3(Ctx.Rb.velocity.x, 0, Ctx.Rb.velocity.z);
 
-        Ctx.GrappleSpeed = 13;
-        float grapplespeedextra = Ctx.GrappleSpeed = 13 + Vector3.Distance(Ctx.transform.position, Ctx.GrapplePoint);
+        Ctx.Rb.AddForce(Ctx.GrappleDirection * Ctx.GrappleSpeed, ForceMode.Impulse);
 
-        Vector3 newDirection = new Vector3(Ctx.GrappleDirection.x * grapplespeedextra * Ctx.GrappleSpeedIncreaseMultiplier, Ctx.GrappleDirection.y * Ctx.GrappleSpeed, Ctx.GrappleDirection.z * grapplespeedextra * Ctx.GrappleSpeedIncreaseMultiplier);
-
-        Ctx.Rb.AddForce(newDirection, ForceMode.Impulse);
+        Ctx.FinishedGrapple = true;
     }
 }
