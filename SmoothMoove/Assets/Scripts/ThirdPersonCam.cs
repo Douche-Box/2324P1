@@ -78,10 +78,18 @@ public class ThirdPersonCam : MonoBehaviour
             Quaternion wallLookRotation = Quaternion.LookRotation(_stateMachine.WallForward.normalized, Vector3.up);
             _playerObj.transform.rotation = wallLookRotation;
         }
-        else if (_stateMachine.IsSliding)
+        else if (_stateMachine.IsSliding && !_stateMachine.IsSloped)
         {
             Quaternion slopeAdjustedRotation = Quaternion.FromToRotation(Vector3.up, _stateMachine._slopeHit.normal);
             Quaternion lookRotation = Quaternion.LookRotation(inputDir, Vector3.up);
+            Quaternion finalRotation = slopeAdjustedRotation * lookRotation;
+            _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, finalRotation, Time.deltaTime * _rotationSpeed);
+
+        }
+        else if (_stateMachine.IsSliding && _stateMachine.IsSloped)
+        {
+            Quaternion slopeAdjustedRotation = Quaternion.FromToRotation(Vector3.up, _stateMachine._slopeHit.normal);
+            Quaternion lookRotation = Quaternion.LookRotation(viewDir, Vector3.up);
             Quaternion finalRotation = slopeAdjustedRotation * lookRotation;
             _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, finalRotation, Time.deltaTime * _rotationSpeed);
 
