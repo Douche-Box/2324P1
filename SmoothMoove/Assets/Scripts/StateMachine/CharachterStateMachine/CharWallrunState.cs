@@ -124,7 +124,7 @@ public class CharWallrunState : CharBaseState
             Ctx.Rb.AddForce(-Ctx.WallNormal.normalized * 225, ForceMode.Force);
         }
 
-        Ctx.JumpMent = new Vector3(Ctx.WallNormal.x * 3, 1, 0);
+        Ctx.JumpMent = new Vector3(Ctx.WallNormal.x * 3, 1, Ctx.WallNormal.z * 3);
 
         Debug.DrawRay(Ctx.transform.position, Ctx.WallForward, Color.green);
 

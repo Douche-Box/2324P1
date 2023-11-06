@@ -24,7 +24,8 @@ public class DoorAnimator : MonoBehaviour
     {
         if (other.GetComponentInParent<CharStateMachine>())
         {
-            _openClose = !_openClose;
+            _openClose = !_animationDoorLeft.GetBool("Open");
+
             _animationDoorLeft.SetBool("Open", _openClose);
             _animationDoorRight.SetBool("Open", _openClose);
         }
