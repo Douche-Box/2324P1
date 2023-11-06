@@ -94,7 +94,7 @@ public class ThirdPersonCam : MonoBehaviour
             _playerObj.transform.rotation = Quaternion.Slerp(_playerObj.transform.rotation, finalRotation, Time.deltaTime * _rotationSpeed);
 
         }
-        else if (inputDir != Vector3.zero)
+        else if (inputDir != Vector3.zero && !_stateMachine.IsAired)
         {
 
 
