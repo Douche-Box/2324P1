@@ -707,7 +707,7 @@ PrefabInstance:
       objectReference: {fileID: 3155573620155055292}
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _grappleSpeed
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _wallRunSpeed
@@ -740,6 +740,10 @@ PrefabInstance:
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _vaultCheckDistance
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _maxGrappleDelayTime
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _grappleSpeedIncreaseMultiplier
@@ -5503,6 +5507,10 @@ PrefabInstance:
     - target: {fileID: 8691803505980567739, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819424435773455761, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 555.1484
       objectReference: {fileID: 0}
     - target: {fileID: 8954870046471093862, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       propertyPath: m_Mesh
