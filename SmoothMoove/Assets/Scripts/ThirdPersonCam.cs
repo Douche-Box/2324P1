@@ -7,16 +7,10 @@ using UnityEngine.InputSystem;
 
 public class ThirdPersonCam : MonoBehaviour
 {
-    [SerializeField] private PlayerInput playerInput = null;
-    public PlayerInput PlayerInput => playerInput;
-
     [SerializeField]
     private Transform _orientation,
     _player,
     _playerObj;
-
-    [SerializeField]
-    private Rigidbody _rb;
 
     [SerializeField]
     private float _rotationSpeed;
@@ -32,13 +26,14 @@ public class ThirdPersonCam : MonoBehaviour
         jump,
         wallrun,
     }
+
     public CamState camState;
 
-    [SerializeField] float inputY;
-    [SerializeField] float inputX;
+    float inputY;
+    float inputX;
 
-    [SerializeField] float oldInputY;
-    [SerializeField] float oldInputX;
+    float oldInputY;
+    float oldInputX;
 
 
     Vector3 inputDir;
@@ -47,6 +42,14 @@ public class ThirdPersonCam : MonoBehaviour
     Quaternion previousCameraRotation;
 
     [SerializeField] float _rotationThreshold;
+
+    private void Start()
+    {
+        _stateMachine = FindObjectOfType<CharStateMachine>();
+        _orientation = _stateMachine.Orientation;
+        _player = _stateMachine.transform;
+        _playerObj = _stateMachine.PlayerObj;
+    }
 
     void Update()
     {

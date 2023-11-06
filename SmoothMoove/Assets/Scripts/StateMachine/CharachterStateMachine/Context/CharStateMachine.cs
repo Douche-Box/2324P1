@@ -691,6 +691,9 @@ public class CharStateMachine : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        _playerCam = FindObjectOfType<Camera>().transform;
+
     }
 
     private void Update()
