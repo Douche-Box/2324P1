@@ -705,13 +705,13 @@ public class CharStateMachine : MonoBehaviour
     private void Update()
     {
         _movementSpeed = Rb.velocity.magnitude;
-        if (_movementSpeed < 3)
+        if (_movementSpeed < 3 && _speedLines != null)
         {
 
             _speedLines.SetFloat("_Alpha", 0);
 
         }
-        else
+        else if (_speedLines != null)
         {
             _speedLines.SetFloat("_Alpha", _movementSpeed / 10);
             _speedLines.SetFloat("_Speed", _movementSpeed);

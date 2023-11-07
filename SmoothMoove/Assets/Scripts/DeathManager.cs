@@ -43,6 +43,7 @@ public class DeathManager : MonoBehaviour
     [SerializeField] Transform _resetPoint;
 
     [SerializeField] GameObject _deathScreen;
+    public GameObject _sceneChangeScreen;
 
     [SerializeField] GameObject _checkPointScreen;
     [SerializeField] float _checkPointScreenTime;
@@ -67,7 +68,8 @@ public class DeathManager : MonoBehaviour
 
     public void FindCheckPoints()
     {
-        Debug.Log("find");
+        _player.Rb.useGravity = false;
+
         StartCoroutine(FindCheckPointTimer());
     }
 
@@ -115,10 +117,10 @@ public class DeathManager : MonoBehaviour
         {
             _checkPointsList.Add(_checkpointCollection.GetChild(i));
         }
-
         _resetPoint = _checkPointsList[0];
+        _player.transform.position = _resetPoint.position;
+        _sceneChangeScreen.SetActive(false);
 
-        FindObjectOfType<CharStateMachine>().transform.position = _resetPoint.position;
     }
 
     IEnumerator CheckPointScreenTimer()
