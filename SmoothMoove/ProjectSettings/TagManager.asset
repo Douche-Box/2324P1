@@ -12,6 +12,7 @@ TagManager:
   - Door05
   - Door06
   - CamHolder
+  - CheckPoints
   layers:
   - Default
   - TransparentFX

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class LevelManager : MonoBehaviour
 {
@@ -65,6 +66,7 @@ public class LevelManager : MonoBehaviour
             {
                 checkPointInt = 0;
                 SceneManager.LoadScene(_levelScene);
+                _deathManager.FindCheckPoints();
             }
             else
             {

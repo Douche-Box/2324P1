@@ -14,6 +14,10 @@ public class DeathManager : MonoBehaviour
     }
 
     [SerializeField] Transform _checkpointCollection;
+    public Transform CheckPointCollection
+    {
+        set { _checkpointCollection = value; }
+    }
     public List<Transform> _checkPointsList = new List<Transform>();
 
 
@@ -52,12 +56,20 @@ public class DeathManager : MonoBehaviour
 
         _timeManager = FindObjectOfType<TimeManager>();
 
+        _checkpointCollection = GameObject.FindGameObjectWithTag("CheckPoints").transform;
+
         for (int i = 0; i < _checkpointCollection.childCount; i++)
         {
             _checkPointsList.Add(_checkpointCollection.GetChild(i));
         }
     }
 
+
+    public void FindCheckPoints()
+    {
+        Debug.Log("find");
+        StartCoroutine(FindCheckPointTimer());
+    }
 
 
     public void DoDeath()
@@ -90,6 +102,23 @@ public class DeathManager : MonoBehaviour
             StartCoroutine(CheckPointScreenTimer());
         }
         _resetPoint = point;
+    }
+
+    IEnumerator FindCheckPointTimer()
+    {
+        yield return new WaitForSeconds(3);
+
+        _checkpointCollection = GameObject.FindGameObjectWithTag("CheckPoints").transform;
+        _checkPointsList.Clear();
+
+        for (int i = 0; i < _checkpointCollection.childCount; i++)
+        {
+            _checkPointsList.Add(_checkpointCollection.GetChild(i));
+        }
+
+        _resetPoint = _checkPointsList[0];
+
+        FindObjectOfType<CharStateMachine>().transform.position = _resetPoint.position;
     }
 
     IEnumerator CheckPointScreenTimer()

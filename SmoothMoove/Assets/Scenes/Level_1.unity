@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 150310867}
   m_Layer: 0
   m_Name: CheckPoints
-  m_TagString: Untagged
+  m_TagString: CheckPoints
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4896,7 +4896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 0}
   _player: {fileID: 0}
-  _checkpointCollection: {fileID: 150310867}
+  _checkpointCollection: {fileID: 0}
   _checkPointsList: []
   _deathCount: 0
   _hasDied: 0
