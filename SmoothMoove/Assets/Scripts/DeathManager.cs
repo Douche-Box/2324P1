@@ -40,6 +40,13 @@ public class DeathManager : MonoBehaviour
         }
     }
 
+    [SerializeField] bool _restartCheckpoints;
+    public bool RestartCheckPoints
+    {
+        get { return _restartCheckpoints; }
+        set { _restartCheckpoints = value; }
+    }
+
     [SerializeField] Transform _resetPoint;
 
     [SerializeField] GameObject _deathScreen;
@@ -68,9 +75,28 @@ public class DeathManager : MonoBehaviour
 
     public void FindCheckPoints()
     {
-        _player.Rb.useGravity = false;
 
-        StartCoroutine(FindCheckPointTimer());
+
+        _checkpointCollection = GameObject.FindGameObjectWithTag("CheckPoints").transform;
+
+        for (int i = 0; i < _checkpointCollection.childCount; i++)
+        {
+            _checkPointsList.Add(_checkpointCollection.GetChild(i));
+        }
+        _resetPoint = _checkPointsList[0];
+        _player.transform.position = _resetPoint.position;
+        _player.transform.forward = _resetPoint.forward;
+        _player.Rb.useGravity = true;
+        _sceneChangeScreen.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (_checkpointCollection == null && _restartCheckpoints)
+        {
+            FindCheckPoints();
+            RestartCheckPoints = false;
+        }
     }
 
 
@@ -78,7 +104,7 @@ public class DeathManager : MonoBehaviour
     {
         _deathCount++;
         _timeManager.CanTime = false;
-        if (_resetPoint != null)
+        if (_resetPoint != null && _checkpointCollection != null)
         {
             HasDied = true;
             _deathScreen.SetActive(true);
@@ -104,23 +130,6 @@ public class DeathManager : MonoBehaviour
             StartCoroutine(CheckPointScreenTimer());
         }
         _resetPoint = point;
-    }
-
-    IEnumerator FindCheckPointTimer()
-    {
-        yield return new WaitForSeconds(3);
-
-        _checkpointCollection = GameObject.FindGameObjectWithTag("CheckPoints").transform;
-        _checkPointsList.Clear();
-
-        for (int i = 0; i < _checkpointCollection.childCount; i++)
-        {
-            _checkPointsList.Add(_checkpointCollection.GetChild(i));
-        }
-        _resetPoint = _checkPointsList[0];
-        _player.transform.position = _resetPoint.position;
-        _sceneChangeScreen.SetActive(false);
-
     }
 
     IEnumerator CheckPointScreenTimer()

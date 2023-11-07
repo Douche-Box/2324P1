@@ -5,7 +5,6 @@ using TMPro;
 using Unity.VisualScripting;
 using Cinemachine;
 using UnityEngine.UI;
-using Microsoft.Unity.VisualStudio.Editor;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
