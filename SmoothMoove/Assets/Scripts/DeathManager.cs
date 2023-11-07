@@ -58,18 +58,28 @@ public class DeathManager : MonoBehaviour
         }
     }
 
+
+
     public void DoDeath()
     {
         _deathCount++;
         _timeManager.CanTime = false;
         if (_resetPoint != null)
         {
+            HasDied = true;
+            _deathScreen.SetActive(true);
+            _playerInput.enabled = false;
+            FindObjectOfType<CharStateMachine>().transform.position = _resetPoint.position;
             _player.Rb.velocity = new Vector3(0, 0, 0);
             _player.PlayerObj.forward = _resetPoint.forward;
-            _playerInput.enabled = false;
-            _deathScreen.SetActive(true);
-            FindObjectOfType<CharStateMachine>().transform.position = _resetPoint.position;
         }
+    }
+
+    public void DoRespawn()
+    {
+        HasDied = false;
+        _deathScreen.SetActive(false);
+        _playerInput.enabled = true;
     }
 
     public void DoCheckPoint(Transform point)

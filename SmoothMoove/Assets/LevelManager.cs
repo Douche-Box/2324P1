@@ -51,6 +51,10 @@ public class LevelManager : MonoBehaviour
             _deathManager.DoDeath();
         }
 
+        if (_deathManager.HasDied && Input.GetKeyDown(KeyCode.Space))
+        {
+            _deathManager.DoRespawn();
+        }
 
 
         if (_isNext && _canNext)
