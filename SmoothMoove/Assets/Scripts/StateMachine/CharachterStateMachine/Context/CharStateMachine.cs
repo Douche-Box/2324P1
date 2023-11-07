@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 using TMPro;
 using Unity.VisualScripting;
 using Cinemachine;
+using UnityEngine.UI;
+using Microsoft.Unity.VisualStudio.Editor;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
@@ -32,6 +34,8 @@ public class CharStateMachine : MonoBehaviour
     {
         get { return _playerCam; }
     }
+
+    [SerializeField] Material _speedLines;
 
 
     [SerializeField] private Transform _orientation;
@@ -701,6 +705,18 @@ public class CharStateMachine : MonoBehaviour
     private void Update()
     {
         _movementSpeed = Rb.velocity.magnitude;
+        if (_movementSpeed < 3)
+        {
+
+            _speedLines.SetFloat("_Alpha", 0);
+
+        }
+        else
+        {
+            _speedLines.SetFloat("_Alpha", _movementSpeed / 10);
+            _speedLines.SetFloat("_Speed", _movementSpeed);
+        }
+
 
         if (Input.GetKey(KeyCode.P))
         {
