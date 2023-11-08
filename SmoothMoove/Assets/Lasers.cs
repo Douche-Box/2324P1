@@ -7,6 +7,7 @@ public class Lasers : MonoBehaviour
 {
     [SerializeField] GameObject[] _lasers;
 
+    [SerializeField] Navmeshplayer _agentcontroller;
     [SerializeField] NavMeshAgent _agent;
 
     [SerializeField] CharStateMachine _player;
@@ -21,6 +22,7 @@ public class Lasers : MonoBehaviour
             {
                 _lasers[i].SetActive(true);
             }
+            _agentcontroller.Cando = true;
             _agent.enabled = true;
         }
 
@@ -34,8 +36,8 @@ public class Lasers : MonoBehaviour
             {
                 _lasers[i].SetActive(false);
             }
+            _agentcontroller.Cando = false;
             _agent.enabled = false;
-
         }
     }
 }

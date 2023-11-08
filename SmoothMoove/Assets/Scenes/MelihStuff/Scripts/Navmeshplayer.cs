@@ -7,7 +7,12 @@ public class Navmeshplayer : MonoBehaviour
 {
     public Transform player;
     private NavMeshAgent agent;
-
+    [SerializeField] bool _cando;
+    public bool Cando
+    {
+        get { return _cando; }
+        set { _cando = value; }
+    }
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,7 +24,11 @@ public class Navmeshplayer : MonoBehaviour
 
     private void Update()
     {
-        agent.destination = player.position;
+        if (_cando)
+        {
+            agent.destination = player.position;
+        }
+
         //agent.speed = speed * rend.material.SetFloat("_Speed");
         //rend.material.SetFloat("_Speed"
 
