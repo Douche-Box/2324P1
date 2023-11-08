@@ -209,6 +209,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _cinemachineCam
+      value: 
+      objectReference: {fileID: 1691924946}
     - target: {fileID: 4922730726549516385, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3827,6 +3831,17 @@ MonoBehaviour:
   AutoEnableInputs: 1
   XYAxis: {fileID: -3729834682113410660, guid: 48e8b518112b8844a87e9c7d4c8c40b2, type: 3}
   ZAxis: {fileID: 0}
+--- !u!114 &1691924946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2203894974182584515, guid: 814235245efe6284bb8f12a1d318833b, type: 3}
+  m_PrefabInstance: {fileID: 5244975214105264262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691924939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &1705810412 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 310293542375093590, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}

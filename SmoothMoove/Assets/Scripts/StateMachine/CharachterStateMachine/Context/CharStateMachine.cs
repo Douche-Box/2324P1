@@ -28,6 +28,8 @@ public class CharStateMachine : MonoBehaviour
         get { return _playerAnimator; }
     }
 
+    [SerializeField] CinemachineVirtualCamera _cinemachineCam;
+
     [SerializeField] Transform _playerCam;
     public Transform PlayerCam
     {
@@ -708,10 +710,12 @@ public class CharStateMachine : MonoBehaviour
         {
 
             _speedLines.SetFloat("_Alpha", 0);
+            _cinemachineCam.m_Lens.FieldOfView = 60;
 
         }
         else if (_speedLines != null)
         {
+            _cinemachineCam.m_Lens.FieldOfView = 60 + _movementSpeed / 2;
             _speedLines.SetFloat("_Alpha", _movementSpeed / 10);
             _speedLines.SetFloat("_Speed", _movementSpeed);
         }
@@ -734,6 +738,7 @@ public class CharStateMachine : MonoBehaviour
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
+        PlayerAnimator.SetBool("OnGround", IsGrounded);
 
         IsSloped = CheckSloped();
 

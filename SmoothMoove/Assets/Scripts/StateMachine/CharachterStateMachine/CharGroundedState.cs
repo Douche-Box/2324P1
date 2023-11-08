@@ -17,7 +17,6 @@ public class CharGroundedState : CharBaseState
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
         Ctx.IsJumpTime = Ctx.MaxJumpTime;
         Ctx.JumpMent = new Vector3(0, 1, 0);
-        Ctx.PlayerAnimator.SetBool("OnGround", true);
 
 
         Ctx.GrappleHooks = 1;
@@ -30,7 +29,6 @@ public class CharGroundedState : CharBaseState
 
     public override void ExitState()
     {
-        Ctx.PlayerAnimator.SetBool("OnGround", false);
     }
 
     #region MonoBehaveiours
