@@ -18531,6 +18531,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6777353996549014342, guid: 13f37901461853d4eb1f20ada90ab625, type: 3}
   m_PrefabInstance: {fileID: 835116521}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &836845092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d5be8d761237a24ba51522065e304ba, type: 3}
+  m_PrefabInstance: {fileID: 875153784}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &836845096
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836845092}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.554353, y: 6.109999, z: 0.22000036}
+  m_Center: {x: -0.3706386, y: -2.7889102, z: 0.000000033527613}
 --- !u!1001 &838168047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19523,10 +19549,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: AdSide (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8d5be8d761237a24ba51522065e304ba, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d5be8d761237a24ba51522065e304ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 836845096}
   m_SourcePrefab: {fileID: 100100000, guid: 8d5be8d761237a24ba51522065e304ba, type: 3}
 --- !u!1001 &875262986
 PrefabInstance:
@@ -29208,10 +29241,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1425227713795853957, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _playerCam
       value: 
       objectReference: {fileID: 2022911898}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _grappleLenght
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _grappleDetectionRadius
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4922730726549516385, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: m_Name
       value: Player
