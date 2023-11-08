@@ -12,7 +12,6 @@ public class CharGroundedState : CharBaseState
         Ctx.MoveMultiplier = 1f;
         Ctx.CanStartWallTimer = false;
         Ctx.WallClingTime = Ctx.MaxWallClingTime;
-        Ctx.PlayerAnimator.SetBool("OnGround", true);
         Ctx.ForceSlowDownRate = 5;
         Ctx.IsAired = false;
         Ctx.DesiredMoveForce = Ctx.MoveSpeed;
@@ -34,8 +33,6 @@ public class CharGroundedState : CharBaseState
     public override void UpdateState()
     {
         Ctx.PlayerAnimator.SetFloat("Running", Ctx.MovementSpeed);
-        Ctx.PlayerAnimator.SetBool("OnGround", false);
-
         Ctx.Movement = Ctx.CurrentMovement.normalized;
     }
 
