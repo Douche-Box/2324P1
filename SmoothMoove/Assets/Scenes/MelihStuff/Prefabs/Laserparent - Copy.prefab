@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4420373815596697332}
   m_Layer: 0
-  m_Name: Laserparent
+  m_Name: Laserparent - Copy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
