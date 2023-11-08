@@ -5,35 +5,35 @@ using UnityEngine;
 
 public class DoorAnimator : MonoBehaviour
 {
-
-    // [SerializeField] CharStateMachine _player;
-    // [SerializeField] float _distanceRequired;
-    // [SerializeField] float distance;
-
-    [SerializeField] Animator _animationDoorLeft;
-    [SerializeField] Animator _animationDoorRight;
+    [SerializeField] Animator[] _animations;
 
     [SerializeField] bool _openClose;
 
-    // private void Awake()
-    // {
-    //     _player = FindObjectOfType<CharStateMachine>();
-    // }
+    [SerializeField] bool _bossDoor;
+    [SerializeField] GameObject _boss;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponentInParent<CharStateMachine>())
+        if (other.GetComponentInParent<CharStateMachine>() && !_bossDoor)
         {
-            _openClose = !_animationDoorLeft.GetBool("Open");
 
-            _animationDoorLeft.SetBool("Open", _openClose);
-            _animationDoorRight.SetBool("Open", _openClose);
+            for (int i = 0; i < _animations.Length; i++)
+            {
+                _openClose = !_animations[i].GetBool("Open");
+                _animations[i].SetBool("Open", _openClose);
+
+            }
         }
     }
 
-    // private void Update()
-    // {
-    //     // distance = Vector3.Distance(_player.transform.position, this.transform.position);
-    //     // _openClose = (Vector3.Distance(_player.transform.position, this.transform.position) < _distanceRequired);
-    // }
+    private void Update()
+    {
+        if (_bossDoor && _boss == null)
+        {
+            for (int i = 0; i < _animations.Length; i++)
+            {
+                _animations[i].SetBool("Open", true);
+            }
+        }
+    }
 }

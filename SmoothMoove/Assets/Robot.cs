@@ -13,9 +13,6 @@ public class Robot : MonoBehaviour
     [SerializeField] Collider _hitbox;
     [SerializeField] Transform scaleer;
 
-    [SerializeField] Animator _doorL;
-    [SerializeField] Animator _doorR;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -37,8 +34,6 @@ public class Robot : MonoBehaviour
         }
         if (_robotHealth <= 0)
         {
-            _doorL.SetBool("Open", true);
-            _doorR.SetBool("Open", true);
             Destroy(scaleer.gameObject);
         }
     }

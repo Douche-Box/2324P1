@@ -19,6 +19,7 @@ public class CheckPoints : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log(" CHECK POINT ");
             _deathManager.DoCheckPoint(_checkPoint);
         }
     }

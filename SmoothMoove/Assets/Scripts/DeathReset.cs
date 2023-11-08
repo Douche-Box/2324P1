@@ -29,6 +29,7 @@ public class DeathReset : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log(" DEATH PLANE ");
             // switch (deathType)
             // {
             //     case DeathType.FALL:

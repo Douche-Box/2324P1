@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  _cando: 0
 --- !u!114 &1019741722019696013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,7 +1049,9 @@ GameObject:
   - component: {fileID: 7691018541959558518}
   - component: {fileID: 8656033373812606600}
   - component: {fileID: 6876029340677952607}
-  - component: {fileID: 6007312074195108980}
+  - component: {fileID: 4404127856411853304}
+  - component: {fileID: 393214108306112825}
+  - component: {fileID: 7515910036836975964}
   m_Layer: 0
   m_Name: Cube.013
   m_TagString: Untagged
@@ -1121,8 +1124,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6007312074195108980
-MeshCollider:
+--- !u!65 &4404127856411853304
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1139,10 +1142,51 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7807538432633192378, guid: 8a6a194d4a5c5074894086809cdf6ae9, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 2.6392717, y: 2.289195, z: 2.962173}
+  m_Center: {x: 0, y: 0.28834456, z: 0.6032844}
+--- !u!65 &393214108306112825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429407402973410788}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.01, y: 2.94, z: 2.31}
+  m_Center: {x: 0, y: 0.28834456, z: 0.6032844}
+--- !u!114 &7515910036836975964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5429407402973410788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0541c2b99cb207f42971b556ef7def97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotHealth: 1
+  _roboHit: 0
+  _roboMover: {fileID: 2081690344338956705}
+  _roboNavmesh: {fileID: 782247626458063087}
+  _roboRebootTime: 1
+  _hitbox: {fileID: 393214108306112825}
+  scaleer: {fileID: 4657162771792168389}
+  _doorL: {fileID: 0}
+  _doorR: {fileID: 0}
 --- !u!1 &5737940205534848591
 GameObject:
   m_ObjectHideFlags: 0
