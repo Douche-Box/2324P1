@@ -734,7 +734,6 @@ public class CharStateMachine : MonoBehaviour
         _currentState.UpdateStates();
 
         IsGrounded = CheckGrounded();
-        PlayerAnimator.SetBool("OnGround", IsGrounded);
 
         IsSloped = CheckSloped();
 

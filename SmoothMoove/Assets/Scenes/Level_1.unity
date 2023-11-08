@@ -4952,6 +4952,10 @@ PrefabInstance:
       value: Walk Cam
       objectReference: {fileID: 0}
     - target: {fileID: 7545592354824381192, guid: 814235245efe6284bb8f12a1d318833b, type: 3}
+      propertyPath: m_RecenterTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545592354824381192, guid: 814235245efe6284bb8f12a1d318833b, type: 3}
       propertyPath: m_VerticalAxis.m_MaxSpeed
       value: 300
       objectReference: {fileID: 0}
