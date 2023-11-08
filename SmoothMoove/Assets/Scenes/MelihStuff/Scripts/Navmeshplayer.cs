@@ -11,6 +11,7 @@ public class Navmeshplayer : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.enabled = false;
         //agent.speed = speed;
         //rend = GetComponent<Renderer>();
 

@@ -107,6 +107,7 @@ public class DeathManager : MonoBehaviour
         if (_resetPoint != null && _checkpointCollection != null)
         {
             HasDied = true;
+            _player.HasDied = true;
             _deathScreen.SetActive(true);
             _playerInput.enabled = false;
             FindObjectOfType<CharStateMachine>().transform.position = _resetPoint.position;
@@ -118,6 +119,7 @@ public class DeathManager : MonoBehaviour
     public void DoRespawn()
     {
         HasDied = false;
+        _player.HasDied = false;
         _deathScreen.SetActive(false);
         _playerInput.enabled = true;
     }

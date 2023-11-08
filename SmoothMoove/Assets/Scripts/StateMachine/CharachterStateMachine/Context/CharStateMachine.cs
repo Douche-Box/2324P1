@@ -662,7 +662,12 @@ public class CharStateMachine : MonoBehaviour
         set { _forceSlowDownRate = value; }
     }
 
-
+    [SerializeField] bool _hasDied;
+    public bool HasDied
+    {
+        get { return _hasDied; }
+        set { _hasDied = value; }
+    }
 
     private void Awake()
     {
