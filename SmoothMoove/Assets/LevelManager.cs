@@ -64,13 +64,7 @@ public class LevelManager : MonoBehaviour
             _canNext = false;
             if (checkPointInt >= _deathManager._checkPointsList.Count - 1)
             {
-                checkPointInt = 0;
-                _deathManager._checkPointsList.Clear();
-                _deathManager._sceneChangeScreen.SetActive(true);
-                _player.Rb.velocity = new Vector3(0, 0, 0);
-                _player.Rb.useGravity = false;
                 SceneManager.LoadScene(_levelScene);
-                _deathManager.RestartCheckPoints = true;
             }
             else
             {
@@ -106,8 +100,15 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(string scene)
     {
+        checkPointInt = 0;
+        _deathManager._checkPointsList.Clear();
+        _deathManager._sceneChangeScreen.SetActive(true);
+        _player.Rb.velocity = new Vector3(0, 0, 0);
+        _player.Rb.useGravity = false;
         _timeManager.CanTime = false;
         Debug.Log(_deathManager.DeathCount);
         SceneManager.LoadScene(scene);
+        _deathManager.RestartCheckPoints = true;
+
     }
 }

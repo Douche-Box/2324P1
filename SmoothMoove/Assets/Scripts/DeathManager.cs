@@ -75,8 +75,6 @@ public class DeathManager : MonoBehaviour
 
     public void FindCheckPoints()
     {
-
-
         _checkpointCollection = GameObject.FindGameObjectWithTag("CheckPoints").transform;
 
         for (int i = 0; i < _checkpointCollection.childCount; i++)
