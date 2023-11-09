@@ -61,7 +61,7 @@ Material:
     - _MaxSize: 3.99
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 3.0124335
+    - _Speed: 8.596716
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.6156863}
   m_BuildTextureStacks: []
