@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   travelDirection: {x: 0, y: 0, z: 0.5}
+  lifetime: 50
 --- !u!4 &3258639419640675212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a9ff29f18809a047acc23d521dcad13, type: 3}
