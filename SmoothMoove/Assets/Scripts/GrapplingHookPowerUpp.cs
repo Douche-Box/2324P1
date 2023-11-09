@@ -9,6 +9,7 @@ public class GrapplingHookPowerUpp : MonoBehaviour
         if (other.GetComponentInParent<CharStateMachine>())
         {
             other.GetComponentInParent<CharStateMachine>().GrappleHooks++;
+            this.gameObject.SetActive(false);
         }
     }
 }

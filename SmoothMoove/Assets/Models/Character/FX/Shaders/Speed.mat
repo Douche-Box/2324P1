@@ -54,14 +54,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.49577492
+    - _Alpha: 0
     - _Boolean: 1
     - _Contrast: 0.6
     - _Float: 1.39
     - _MaxSize: 3.99
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 4.9577494
+    - _Speed: 3.1846545
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.6156863}
   m_BuildTextureStacks: []
