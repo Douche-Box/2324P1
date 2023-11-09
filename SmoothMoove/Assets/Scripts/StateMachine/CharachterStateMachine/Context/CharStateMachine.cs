@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using Cinemachine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 public class CharStateMachine : MonoBehaviour
 {
     //CLEAN UP CODE
@@ -29,8 +30,9 @@ public class CharStateMachine : MonoBehaviour
     }
 
     [SerializeField] CinemachineVirtualCamera _cinemachineWalk;
-    [SerializeField] CinemachineVirtualCamera _cinemachineAim;
+    // [SerializeField] CinemachineVirtualCamera _cinemachineAim;
 
+    [SerializeField] Transform _aimTransform;
 
     [SerializeField] Transform _playerCam;
     public Transform PlayerCam
@@ -755,14 +757,16 @@ public class CharStateMachine : MonoBehaviour
 
         if (IsAim)
         {
-            _cinemachineAim.enabled = true;
-            _cinemachineWalk.enabled = false;
-
+            // _cinemachineAim.enabled = true;
+            _cinemachineWalk.LookAt = _aimTransform;
+            _cinemachineWalk.Follow = _aimTransform;
         }
         else
         {
-            _cinemachineAim.enabled = false;
-            _cinemachineWalk.enabled = true;
+            // _cinemachineAim.enabled = false;
+            _cinemachineWalk.LookAt = this.transform;
+            _cinemachineWalk.Follow = this.transform;
+
 
         }
 

@@ -11,12 +11,13 @@ public class DoorAnimator : MonoBehaviour
 
     [SerializeField] bool _bossDoor;
     [SerializeField] GameObject _boss;
+    [SerializeField] bool _hasAnimated;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponentInParent<CharStateMachine>() && !_bossDoor)
+        if (other.GetComponentInParent<CharStateMachine>() && !_bossDoor && !_hasAnimated)
         {
-
+            _hasAnimated = true;
             for (int i = 0; i < _animations.Length; i++)
             {
                 _openClose = !_animations[i].GetBool("Open");

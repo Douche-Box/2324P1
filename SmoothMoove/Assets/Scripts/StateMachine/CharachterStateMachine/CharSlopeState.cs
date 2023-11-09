@@ -76,7 +76,7 @@ public class CharSlopeState : CharBaseState
         {
             SwitchState(Factory.Fall());
         }
-        else if (Ctx.IsJump)
+        else if (Ctx.IsJump && !Ctx.IsSlide)
         {
             SwitchState(Factory.Jump());
         }
