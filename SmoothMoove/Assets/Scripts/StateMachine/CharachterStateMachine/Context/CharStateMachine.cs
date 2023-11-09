@@ -680,6 +680,15 @@ public class CharStateMachine : MonoBehaviour
         set { _hasDied = value; }
     }
 
+    [SerializeField] float _newFov;
+    [SerializeField] float _oldFov;
+
+
+    [SerializeField] float _fovThreshold;
+    [SerializeField] bool _fovTimer;
+    [SerializeField] float _maxFov;
+
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -731,10 +740,12 @@ public class CharStateMachine : MonoBehaviour
         }
         else if (_speedLines != null)
         {
-            _cinemachineWalk.m_Lens.FieldOfView = 60 + _movementSpeed / 2;
-            _speedLines.SetFloat("_Alpha", _movementSpeed / 10);
-            _speedLines.SetFloat("_Speed", _movementSpeed);
+            _speedLines.SetFloat("_Alpha", 0.5f);
+
+            SmoothFov(_movementSpeed);
         }
+
+
 
 
         if (Input.GetKey(KeyCode.P))
@@ -1047,6 +1058,24 @@ public class CharStateMachine : MonoBehaviour
 
 
     #endregion
+
+    public void SmoothFov(float movingspeed)
+    {
+        // _fovTimer = true;
+        // if (_fovTimer)
+        // {
+        //     _oldFov = (60 + movingspeed);
+        //     StartCoroutine(SmoothFovTime());
+        // }
+    }
+
+    // IEnumerator SmoothFovTime()
+    // {
+    //     // yield return new WaitForSeconds(0.5f);
+    //     // _cinemachineWalk.m_Lens.FieldOfView = Mathf.Lerp(_oldFov, _oldFov + 1, 1);
+    //     // _fovTimer = false;
+
+    // }
 
     public void HandleStrafeSpeed()
     {
