@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 2179110820902905536}
   m_Layer: 0
   m_Name: Walk Cam
-  m_TagString: Untagged
+  m_TagString: CineMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

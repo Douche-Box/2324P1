@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -46,15 +47,19 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] float _rotationThreshold;
 
 
-    [SerializeField] GameObject _cinemachineCam;
+    [SerializeField] List<GameObject> _cinemachineCams = new List<GameObject>();
 
     private void Start()
     {
         DontDestroyOnLoad(_camHolder);
         _stateMachine = FindObjectOfType<CharStateMachine>();
 
-        _cinemachineCam = FindObjectOfType<CinemachineVirtualCamera>().gameObject;
-        DontDestroyOnLoad(_cinemachineCam);
+        _cinemachineCams.Add(GameObject.FindGameObjectWithTag("CineMachine"));
+
+        for (int i = 0; i < _cinemachineCams.Count; i++)
+        {
+            DontDestroyOnLoad(_cinemachineCams[i]);
+        }
 
         _orientation = _stateMachine.Orientation;
         _player = _stateMachine.transform;

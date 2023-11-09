@@ -13,6 +13,11 @@ TagManager:
   - Door06
   - CamHolder
   - CheckPoints
+  - CineMachine
+  - ForceField
+  - Metal
+  - Wood
+  - Concrete
   layers:
   - Default
   - TransparentFX
