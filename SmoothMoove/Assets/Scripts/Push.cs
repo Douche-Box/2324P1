@@ -15,8 +15,10 @@ public class Push : MonoBehaviour
             other.GetComponentInParent<CharStateMachine>().IsForced = true;
             other.GetComponentInParent<CharStateMachine>().ExtraForce = _pushForce;
 
+            Vector3 pushdirection = _fanTransform.up;
+
             other.GetComponentInParent<CharStateMachine>().Rb.velocity = new Vector3(other.GetComponentInParent<CharStateMachine>().Rb.velocity.x, 0, other.GetComponentInParent<CharStateMachine>().Rb.velocity.z);
-            other.GetComponentInParent<CharStateMachine>().Rb.AddForce(_fanTransform.up *= _pushForce, ForceMode.Impulse);
+            other.GetComponentInParent<CharStateMachine>().Rb.AddForce(pushdirection *= _pushForce, ForceMode.Impulse);
         }
     }
 }

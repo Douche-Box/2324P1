@@ -23,8 +23,4 @@ public class CheckPoints : MonoBehaviour
             _deathManager.DoCheckPoint(_checkPoint);
         }
     }
-
-
-
-
 }
