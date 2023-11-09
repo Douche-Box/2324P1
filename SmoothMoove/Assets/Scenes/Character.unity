@@ -20205,6 +20205,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164449469}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1169188727 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2203894974182584515, guid: 814235245efe6284bb8f12a1d318833b, type: 3}
+  m_PrefabInstance: {fileID: 1955554321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1171749993
 GameObject:
   m_ObjectHideFlags: 0
@@ -23964,6 +23975,10 @@ PrefabInstance:
       propertyPath: _playerCam
       value: 
       objectReference: {fileID: 2022911898}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _cinemachineCam
+      value: 
+      objectReference: {fileID: 1169188727}
     - target: {fileID: 4922730726549516385, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: m_Name
       value: Player
