@@ -23,6 +23,9 @@ public class CharGrappledState : CharBaseState
         Ctx.ExtraForce = Ctx.GrappleSpeed;
 
         Ctx.GrappleDirection = (Ctx.GrapplePoint - Ctx.transform.position).normalized;
+        Ctx.GrappleLr.enabled = true;
+
+        Ctx.GrappleLr.SetPosition(1, Ctx.GrapplePoint);
 
         Ctx.PlayerAnimator.SetTrigger("Grapple");
 
@@ -32,6 +35,7 @@ public class CharGrappledState : CharBaseState
     public override void ExitState()
     {
         Ctx.IsGrappling = false;
+        Ctx.GrappleLr.enabled = false;
     }
 
     #region MonoBehaveiours
@@ -39,6 +43,7 @@ public class CharGrappledState : CharBaseState
     public override void UpdateState()
     {
         CheckSwitchStates();
+        Ctx.GrappleLr.SetPosition(0, Ctx.GrappleLr.transform.position);
 
         Ctx.GrappleDelay -= Time.deltaTime;
 

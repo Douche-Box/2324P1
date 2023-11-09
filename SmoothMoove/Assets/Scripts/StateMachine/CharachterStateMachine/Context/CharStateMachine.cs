@@ -32,6 +32,13 @@ public class CharStateMachine : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _cinemachineWalk;
     // [SerializeField] CinemachineVirtualCamera _cinemachineAim;
 
+    [SerializeField] LineRenderer _grappleLr;
+    public LineRenderer GrappleLr
+    {
+        get { return _grappleLr; }
+        set { _grappleLr = value; }
+    }
+
     [SerializeField] Transform _aimTransform;
 
     [SerializeField] Transform _playerCam;
