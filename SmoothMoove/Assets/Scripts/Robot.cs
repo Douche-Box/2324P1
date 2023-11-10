@@ -12,7 +12,8 @@ public class Robot : MonoBehaviour
     [SerializeField] int _roboRebootTime;
     [SerializeField] Collider _hitbox;
     [SerializeField] Transform scaleer;
-    [SerializeField] GameObject _topSaw;
+    [SerializeField] Animator _topSaw;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -40,12 +41,12 @@ public class Robot : MonoBehaviour
     IEnumerator RobotReboot()
     {
         yield return new WaitForSeconds(_roboRebootTime);
-        _topSaw.SetActive(true);
+        _topSaw.SetBool("Out", true);
         _roboMover.Cando = true;
         _roboNavmesh.enabled = true;
         _hitbox.enabled = true;
         _robotHealth--;
         yield return new WaitForSeconds(_roboRebootTime);
-        _topSaw.SetActive(false);
+        _topSaw.SetBool("Out", false);
     }
 }
