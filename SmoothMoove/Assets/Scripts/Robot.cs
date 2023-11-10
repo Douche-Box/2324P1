@@ -16,6 +16,7 @@ public class Robot : MonoBehaviour
     [SerializeField] Transform scaleer;
     [SerializeField] Animator _topSaw;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -53,12 +54,18 @@ public class Robot : MonoBehaviour
     IEnumerator RobotReboot()
     {
         yield return new WaitForSeconds(_roboRebootTime);
-        _topSaw.SetBool("Out", true);
+        if (_topSaw != null)
+        {
+            _topSaw.SetBool("Out", true);
+        }
         _roboMover.Cando = true;
         _roboNavmesh.enabled = true;
         _hitbox.enabled = true;
         _robotHealth--;
         yield return new WaitForSeconds(_roboRebootTime);
-        _topSaw.SetBool("Out", false);
+        if (_topSaw != null)
+        {
+            _topSaw.SetBool("Out", false);
+        }
     }
 }
