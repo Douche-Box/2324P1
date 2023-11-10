@@ -163,6 +163,9 @@ public class LevelManager : MonoBehaviour
 
     public void Quit()
     {
+        Resume();
+        Destroy(_player.gameObject);
         SceneManager.LoadScene("MainMenu");
+        Destroy(this.gameObject);
     }
 }
