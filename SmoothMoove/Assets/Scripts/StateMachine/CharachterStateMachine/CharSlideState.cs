@@ -50,27 +50,27 @@ public class CharSlideState : CharBaseState
 
     public override void CheckSwitchStates()
     {
-        if (!Ctx.IsMove)
+        if (!Ctx.IsMove && !Ctx.UpCheck)
         {
             SwitchState(Factory.Idle());
         }
-        else if (Ctx.IsMove && Ctx.IsAired)
+        else if (Ctx.IsMove && Ctx.IsAired && !Ctx.UpCheck)
         {
             SwitchState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsJumping)
+        else if (Ctx.IsMove && Ctx.IsJumping && !Ctx.UpCheck)
         {
             SwitchState(Factory.Walk());
         }
-        else if (Ctx.IsMove && !Ctx.IsSlide)
+        else if (Ctx.IsMove && !Ctx.IsSlide && !Ctx.UpCheck)
         {
             SwitchState(Factory.Walk());
         }
-        else if (Ctx.IsMove && Ctx.IsSlide && Ctx.IsWalled)
+        else if (Ctx.IsMove && Ctx.IsSlide && Ctx.IsWalled && !Ctx.UpCheck)
         {
             SwitchState(Factory.Walk());
         }
-        else if (Ctx.MoveForce <= Ctx.LowestSlideSpeed)
+        else if (Ctx.MoveForce <= Ctx.LowestSlideSpeed && !Ctx.UpCheck)
         {
             SwitchState(Factory.Walk());
         }

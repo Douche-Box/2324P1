@@ -210,9 +210,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _upcheckLenght
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _cinemachineWalk
       value: 
       objectReference: {fileID: 1691924946}
+    - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: _slideLayer.m_Bits
+      value: 8063
+      objectReference: {fileID: 0}
     - target: {fileID: 4922730726549516385, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3408,6 +3416,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &990994838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 234066011686145763, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+  m_PrefabInstance: {fileID: 1992130346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &994061093 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1856951913349036115, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
@@ -5668,6 +5681,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 759486665}
+    - target: {fileID: 1565911319791497665, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1825207625246881264, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5724,6 +5741,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 687706573}
+    - target: {fileID: 4310519222761307381, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: _model
+      value: 
+      objectReference: {fileID: 990994838}
     - target: {fileID: 4383502308916300238, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       propertyPath: m_Mesh
       value: 

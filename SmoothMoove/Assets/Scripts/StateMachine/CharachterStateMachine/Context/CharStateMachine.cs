@@ -170,6 +170,18 @@ public class CharStateMachine : MonoBehaviour
         get { return _lowestSlideSpeed; }
     }
 
+    [SerializeField] bool _upCheck;
+    public bool UpCheck
+    {
+        get { return _upCheck; }
+        set { _upCheck = value; }
+    }
+    [SerializeField] LayerMask _slideLayer;
+
+    [SerializeField] float _upcheckLenght;
+
+    [SerializeField] RaycastHit _slideUpCheckHit;
+
     #endregion
 
     [Header("WallRunning")]
@@ -745,7 +757,7 @@ public class CharStateMachine : MonoBehaviour
             SmoothFov(MoveForce);
         }
 
-
+        _upCheck = CheckUpSlide();
 
 
         if (Input.GetKey(KeyCode.P))
@@ -1082,6 +1094,18 @@ public class CharStateMachine : MonoBehaviour
     //     // _fovTimer = false;
 
     // }
+
+    public bool CheckUpSlide()
+    {
+        if (Physics.Raycast(_colliders[1].transform.position, _colliders[1].transform.up, out _slideUpCheckHit, _upcheckLenght, _slideLayer))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public void HandleStrafeSpeed()
     {
