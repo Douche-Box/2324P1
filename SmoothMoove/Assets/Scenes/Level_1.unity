@@ -614,6 +614,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6410461843379679745, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: m_Cameras.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8951745564806009274, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.2448132
@@ -4085,6 +4089,7 @@ GameObject:
   - component: {fileID: 987580683}
   - component: {fileID: 987580682}
   - component: {fileID: 987580681}
+  - component: {fileID: 987580686}
   m_Layer: 0
   m_Name: Saw (2)
   m_TagString: Untagged
@@ -4101,7 +4106,7 @@ Transform:
   m_GameObject: {fileID: 987580679}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.022582717, y: -0.17266846, z: 0.049163952}
+  m_LocalPosition: {x: 0.02258272, y: -0.17266846, z: 0.04916395}
   m_LocalScale: {x: 0.75, y: 6.205757, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4208,6 +4213,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987580679}
   m_Mesh: {fileID: 8314571269056883277, guid: 0ddba9c4ad56e4843b44f2213b4ac565, type: 3}
+--- !u!95 &987580686
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987580679}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce1fee5046499a44fb478289bf693602, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &990994838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 234066011686145763, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
