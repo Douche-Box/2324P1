@@ -735,14 +735,14 @@ public class CharStateMachine : MonoBehaviour
         {
 
             _speedLines.SetFloat("_Alpha", 0);
-            _cinemachineWalk.m_Lens.FieldOfView = 60;
+            _cinemachineWalk.m_Lens.FieldOfView = Mathf.Lerp(_oldFov, 60, 1);
 
         }
         else if (_speedLines != null)
         {
             _speedLines.SetFloat("_Alpha", 0.5f);
 
-            SmoothFov(_movementSpeed);
+            SmoothFov(MoveForce);
         }
 
 
@@ -1061,12 +1061,18 @@ public class CharStateMachine : MonoBehaviour
 
     public void SmoothFov(float movingspeed)
     {
-        // _fovTimer = true;
-        // if (_fovTimer)
-        // {
-        //     _oldFov = (60 + movingspeed);
-        //     StartCoroutine(SmoothFovTime());
-        // }
+        _newFov = 60 + movingspeed;
+
+        if (_newFov > _oldFov + 3)
+        {
+            _cinemachineWalk.m_Lens.FieldOfView = Mathf.Lerp(_oldFov, _newFov, 1);
+            _oldFov = _newFov;
+        }
+        else if (_oldFov > _newFov - 3)
+        {
+            _cinemachineWalk.m_Lens.FieldOfView = Mathf.Lerp(_oldFov, _newFov, 1);
+            _oldFov = _newFov;
+        }
     }
 
     // IEnumerator SmoothFovTime()
