@@ -7,8 +7,6 @@ public class PutAnimReset : MonoBehaviour
     [SerializeField] CharStateMachine _player;
 
     [SerializeField] Animator _put;
-
-    [SerializeField] Collider _putcollider;
     private void Awake()
     {
         _player = FindObjectOfType<CharStateMachine>();
@@ -19,8 +17,6 @@ public class PutAnimReset : MonoBehaviour
         if (other.GetComponentInParent<CharStateMachine>())
         {
             _put.SetBool("Open", false);
-            _putcollider.enabled = false;
-
         }
     }
 }
