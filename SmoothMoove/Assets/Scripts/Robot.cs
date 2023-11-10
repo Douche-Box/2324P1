@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Robot : MonoBehaviour
 {
+    [SerializeField] CharStateMachine _player;
+    [SerializeField] int _maxRoboHealth;
     [SerializeField] int _robotHealth;
     [SerializeField] bool _roboHit;
     [SerializeField] Navmeshplayer _roboMover;
@@ -22,8 +24,18 @@ public class Robot : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        _robotHealth = _maxRoboHealth;
+        _player = FindObjectOfType<CharStateMachine>();
+    }
+
     private void Update()
     {
+        if (_player.HasDied)
+        {
+            _robotHealth = _maxRoboHealth;
+        }
         if (_roboHit)
         {
             _roboHit = false;

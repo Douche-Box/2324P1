@@ -1551,17 +1551,6 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 7749895992489706241, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
   m_PrefabInstance: {fileID: 1992130346}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &336099711 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9058310175992136271, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
-  m_PrefabInstance: {fileID: 1992130346}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0448f7b66c8c114c842a7bb8d0ad4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &351359791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 437729388452864768, guid: a11f9d241a1e7a1449b1089c4c29db7d, type: 3}
@@ -4285,8 +4274,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1044644853}
-  - component: {fileID: 1044644855}
   - component: {fileID: 1044644854}
+  - component: {fileID: 1044644855}
   m_Layer: 0
   m_Name: All lasers (2)
   m_TagString: Untagged
@@ -4303,7 +4292,7 @@ Transform:
   m_GameObject: {fileID: 1044644852}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -101.75, y: -39, z: -54.49999}
+  m_LocalPosition: {x: -102.25, y: -40.75, z: -55.24999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4339,23 +4328,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1044644852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a8bf6935c46ffc4fb817a6bfb804f17, type: 3}
+  m_Script: {fileID: 11500000, guid: 27bc63909c1139b4e97c08d8d2831d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lasers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _agentcontroller: {fileID: 336099711}
-  _agent: {fileID: 336099710}
-  _player: {fileID: 0}
+  agents:
+  - {fileID: 1766981488}
+  - {fileID: 336099710}
 --- !u!95 &1113514373 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6123980127707424227, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
@@ -6285,17 +6263,6 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 6129460880668916528, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
   m_PrefabInstance: {fileID: 1992130346}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1766981489 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4839263444218657406, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
-  m_PrefabInstance: {fileID: 1992130346}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0448f7b66c8c114c842a7bb8d0ad4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1871265184 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7606175303854698740, guid: 5585fe04037396f49965abf7c834094d, type: 3}
@@ -6477,86 +6444,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1906000533
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1906000534}
-  - component: {fileID: 1906000536}
-  - component: {fileID: 1906000535}
-  m_Layer: 0
-  m_Name: All lasers (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1906000534
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906000533}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -102.5, y: -39, z: -54.49999}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1439576798}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &1906000535
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906000533}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 9.000012, y: 11, z: 0.99999976}
-  m_Center: {x: -3.9999995, y: -5, z: 1.5}
---- !u!114 &1906000536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906000533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a8bf6935c46ffc4fb817a6bfb804f17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lasers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _agentcontroller: {fileID: 1766981489}
-  _agent: {fileID: 1766981488}
-  _player: {fileID: 0}
 --- !u!1 &1934439509 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6171349531786708947, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
@@ -6842,6 +6729,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 687706573}
+    - target: {fileID: 656350244816578226, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: _robotHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 656350244816578226, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: _maxRoboHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 656511953133895257, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -6964,6 +6859,14 @@ PrefabInstance:
       objectReference: {fileID: 1318762337}
     - target: {fileID: 3639779662776000170, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001099155739418243, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: _robotHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001099155739418243, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: _maxRoboHealth
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4040124947746393132, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
@@ -7130,6 +7033,14 @@ PrefabInstance:
       propertyPath: _topSaw
       value: 
       objectReference: {fileID: 987580686}
+    - target: {fileID: 6845492572334980582, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: _robotHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845492572334980582, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: _maxRoboHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6984575166740354040, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.75
@@ -7329,9 +7240,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8447435693702593518, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1906000534}
     - targetCorrespondingSourceObject: {fileID: 8447435693702593518, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1044644853}
