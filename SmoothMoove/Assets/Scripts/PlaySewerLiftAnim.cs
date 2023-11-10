@@ -11,6 +11,8 @@ public class PlaySewerLiftAnim : MonoBehaviour
     [SerializeField] private bool liftTrigger = false;
 
 
+    [SerializeField] Collider pipeCollider;
+
     public AudioSource audioSource;
     public AudioClip clip;
     public float volume;
@@ -24,11 +26,15 @@ public class PlaySewerLiftAnim : MonoBehaviour
                 putDeksel.Play("Lift", 0, 0.0f);
 
                 audioSource.PlayOneShot(clip, volume);
-                
+                StartCoroutine(HitboxTimer());
             }
-            
+
         }
     }
-    
 
+    IEnumerator HitboxTimer()
+    {
+        yield return new WaitForSeconds(3f);
+        pipeCollider.enabled = true;
+    }
 }
