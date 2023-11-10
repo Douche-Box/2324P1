@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] string _levelScene;
 
     [SerializeField] GameObject _winScreen;
+    [SerializeField] TMP_Text _winDeathTxt;
+
+    [SerializeField] GameObject _optionsScreen;
+
+    [SerializeField] bool _optionYn;
 
     private void Awake()
     {
@@ -44,6 +50,10 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+        if (_player == null)
+        {
+            _player = FindObjectOfType<CharStateMachine>();
+        }
         if (_player.IsMove)
         {
             _timeManager.CanTime = true;
@@ -59,6 +69,10 @@ public class LevelManager : MonoBehaviour
             _deathManager.DoRespawn();
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Resume();
+        }
 
         if (_isNext && _canNext)
         {
@@ -88,6 +102,22 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void Resume()
+    {
+        _optionYn = !_optionYn;
+
+        if (_optionYn)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        _optionsScreen.SetActive(_optionYn);
+    }
+
     void OnReset(InputAction.CallbackContext context)
     {
         _isReset = context.ReadValueAsButton();
@@ -101,6 +131,7 @@ public class LevelManager : MonoBehaviour
     public void EndGame()
     {
         _timeManager.CanTime = false;
+        _winDeathTxt.text = _deathManager.DeathCount.ToString() + " deaths";
         _winScreen.SetActive(true);
     }
 
@@ -116,5 +147,22 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(scene);
         _deathManager.RestartCheckPoints = true;
 
+    }
+
+    public void RestartBtn()
+    {
+        _timeManager.CanTime = false;
+        _timeManager.ElapsedTime = 0;
+        checkPointInt = 0;
+        _deathManager.DeathCount = 0;
+        Destroy(_player.gameObject);
+        Resume();
+        SceneManager.LoadScene("Level_1");
+        Destroy(this.gameObject);
+    }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -25,6 +25,7 @@ public class DeathManager : MonoBehaviour
     public int DeathCount
     {
         get { return _deathCount; }
+        set { _deathCount = value; }
     }
 
     [SerializeField] bool _hasDied;

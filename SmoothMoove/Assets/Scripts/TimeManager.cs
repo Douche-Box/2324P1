@@ -6,6 +6,11 @@ using TMPro;
 public class TimeManager : MonoBehaviour
 {
     [SerializeField] float _elapsedTime;
+    public float ElapsedTime
+    {
+        get { return _elapsedTime; }
+        set { _elapsedTime = value; }
+    }
     [SerializeField] TMP_Text _text;
     //halloasdf
     [SerializeField] bool _canTime;
