@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: af93037b76da8bf4e91f7c3b88bc7410, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b6041343719a2204d829244c1d1fbe66, type: 2}
     - target: {fileID: 919132149155446097, guid: af93037b76da8bf4e91f7c3b88bc7410, type: 3}
       propertyPath: m_Name
       value: FencePillars2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: af93037b76da8bf4e91f7c3b88bc7410, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -72,7 +80,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.9461823
+      value: -1.841
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -80,19 +88,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.711447
+      value: 0.679
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.7071039
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071097
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalRotation.z
@@ -104,15 +112,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0be1e5ffcc385f24eb0ec70509c98532, type: 2}
     - target: {fileID: 919132149155446097, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
       propertyPath: m_Name
       value: Fence
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dc139d1e59dde042bf86014aa9457d4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -207,6 +223,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4d37b3cbc78a3b74996c5f56f5bc86b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b6041343719a2204d829244c1d1fbe66, type: 2}
     - target: {fileID: 919132149155446097, guid: 4d37b3cbc78a3b74996c5f56f5bc86b3, type: 3}
       propertyPath: m_Name
       value: FencePillars1
@@ -214,6 +234,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4d37b3cbc78a3b74996c5f56f5bc86b3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4d37b3cbc78a3b74996c5f56f5bc86b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
