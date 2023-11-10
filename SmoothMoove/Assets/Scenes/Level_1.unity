@@ -209,82 +209,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsWood.Array.size
-      value: 3
+    - target: {fileID: 943509887152237973, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: MaxDistance
+      value: 150.57
       objectReference: {fileID: 0}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsMetal.Array.size
-      value: 4
+    - target: {fileID: 943509887152237973, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: MinDistance
+      value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsWood.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 9b3f85045d80e3146a8db236c4f3191d, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsWood.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: e4b594ee46c3ac34e8bd94d11a498d6f, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsWood.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 4d3eb2d58cd75474ea54a526f4646ac8, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsConcrete.Array.size
-      value: 3
+    - target: {fileID: 3067233286828142751, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: MaxDistance
+      value: 150.57
       objectReference: {fileID: 0}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsMetal.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: b5c239e2c128f57429c35317d866fba7, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsMetal.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 5e3f6da6a6daa3c4ebc2c8272cb3b55b, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsMetal.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: fa2ee91753bd757409f54a3ad310e468, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsMetal.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: def6606c098f03944ad8f208b5881da9, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsForceField.Array.size
-      value: 4
+    - target: {fileID: 3067233286828142751, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
+      propertyPath: MinDistance
+      value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsConcrete.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 9b3f85045d80e3146a8db236c4f3191d, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsConcrete.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: e4b594ee46c3ac34e8bd94d11a498d6f, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsConcrete.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 4d3eb2d58cd75474ea54a526f4646ac8, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsConcrete.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: def6606c098f03944ad8f208b5881da9, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsForceField.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: ec93c80d5c4fac640996e517bf2b18bc, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsForceField.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 7239e1f213b72964996e5273a2699311, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsForceField.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 96493fe8550f40c43b537cffade44d51, type: 3}
-    - target: {fileID: 3177780757985670058, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
-      propertyPath: _clipsForceField.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: 0e6e1d73ad36a344faefc53613643626, type: 3}
     - target: {fileID: 4689235032731412211, guid: fdaaf40ff26afb240921ee76c3f14f50, type: 3}
       propertyPath: _upcheckLenght
       value: 2
@@ -6536,6 +6476,86 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 377436365}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: MaxDistance
+      value: 33.911423
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: MinDistance
+      value: 9.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: DopplerLevel
+      value: 0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0.2659871
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: 0.4657663
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: 0.36697388
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].inSlope
+      value: -3.7610843
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
+      value: -1.527668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].inSlope
+      value: -0.26609376
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outSlope
+      value: -3.7610843
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
+      value: -1.527668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].outSlope
+      value: -0.26609376
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719870045432436931, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outWeight
+      value: 0.22366245
+      objectReference: {fileID: 0}
     - target: {fileID: 8954870046471093862, guid: d9eefd3ebba6e36469ddd90911450583, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -6752,6 +6772,10 @@ PrefabInstance:
     - target: {fileID: 2245373002749684890, guid: 5585fe04037396f49965abf7c834094d, type: 3}
       propertyPath: m_Name
       value: LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603385567615594838, guid: 5585fe04037396f49965abf7c834094d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7606175303854698740, guid: 5585fe04037396f49965abf7c834094d, type: 3}
       propertyPath: _winScreen
