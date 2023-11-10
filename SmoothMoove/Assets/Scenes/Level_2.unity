@@ -2680,7 +2680,7 @@ PrefabInstance:
       addedObject: {fileID: 2117127698}
     - targetCorrespondingSourceObject: {fileID: 468950457133583689, guid: 03ed27c9732b041468fe7b6528c4c9e1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2117127697}
+      addedObject: {fileID: 2117127699}
   m_SourcePrefab: {fileID: 100100000, guid: 03ed27c9732b041468fe7b6528c4c9e1, type: 3}
 --- !u!4 &1454690149 stripped
 Transform:
@@ -3856,20 +3856,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 468950457133583689, guid: 03ed27c9732b041468fe7b6528c4c9e1, type: 3}
   m_PrefabInstance: {fileID: 1454690148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2117127697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117127692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da0effb146d3b68449768b2be0ec40e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneToLoad: Level_3
-  _levelManager: {fileID: 0}
 --- !u!65 &2117127698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3891,6 +3877,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9635881, y: 2.4423065, z: 0.9635882}
   m_Center: {x: 0, y: 1.2266443, z: 0}
+--- !u!114 &2117127699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117127692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063eb3e2df17b3a4bbca50fc23701a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelManager: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

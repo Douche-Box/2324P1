@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] string _levelScene;
 
+    [SerializeField] GameObject _winScreen;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -96,7 +98,11 @@ public class LevelManager : MonoBehaviour
         _isNext = context.ReadValueAsButton();
     }
 
-
+    public void EndGame()
+    {
+        _timeManager.CanTime = false;
+        _winScreen.SetActive(true);
+    }
 
     public void LoadLevel(string scene)
     {
