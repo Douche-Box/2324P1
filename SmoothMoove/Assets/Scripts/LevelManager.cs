@@ -108,10 +108,14 @@ public class LevelManager : MonoBehaviour
 
         if (_optionYn)
         {
+            Cursor.visible = true;
+
             Cursor.lockState = CursorLockMode.None;
         }
         else
         {
+            Cursor.visible = false;
+
             Cursor.lockState = CursorLockMode.Locked;
         }
 
@@ -131,6 +135,8 @@ public class LevelManager : MonoBehaviour
     public void EndGame()
     {
         _timeManager.CanTime = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         _winDeathTxt.text = _deathManager.DeathCount.ToString() + " deaths";
         _winScreen.SetActive(true);
     }
