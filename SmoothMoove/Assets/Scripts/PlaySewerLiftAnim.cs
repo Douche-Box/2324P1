@@ -23,7 +23,7 @@ public class PlaySewerLiftAnim : MonoBehaviour
         {
             if (liftTrigger)
             {
-                putDeksel.SetTrigger("Lift");
+                putDeksel.SetBool("Open", true);
                 //als je wilt dat hij omhoog gaat moet je bij death "putDeksel.SetTrigger("ReverseLift");" doen maykel groetjes sem
                 audioSource.PlayOneShot(clip, volume);
                 StartCoroutine(HitboxTimer());
