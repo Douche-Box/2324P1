@@ -29,7 +29,6 @@ public class Robot : MonoBehaviour
             _roboMover.Cando = false;
             _roboNavmesh.enabled = false;
             _hitbox.enabled = false;
-            scaleer.localScale = new Vector3(scaleer.localScale.x, scaleer.localScale.y - 0.2f, scaleer.localScale.z);
             StartCoroutine(RobotReboot());
         }
         if (_robotHealth <= 0)
